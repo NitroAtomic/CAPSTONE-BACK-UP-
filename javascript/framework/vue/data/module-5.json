@@ -2,8 +2,8 @@
   "moduleId": "module-5",
   "moduleName": "Pretexting",
   "totalQuestions": 10,
-  "standardCount": 8,
-  "scenarioBasedCount": 2,
+  "standardCount": 6,
+  "scenarioBasedCount": 4,
   "questions": [
     {
       "id": 1,
@@ -29,12 +29,12 @@
     {
       "id": 2,
       "category": "easy",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What is the gold standard rule when handling requests for sensitive corporate information?",
+      "questionText": "A caller you don't recognize asks you to send over sensitive corporate information, claiming it's urgently needed for a same-day audit. What is the gold standard rule for handling this kind of request?",
       "options": [
         {
           "value": "a",
@@ -145,12 +145,12 @@
     {
       "id": 6,
       "category": "medium",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Why do pretexters often try to discourage victims from submitting official IT service tickets?",
+      "questionText": "Someone posing as a vendor pressures you to resolve their \"urgent\" access request directly with them instead of submitting an official IT service ticket. Why might a pretexter want to avoid the formal ticketing process?",
       "options": [
         {
           "value": "a",

@@ -2,8 +2,8 @@
   "moduleId": "module-2",
   "moduleName": "Spear Phishing",
   "totalQuestions": 10,
-  "standardCount": 9,
-  "scenarioBasedCount": 1,
+  "standardCount": 6,
+  "scenarioBasedCount": 4,
   "questions": [
     {
       "id": 1,
@@ -58,12 +58,12 @@
     {
       "id": 3,
       "category": "easy",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Why do attackers often send password-protected .zip files containing malicious attachments?",
+      "questionText": "A vendor you've never worked with emails you a password-protected .zip file labeled \"Invoice_Overdue.zip\" and asks you to enter the password from a separate message to open it. Why might an attacker package a malicious attachment this way?",
       "options": [
         {
           "value": "a",
@@ -141,12 +141,12 @@
     {
       "id": 6,
       "category": "medium",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "a",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Reducing the amount of detailed operational information shared on public social media accounts helps reduce your exposure to OSINT reconnaissance.",
+      "questionText": "You've been posting detailed updates about your work travel, conference attendance, and current projects on your public social media accounts. Does reducing this kind of detailed operational information lower your exposure to OSINT reconnaissance used in spear phishing?",
       "options": [
         {
           "value": "a",
@@ -241,12 +241,12 @@
     {
       "id": 10,
       "category": "hard",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What information can an attacker gather from your public GitHub profile to make a spear-phishing email believable?",
+      "questionText": "An attacker researching you before sending a spear-phishing email finds your public GitHub profile. What information could they gather there to make their message more believable?",
       "options": [
         {
           "value": "a",

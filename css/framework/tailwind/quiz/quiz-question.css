@@ -77,6 +77,48 @@
     @apply text-[17px];
   }
 
+  /* Highlight the correct option (and the user's wrong pick, if any) once
+     the current question has been checked. */
+  .quiz-answer-option-correct {
+    @apply border-green-600 bg-green-50;
+  }
+
+  .quiz-answer-option-incorrect {
+    @apply border-red-600 bg-red-50;
+  }
+
+  .quiz-answer-option input:disabled {
+    @apply cursor-not-allowed;
+  }
+
+  /* =========================
+     Per-Question Answer Feedback ("flash")
+     ========================= */
+
+  .quiz-feedback-panel {
+    @apply mt-6 p-4 border-2 rounded-[10px];
+  }
+
+  .quiz-feedback-correct {
+    @apply border-green-600 bg-green-50 text-green-800;
+  }
+
+  .quiz-feedback-incorrect {
+    @apply border-red-600 bg-red-50 text-red-800;
+  }
+
+  .quiz-feedback-status {
+    @apply mb-2 text-base font-semibold;
+  }
+
+  .quiz-feedback-panel p {
+    @apply mb-1.5 text-[15px] leading-relaxed;
+  }
+
+  .quiz-feedback-panel p:last-child {
+    @apply mb-0;
+  }
+
   /* =========================
      Navigation Buttons
      ========================= */

@@ -2,8 +2,8 @@
   "moduleId": "module-1",
   "moduleName": "Quishing",
   "totalQuestions": 10,
-  "standardCount": 7,
-  "scenarioBasedCount": 3,
+  "standardCount": 5,
+  "scenarioBasedCount": 5,
   "questions": [
     {
       "id": 1,
@@ -116,12 +116,12 @@
     {
       "id": 5,
       "category": "medium",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What is the safest way to access a company cloud portal after receiving a suspicious email notification?",
+      "questionText": "You receive an email notification stating your company cloud portal requires urgent re-authentication, with a link included. What is the safest way to access the portal?",
       "options": [
         {
           "value": "a",
@@ -145,12 +145,12 @@
     {
       "id": 6,
       "category": "medium",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "a",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Hovering your mouse over a hyperlinked button in an email allows you to preview the actual destination URL before clicking.",
+      "questionText": "Before clicking a hyperlinked \"Verify Account\" button in an email, you hover your mouse over it without clicking. Does this let you preview the actual destination URL before you click?",
       "options": [
         {
           "value": "a",

@@ -34,7 +34,8 @@ export default {
       moduleData: null,        // the loaded module-N.json (name, totals, etc.)
       shuffledQuestions: [],   // the 10 questions, order randomized for this attempt
       currentIndex: 0,         // which question (0-9) is currently shown
-      answers: {}              // { [questionId]: 'b' }  or  { [questionId]: ['a','b'] }
+      answers: {},             // { [questionId]: 'b' }  or  { [questionId]: ['a','b'] }
+      checkedIds: {}           // { [questionId]: true } — has this question been "checked" (feedback flashed) yet?
     }
   },
 
@@ -65,7 +66,7 @@ export default {
       return ((this.currentIndex + 1) / this.totalQuestions) * 100
     },
 
-    // Has the CURRENT question been answered? Controls whether Next/Submit is enabled.
+    // Has the CURRENT question been answered? Controls whether "Check Answer" is enabled.
     isCurrentAnswered() {
       if (!this.currentQuestion) return false
       const saved = this.answers[this.currentQuestion.id]
@@ -73,6 +74,27 @@ export default {
         return Array.isArray(saved) && saved.length > 0
       }
       return !!saved
+    },
+
+    // Has the CURRENT question already been "checked" (feedback flashed) this attempt?
+    // Persists across Back/Next so returning to an earlier question re-shows its feedback
+    // instead of asking the user to check it again.
+    isCurrentChecked() {
+      return this.currentQuestion ? !!this.checkedIds[this.currentQuestion.id] : false
+    },
+
+    // Per-question feedback shown immediately after "Check Answer" is clicked.
+    // Built entirely from data already in the module JSON (correctAnswer + explanation) —
+    // no new content needed.
+    currentFeedback() {
+      if (!this.currentQuestion || !this.isCurrentChecked) return null
+      const selected = this.answers[this.currentQuestion.id]
+      const isCorrect = this.answersMatch(this.currentQuestion.correctAnswer, selected)
+      return {
+        isCorrect,
+        correctAnswerText: this.formatAnswer(this.currentQuestion, this.currentQuestion.correctAnswer),
+        explanation: this.currentQuestion.explanation || ''
+      }
     },
 
     // v-model target for single-answer (radio) questions.
@@ -115,6 +137,34 @@ export default {
       this.shuffledQuestions = shuffleOrder(data.questions)
       this.currentIndex = 0
       this.answers = {}
+      this.checkedIds = {}
+    },
+
+    // Flashes the correct/incorrect feedback for the current question.
+    // The answer is locked in at this point (inputs get :disabled once checked)
+    // so a user can't see the correct answer and then quietly switch to it.
+    checkAnswer() {
+      if (!this.currentQuestion || !this.isCurrentAnswered) return
+      this.checkedIds = { ...this.checkedIds, [this.currentQuestion.id]: true }
+    },
+
+    // Used to highlight the correct option (and the user's wrong pick, if any)
+    // once a question has been checked.
+    isOptionCorrect(value) {
+      if (!this.currentQuestion) return false
+      const correct = this.currentQuestion.correctAnswer
+      if (Array.isArray(correct)) {
+        return correct.map(String).includes(String(value))
+      }
+      return String(correct) === String(value)
+    },
+
+    isOptionSelected(value) {
+      if (!this.currentQuestion) return false
+      if (this.currentQuestion.answerType === 'multiple') {
+        return this.selectedAnswers.map(String).includes(String(value))
+      }
+      return String(this.selectedAnswer) === String(value)
     },
 
     goNext() {

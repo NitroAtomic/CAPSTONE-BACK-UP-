@@ -34,12 +34,17 @@
             v-for="option in currentQuestion.options"
             :key="option.value"
             class="quiz-answer-option"
+            :class="{
+              'quiz-answer-option-correct': isCurrentChecked && isOptionCorrect(option.value),
+              'quiz-answer-option-incorrect': isCurrentChecked && isOptionSelected(option.value) && !isOptionCorrect(option.value)
+            }"
           >
             <input
               type="radio"
               name="answer"
               :value="option.value"
               v-model="selectedAnswer"
+              :disabled="isCurrentChecked"
             >
             <span>{{ option.text }}</span>
           </label>
@@ -51,15 +56,37 @@
             v-for="option in currentQuestion.options"
             :key="option.value"
             class="quiz-answer-option"
+            :class="{
+              'quiz-answer-option-correct': isCurrentChecked && isOptionCorrect(option.value),
+              'quiz-answer-option-incorrect': isCurrentChecked && isOptionSelected(option.value) && !isOptionCorrect(option.value)
+            }"
           >
             <input
               type="checkbox"
               :value="option.value"
               :checked="selectedAnswers.includes(option.value)"
+              :disabled="isCurrentChecked"
               @change="toggleMultipleAnswer(option.value)"
             >
             <span>{{ option.text }}</span>
           </label>
+        </div>
+
+        <!-- Immediate per-question feedback, flashed after "Check Answer" -->
+        <div
+          v-if="currentFeedback"
+          class="quiz-feedback-panel"
+          :class="currentFeedback.isCorrect ? 'quiz-feedback-correct' : 'quiz-feedback-incorrect'"
+        >
+          <p class="quiz-feedback-status">
+            {{ currentFeedback.isCorrect ? 'Correct!' : 'Incorrect' }}
+          </p>
+          <p v-if="!currentFeedback.isCorrect">
+            <strong>Correct answer:</strong> {{ currentFeedback.correctAnswerText }}
+          </p>
+          <p v-if="currentFeedback.explanation">
+            <strong>Explanation:</strong> {{ currentFeedback.explanation }}
+          </p>
         </div>
 
       </div>
@@ -75,11 +102,22 @@
           Back
         </button>
 
+        <!-- Step 1: must check the answer (see the flash feedback) before advancing -->
         <button
-          v-if="!isLastQuestion"
+          v-if="!isCurrentChecked"
           type="button"
           class="quiz-navigation-button quiz-next-button"
           :disabled="!isCurrentAnswered"
+          @click="checkAnswer"
+        >
+          Check Answer
+        </button>
+
+        <!-- Step 2: once checked, Next/Submit appears -->
+        <button
+          v-else-if="!isLastQuestion"
+          type="button"
+          class="quiz-navigation-button quiz-next-button"
           @click="goNext"
         >
           Next
@@ -89,7 +127,6 @@
           v-else
           type="button"
           class="quiz-navigation-button quiz-next-button"
-          :disabled="!isCurrentAnswered"
           @click="submitQuiz"
         >
           Submit

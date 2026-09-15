@@ -2,8 +2,8 @@
   "moduleId": "module-4",
   "moduleName": "Vishing",
   "totalQuestions": 10,
-  "standardCount": 8,
-  "scenarioBasedCount": 2,
+  "standardCount": 6,
+  "scenarioBasedCount": 4,
   "questions": [
     {
       "id": 1,
@@ -29,12 +29,12 @@
     {
       "id": 2,
       "category": "easy",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What is the best immediate response when an unknown caller becomes aggressive and demands immediate compliance?",
+      "questionText": "An unknown caller on the phone becomes aggressive and demands that you immediately verify your account details over the call. What is the best immediate response?",
       "options": [
         {
           "value": "a",
@@ -79,12 +79,12 @@
     {
       "id": 4,
       "category": "medium",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What should a remote worker do if they accidentally approve a fraudulent MFA push prompt during a vishing call?",
+      "questionText": "While on a call with someone claiming to be from IT, you accidentally approve a fraudulent MFA push prompt they triggered. What should you do next?",
       "options": [
         {
           "value": "a",

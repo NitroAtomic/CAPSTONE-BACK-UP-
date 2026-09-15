@@ -52,6 +52,17 @@
     @apply mb-3.5 p-4 border border-black rounded-[14px];
   }
 
+  /* These two classes were already in QuizResults.vue's :class binding but had
+     no matching rules yet — added here for the same green/red convention used
+     on the new per-question "Check Answer" flash feedback in Quiz Page. */
+  .quiz-review-card-correct {
+    @apply border-green-600 bg-green-50;
+  }
+
+  .quiz-review-card-incorrect {
+    @apply border-red-600 bg-red-50;
+  }
+
   .quiz-review-status {
     @apply mb-2 text-sm font-semibold;
   }

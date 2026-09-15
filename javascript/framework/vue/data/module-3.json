@@ -2,18 +2,18 @@
   "moduleId": "module-3",
   "moduleName": "Smishing",
   "totalQuestions": 10,
-  "standardCount": 7,
-  "scenarioBasedCount": 3,
+  "standardCount": 5,
+  "scenarioBasedCount": 5,
   "questions": [
     {
       "id": 1,
       "category": "easy",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What is the safest action to take when receiving a suspicious text message?",
+      "questionText": "You receive a text message from an unknown number containing a suspicious link and urging you to act immediately. What is the safest action to take?",
       "options": [
         {
           "value": "a",
@@ -37,12 +37,12 @@
     {
       "id": 2,
       "category": "easy",
-      "questionType": "standard",
+      "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Replying \"STOP\" to a smishing text message from an unknown scammer will safely unsubscribe you from their list.",
+      "questionText": "You get an unsolicited promotional text from an unknown sender and reply \"STOP,\" expecting to be removed from their list. Will this safely unsubscribe you from a smishing scammer's messages?",
       "options": [
         {
           "value": "a",
