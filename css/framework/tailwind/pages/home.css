@@ -1,0 +1,133 @@
+@layer components {
+
+  /* =========================
+     Homepage Layout
+     ========================= */
+
+  .home-section {
+    @apply w-[min(940px,calc(100%-40px))] my-8 mx-auto;
+  }
+
+
+  /* =========================
+     Homepage Heading
+     ========================= */
+
+  .home-heading {
+    @apply text-center mb-3.5;
+  }
+
+  .home-heading h1 {
+    @apply text-[42px] leading-[1.1] font-extrabold max-[620px]:text-[32px];
+  }
+
+  .home-heading p {
+    @apply mt-4 text-[20px];
+  }
+
+
+  /* =========================
+     Section Headings
+     ========================= */
+
+  .modules-section {
+    @apply mt-3.5;
+  }
+
+  .premium-section {
+    @apply mt-5;
+  }
+
+  .section-heading h2 {
+    @apply text-[32px] leading-[1.1];
+  }
+
+  .section-heading p {
+    @apply mt-[3px] text-gray-500 text-[16px];
+  }
+
+
+  /* =========================
+     Free Modules
+     ========================= */
+
+  .modules-grid {
+    @apply grid grid-cols-3 gap-3.5 mt-2.5 max-[900px]:grid-cols-2 max-[620px]:grid-cols-1;
+  }
+
+  .module-card {
+    @apply min-h-28 p-5 border-[2px] border-black rounded-[22px] flex items-center justify-between transition-all duration-150 ease-in-out;
+  }
+
+  .module-card:hover {
+    @apply -translate-y-[2px] bg-gray-100;
+  }
+
+  .module-card h3 {
+    @apply text-[29px] leading-[1.1] font-medium;
+  }
+
+  .module-card p {
+    @apply mt-2.5 text-gray-500 text-[15px];
+  }
+
+  .module-icon {
+    @apply ml-2.5 w-8 h-8 object-contain shrink-0;
+  }
+
+
+  /* =========================
+     Premium Modules
+     ========================= */
+
+  .premium-heading h2 {
+    @apply flex items-center gap-2.5;
+  }
+
+  .premium-badge {
+    @apply py-[3px] px-[9px] border border-black rounded-full bg-gray-400 text-[13px] font-semibold;
+  }
+
+  .premium-grid {
+    @apply grid grid-cols-3 gap-3.5 mt-2.5 max-[900px]:grid-cols-2 max-[620px]:grid-cols-1;
+  }
+
+  .premium-card {
+    @apply min-h-28 py-[15px] px-[18px] border-[2px] border-dashed border-black rounded-[22px] flex items-center justify-between;
+  }
+
+  .premium-card h3 {
+    @apply text-[27px] leading-none font-medium;
+  }
+
+  .premium-card p {
+    @apply mt-2 text-gray-500 text-[13px];
+  }
+
+  .lock-icon {
+    @apply ml-2.5 w-[27px] h-[27px] object-contain shrink-0;
+  }
+
+
+  /* =========================
+     Premium Button
+     ========================= */
+
+  .premium-action {
+    @apply flex justify-center mt-6;
+  }
+
+  .btn-upgrade {
+    @apply bg-gray-300 font-semibold;
+  }
+
+
+  /* =========================
+     AI Chatbot (floating trigger button)
+     ========================= */
+
+  .chatbot-button {
+    @apply fixed right-[26px] bottom-3.5 py-2.5 px-5 bg-white border border-black rounded-[7px] text-[16px] font-semibold cursor-pointer;
+  }
+
+}

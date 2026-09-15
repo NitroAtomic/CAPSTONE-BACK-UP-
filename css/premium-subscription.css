@@ -21,8 +21,16 @@
 }
 
 .premium-crown-icon {
-    font-size: 44px;
-    line-height: 1;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto;
+}
+
+.premium-crown-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .premium-page-heading h1 {

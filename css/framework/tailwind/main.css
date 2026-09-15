@@ -1,0 +1,74 @@
+/* =========================
+   Component partials
+   Each of these only contains `@layer components { ... }` blocks —
+   they rely on the `@tailwind components;` directive below to work.
+   `@import` must be the very first statements in a CSS file (a hard
+   CSS-spec rule, not a Tailwind quirk) — Vite's own import resolver
+   silently drops any `@import` that comes after other rules instead
+   of erroring loudly, which is why these must sit above the
+   `@tailwind` directives, not below them as in the earlier attempt.
+
+   That's also why every component .vue file must NOT load its CSS via
+   its own <style src="...">: Vite would process that file through
+   its own independent PostCSS build with no `@tailwind` context,
+   and Tailwind throws "`@layer components` is used but no matching
+   `@tailwind components` directive is present." Loading everything
+   through this single main.css (imported once, globally, in main.js)
+   is what avoids that.
+   ========================= */
+
+@import './layout/site-header.css';
+@import './pages/home.css';
+@import './quiz/quiz-question.css';
+@import './quiz/quiz.css';
+@import './quiz/quiz-results.css';
+@import './modules/modules.css';
+@import './chatbot/chatbot-tailwind.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   Global Reset
+   Converted from css/global.css using the Tailwind mappings
+   in tailwind-conversion-guide.md — same selectors, same
+   visual result, values now driven by Tailwind's design tokens.
+   ========================= */
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply text-black bg-white;
+    font-family: Arial, Helvetica, sans-serif; /* no Tailwind token defined for this stack yet — kept as plain CSS */
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input {
+    font: inherit; /* shorthand `inherit` has no single Tailwind utility — kept as plain CSS */
+  }
+}
+
+
+/* =========================
+   Buttons (base) — truly shared across SiteHeader.vue AND Home.vue,
+   so this stays here. Variant colors (.btn-login, .btn-premium,
+   .btn-upgrade) live in each component's own file instead.
+   ========================= */
+
+@layer components {
+  .btn {
+    @apply min-h-10 py-0 px-[22px] inline-flex items-center justify-center border border-black rounded-lg cursor-pointer max-[620px]:px-3;
+  }
+}

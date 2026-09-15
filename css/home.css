@@ -96,7 +96,10 @@
 
 .module-icon {
   margin-left: 10px;
-  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 
@@ -160,7 +163,10 @@
 
 .lock-icon {
   margin-left: 10px;
-  font-size: 27px;
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 

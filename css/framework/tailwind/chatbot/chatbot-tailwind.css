@@ -1,0 +1,190 @@
+@layer components {
+
+  /* =========================
+     Chatbot Widget
+     ========================= */
+
+  .chatbot-widget {
+    @apply fixed right-6 bottom-5 z-[1000] max-[480px]:right-3.5 max-[480px]:bottom-3.5;
+  }
+
+
+  /* =========================
+     Chatbot Panel
+     ========================= */
+
+  .chatbot-panel {
+    @apply absolute right-0 bottom-[68px] w-[330px] h-[460px] overflow-hidden border-[2px] border-black rounded-[22px] bg-white hidden flex-col
+      max-[480px]:w-[calc(100vw-28px)] max-[480px]:max-w-[330px] max-[480px]:h-[430px];
+  }
+
+  .chatbot-panel.chatbot-panel-open {
+    @apply flex;
+  }
+
+
+  /* =========================
+     Chatbot Header
+     ========================= */
+
+  .chatbot-header {
+    @apply min-h-[60px] py-[9px] px-4 bg-white text-black border-b border-black flex items-center justify-between;
+  }
+
+  .chatbot-assistant-information {
+    @apply flex items-center gap-[9px];
+  }
+
+  .chatbot-assistant-icon {
+    @apply w-[34px] h-[34px] shrink-0 border border-black rounded-full bg-white text-black flex items-center justify-center text-[11px] font-bold;
+  }
+
+  .chatbot-assistant-details h2 {
+    @apply m-0 text-[14px] leading-[1.1];
+  }
+
+  .chatbot-status {
+    @apply mt-0.5 text-gray-500 text-[10px];
+  }
+
+
+  /* =========================
+     Close Button
+     ========================= */
+
+  .chatbot-close-button {
+    @apply w-8 h-8 p-0 border-none bg-transparent text-black flex items-center justify-center text-[20px] leading-none cursor-pointer;
+  }
+
+
+  /* =========================
+     Conversation Area
+     ========================= */
+
+  .chatbot-conversation {
+    @apply flex-1 p-3.5 overflow-y-auto bg-white;
+  }
+
+
+  /* =========================
+     Chat Messages
+     ========================= */
+
+  .chatbot-message {
+    @apply max-w-[82%] mb-2.5 py-[9px] px-3 border border-black rounded-xl text-[13px] leading-snug break-words;
+  }
+
+  .chatbot-assistant-message {
+    @apply mr-auto border-black bg-white text-black;
+  }
+
+  .chatbot-user-message {
+    @apply ml-auto border-black bg-gray-100 text-black;
+  }
+
+
+  /* =========================
+     Loading Message
+     ========================= */
+
+  .chatbot-loading-message {
+    @apply mr-auto border border-black bg-white text-gray-500 italic;
+  }
+
+
+  /* =========================
+     Error Message
+     ========================= */
+
+  .chatbot-error-message {
+    @apply mr-auto border border-red-700 bg-white text-red-700;
+  }
+
+
+  /* =========================
+     Message Form
+     ========================= */
+
+  .chatbot-message-form {
+    @apply p-2.5 border-t border-black bg-white;
+  }
+
+  .chatbot-input-container {
+    @apply flex items-center gap-[7px];
+  }
+
+  .chatbot-input-container input {
+    @apply flex-1 min-w-0 h-[38px] py-0 px-[13px] border border-black rounded-full bg-white outline-none text-[13px];
+  }
+
+  .chatbot-input-container input::placeholder {
+    @apply text-gray-400;
+  }
+
+  .chatbot-input-container input:focus {
+    @apply border-2 border-black;
+  }
+
+
+  /* =========================
+     Send Button
+     ========================= */
+
+  .chatbot-send-button {
+    @apply w-[38px] h-[38px] shrink-0 p-0 border border-black rounded-full bg-white text-black flex items-center justify-center text-[15px] leading-none cursor-pointer transition-all duration-150 ease-in-out;
+  }
+
+  .chatbot-send-button:hover {
+    @apply bg-gray-100 -translate-y-[1px];
+  }
+
+
+  /* =========================
+     Floating Chatbot Button
+     ========================= */
+
+  .chatbot-floating-button {
+    @apply w-[54px] h-[54px] ml-auto p-0 border border-black rounded-full bg-white text-black flex items-center justify-center cursor-pointer transition-all duration-150 ease-in-out;
+  }
+
+  .chatbot-floating-button:hover {
+    @apply bg-gray-100 -translate-y-[2px];
+  }
+
+
+  /* =========================
+     Floating Chatbot Icon
+     ========================= */
+
+  .chatbot-floating-button-icon {
+    @apply w-6 h-6 flex items-center justify-center;
+  }
+
+  /*
+     Placeholder for the final chatbot icon.
+     When the icon is available, place an <img> inside .chatbot-floating-button-icon.
+  */
+
+  .chatbot-floating-button-icon img {
+    @apply w-full h-full block object-contain;
+  }
+
+
+  /* =========================
+     Hidden Accessible Label
+     ========================= */
+
+  .chatbot-hidden-label {
+    @apply sr-only;
+  }
+
+
+  /* =========================
+     Disabled State
+     ========================= */
+
+  .chatbot-send-button:disabled,
+  .chatbot-input-container input:disabled {
+    @apply cursor-not-allowed opacity-[0.55];
+  }
+}

@@ -1,0 +1,287 @@
+<template>
+  <main class="module-page">
+    <header class="module-header">
+        <nav>
+            <router-link to="/" class="home">
+                <span class="icon">🏠</span>Home
+            </router-link>
+        </nav>
+
+        <h1>Smishing (SMS & Mobile Messaging Attacks)</h1>
+        <p>Module 3 of 6</p>
+    </header>
+
+
+    <!-- =========================
+         Smishing Learning Guide
+         ========================= -->
+
+    <section
+        id="smishing-awareness-guide"
+        class="module-awareness-guide"
+    >
+        <h2>Module Metadata</h2>
+
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> Remote employees and
+            freelancers using personal or mobile endpoints (BYOD) for
+            multi-factor authentication (MFA), client messaging, and team
+            communication.
+        </p>
+
+        <article>
+            <h3>Explicit Learning Objectives:</h3>
+
+            <p>After completing this module, the learner should be able to:</p>
+
+            <ul>
+                <li>
+                    Explain the psychological drivers that make mobile text
+                    messaging a high-trust, high-vulnerability attack vector.
+                </li>
+
+                <li>
+                    Identify technical smishing techniques including URL
+                    shortener obfuscation, sender ID spoofing, and fake
+                    portal redirects.
+                </li>
+
+                <li>
+                    Differentiate between legitimate institutional/logistics
+                    SMS alerts and malicious smishing lures.
+                </li>
+
+                <li>
+                    Implement mobile device hardening, OTP/MFA protection
+                    habits, and secure reporting procedures.
+                </li>
+            </ul>
+        </article>
+
+    </section>
+
+
+    <section id="smishing-reading-material">
+        <h2>Website Reading Material</h2>
+
+        <article>
+            <h3>1. The Mobile Vulnerability Landscape</h3>
+
+            <p>
+                Smishing (SMS Phishing) delivers malicious links or
+                deceptive calls via Short Message Service (SMS) or instant
+                messaging platforms (WhatsApp, Signal, Telegram). As
+                organizations adopt mobile Multi-Factor Authentication (MFA)
+                and mobile collaboration tools, threat actors increasingly
+                target personal smartphones.
+            </p>
+
+            <p>Mobile endpoints present specific security challenges:</p>
+
+            <ul>
+                <li>
+                    <strong>High User Trust:</strong> Users traditionally
+                    view SMS as a direct, personal communication channel,
+                    leading to higher open and click-through rates compared
+                    to email.
+                </li>
+
+                <li>
+                    <strong>Mobile Interface Constraints:</strong> Mobile
+                    browsers hide full URL structures due to limited screen
+                    real estate, making it difficult to inspect destination
+                    domains.
+                </li>
+
+                <li>
+                    <strong>BYOD Exposure:</strong> Personal mobile devices
+                    often lack enterprise-grade endpoint detection and
+                    response (EDR) agents or web filtering controls.
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>2. Common Smishing Attack Patterns</h3>
+
+            <p>
+                Threat actors design smishing lures around high-probability
+                daily scenarios:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Logistics & Delivery Scams:</strong> Messages
+                    claiming a parcel (e.g., FedEx, DHL, postal services)
+                    cannot be delivered without address confirmation or a
+                    small fee. The included link redirects to a credential
+                    or credit card harvesting page.
+                </li>
+
+                <li>
+                    <strong>Financial Fraud Alerts:</strong> Text alerts
+                    claiming an urgent security hold or unauthorized
+                    transaction has occurred on a bank account. The victim
+                    is urged to "click here immediately to verify identity".
+                </li>
+
+                <li>
+                    <strong>MFA Interception & OTP Harvesting:</strong> The
+                    attacker attempts to log in to a victim's corporate
+                    account, triggering a real One-Time Password (OTP) text
+                    to the victim's phone. Simultaneously, the attacker
+                    sends a smishing text: "IT Desk: We detected suspicious
+                    activity. Reply with the 6-digit code sent to your
+                    device to secure your account."
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>3. Technical Obfuscation: URL Shorteners & Sender ID Spoofing</h3>
+
+            <p>
+                Smishers rely on URL shorteners (bit.ly, tinyurl.com, t.co)
+                or lookalike domains (bank-secure-login.site) to hide the
+                true destination of their links. Additionally, attackers
+                utilize SMS gateway tools to perform Alpha-Numeric Sender ID
+                Spoofing, causing the fake text message to appear in the
+                exact same SMS conversation thread as legitimate messages
+                from banks or service providers.
+            </p>
+        </article>
+
+        <article>
+            <h3>4. Real-World Remote Work Scenario</h3>
+
+            <p><strong>Scenario: The IT System Unlocking Text</strong></p>
+
+            <p>
+                Sarah, a remote customer support agent, receives an SMS at
+                8:00 AM: <em>"OKTA ALERT: Your remote access account has
+                been flagged for compliance review. Resolve within 30
+                minutes to maintain shift access:
+                https://okta-sso-verify.link/login"</em>
+            </p>
+
+            <p>
+                Fearing she will miss her shift and face disciplinary
+                action, Sarah taps the link on her phone. The page renders
+                an exact copy of her company's SSO login portal. She enters
+                her username, password, and the push MFA token, unknowingly
+                handing her enterprise credentials directly to an attacker.
+            </p>
+        </article>
+
+        <article>
+            <h3>5. Defense & Remediation Protocols</h3>
+
+            <ol>
+                <li>
+                    <strong>Never Click Links in Unsolicited SMS:</strong>
+                    Treat all text messages containing clickable links as
+                    untrusted. If an alert claims to be from your bank or
+                    employer, navigate to the official app or website
+                    independently.
+                </li>
+
+                <li>
+                    <strong>Protect OTPs and MFA Codes:</strong> Never share
+                    One-Time Passwords or MFA tokens with anyone over text
+                    or phone. Legitimate IT departments will never ask you
+                    to text back an OTP.
+                </li>
+
+                <li>
+                    <strong>Use Short-Link Unshorteners:</strong> Use URL
+                    expansion tools or expansion preview settings before
+                    tapping shortened links on mobile devices.
+                </li>
+
+                <li>
+                    <strong>Report Smishing:</strong> Forward scam texts to
+                    SPAM (7726) on supported mobile networks or report them
+                    to your security team.
+                </li>
+            </ol>
+        </article>
+
+    </section>
+
+    <section id="smishing-red-flags">
+        <h2>Red Flag Indicators & Defensive Checklist</h2>
+
+        <ul>
+            <li>
+                <strong>Urgent Demands via Text:</strong> Messages
+                threatening account suspension, missed deliveries, or
+                legal action requiring immediate link clicks.
+            </li>
+
+            <li>
+                <strong>Shortened / Obscured Links:</strong> URLs using
+                services like bit.ly, tiny.cc, or unusual top-level
+                domains (.xyz, .site, .info).
+            </li>
+
+            <li>
+                <strong>Requests for OTPs:</strong> Texts or callers
+                asking you to text back or read aloud a multi-factor
+                authentication code.
+            </li>
+
+            <li>
+                <strong>Generic 10-Digit Sender Numbers:</strong>
+                Official bank or corporate alerts arriving from standard
+                individual mobile phone numbers rather than registered
+                shortcodes.
+            </li>
+        </ul>
+    </section>
+
+    <section id="smishing-curated-resources">
+        <h2>Curated Resources & References</h2>
+
+        <ul>
+            <li>
+                <strong>Video Source:</strong>
+                <a href="https://www.youtube.com/watch?v=2n-1ZInI_vE" target="_blank" rel="noopener noreferrer">
+                    Federal Communications Commission (FCC) — "Avoid the Temptation of Smishing Scams"
+                </a>
+            </li>
+
+            <li>
+                <strong>Reference Guide:</strong>
+                <a href="https://www.fcc.gov/avoid-temptation-smishing-scams" target="_blank" rel="noopener noreferrer">
+                    FCC Consumer Guide — Avoid the Temptation of Smishing Scams
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- =========================
+         Module Quiz Section
+         ========================= -->
+
+    <section class="module-quiz-section">
+
+        <h2>Test Your Knowledge</h2>
+
+        <p>
+            Ready to check what you've learned? Take a randomized
+            10-question quiz based on this module.
+        </p>
+
+        <router-link to="/quiz/module-3/question" class="take-quiz-button">
+            Take a Quiz
+        </router-link>
+
+    </section>
+
+        <!-- =========================
+         AI Chatbot
+         ========================= -->
+  </main>
+</template>
+
+<script src="./Smishing.js"></script>

@@ -1,0 +1,262 @@
+{
+  "moduleId": "module-4",
+  "moduleName": "Vishing",
+  "totalQuestions": 10,
+  "standardCount": 8,
+  "scenarioBasedCount": 2,
+  "questions": [
+    {
+      "id": 1,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Caller ID information displayed on a smartphone screen can be easily spoofed by attackers using web VoIP services.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Caller ID metadata can be modified by outbound VoIP gateways to show fake names and numbers."
+    },
+    {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the best immediate response when an unknown caller becomes aggressive and demands immediate compliance?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Comply with their demands to avoid trouble."
+        },
+        {
+          "value": "b",
+          "text": "Terminate the call (hang up) and report the incident to security."
+        },
+        {
+          "value": "c",
+          "text": "Apologize and offer your personal credentials."
+        },
+        {
+          "value": "d",
+          "text": "Hold the line for 5 hours without speaking."
+        }
+      ],
+      "explanation": "Aggressive emotional pressure is a hallmark of vishing; hanging up terminates the attack vector."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Official company helpdesks frequently call remote workers unannounced to demand their personal email passwords.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Legitimate helpdesks do not require your private account passwords to perform administrative tasks."
+    },
+    {
+      "id": 4,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What should a remote worker do if they accidentally approve a fraudulent MFA push prompt during a vishing call?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Keep quiet and hope no one notices."
+        },
+        {
+          "value": "b",
+          "text": "Immediately report the incident to security, trigger an account password reset, and revoke active sessions."
+        },
+        {
+          "value": "c",
+          "text": "Turn off the computer and throw it away."
+        },
+        {
+          "value": "d",
+          "text": "Send a text to the scammer asking them to log out."
+        }
+      ],
+      "explanation": "Swift incident reporting enables security teams to isolate compromised sessions before lateral movement occurs."
+    },
+    {
+      "id": 5,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "An official bank representative will hang up on you if you state that you are hanging up to call back via the number on your payment card.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Legitimate representatives encourage safe verification habits and welcome callbacks to official lines."
+    },
+    {
+      "id": 6,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Interactive Voice Response (IVR) robocall systems are only used by legitimate companies and cannot be set up by cybercriminals.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Attackers frequently create automated IVR phone trees to imitate official bank menus before transferring victims to live scammers."
+    },
+    {
+      "id": 7,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Generative AI tools now allow vishing attackers to clone an executive's voice using short audio samples taken from public videos or webinars.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "AI voice cloning enables realistic synthetic audio impersonation of targeted individuals."
+    },
+    {
+      "id": 8,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "An incoming call displays your bank's exact toll-free phone number. The caller states: \"Security Alert: A $900 transfer was attempted. Read the code we just sent your phone to cancel it.\" What should you do?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Read the code to the caller."
+        },
+        {
+          "value": "b",
+          "text": "Hang up immediately, find the official phone number on your physical payment card, and call the bank directly."
+        },
+        {
+          "value": "c",
+          "text": "Press 9 to transfer to police."
+        },
+        {
+          "value": "d",
+          "text": "Give the caller your Social Security Number."
+        }
+      ],
+      "explanation": "Spoofed Caller ID makes fake calls appear genuine; hanging up and calling back independently confirms authenticity."
+    },
+    {
+      "id": 9,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A caller claims to be from the internal finance team: \"I am processing your remote equipment reimbursement, but the system is throwing an error. What is your full bank account and routing number?\" How should you respond?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Provide the numbers verbally."
+        },
+        {
+          "value": "b",
+          "text": "Decline to share bank details over the phone and direct the inquiry to the official HR/Finance portal."
+        },
+        {
+          "value": "c",
+          "text": "Give your credit card CVV number instead."
+        },
+        {
+          "value": "d",
+          "text": "Hang up and delete your operating system."
+        }
+      ],
+      "explanation": "Financial distribution updates must follow encrypted, formal portal workflows rather than verbal disclosures."
+    },
+    {
+      "id": 10,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "b",
+        "c"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which of the following information should you NEVER read aloud or share during an inbound phone call? (Select TWO)",
+      "options": [
+        {
+          "value": "a",
+          "text": "Your work email address."
+        },
+        {
+          "value": "b",
+          "text": "Your account password or PIN."
+        },
+        {
+          "value": "c",
+          "text": "A Multi-Factor Authentication (MFA) One-Time Password."
+        },
+        {
+          "value": "d",
+          "text": "Your company's public website domain."
+        }
+      ],
+      "explanation": "Passwords and OTPs must remain confidential and should never be disclosed over inbound calls."
+    }
+  ]
+}

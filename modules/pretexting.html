@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        A Pretexting Awareness Guide: Recognize and Protect Against Social Engineering Fabrications
+        Module 5: Pretexting
     </title>
 
     <link rel="stylesheet" href="../css/global.css">
@@ -19,11 +19,13 @@
 
     <header>
         <nav>
-            <a href="../index.html">Home</a>
+            <a href="../index.html" class="home">
+                <span class="icon">🏠</span>Home
+            </a>
         </nav>
 
-        <h1>Pretexting</h1>
-        <p>Module 4 of 6</p>
+        <h1>Pretexting & Trust-Building Manipulation</h1>
+        <p>Module 5 of 6</p>
     </header>
 
 
@@ -35,272 +37,238 @@
         id="pretexting-awareness-guide"
         class="module-awareness-guide"
     >
+        <h2>Module Metadata</h2>
+
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> Remote workers handling
+            administrative data, HR workflows, customer records, vendor
+            management, or client onboarding.
+        </p>
 
         <article>
-            <h2>Learning Outcomes</h2>
+            <h3>Explicit Learning Objectives:</h3>
 
-            <p>By the end of this module, you will be able to:</p>
+            <p>After completing this module, the learner should be able to:</p>
 
             <ul>
                 <li>
-                    Identify pretexting attacks where attackers create false
-                    scenarios or impersonate authority figures to manipulate
-                    people into revealing sensitive information
+                    Define pretexting and contrast its slow-burn,
+                    trust-building structure with impulsive phishing
+                    attacks.
                 </li>
 
                 <li>
-                    Recognize how pretexting exploits trust, fear, and urgency
-                    to bypass normal security procedures and verification
-                    processes
+                    Identify common pretexting personas, including fake
+                    external auditors, new vendors, HR representatives, and
+                    distressed contractors.
                 </li>
 
                 <li>
-                    Understand role-specific pretexting scenarios including IT
-                    support impersonation, payroll deception, and false
-                    emergency situations targeting remote workers
+                    Recognize subtle conversational tactics used to bypass
+                    standard identity checks and organizational ticketing
+                    workflows.
+                </li>
+
+                <li>
+                    Establish and execute strict verification protocols for
+                    unannounced administrative or directory data requests.
                 </li>
             </ul>
         </article>
 
+    </section>
+
+
+    <section id="pretexting-reading-material">
+        <h2>Website Reading Material</h2>
 
         <article>
-            <h2>Introduction to Pretexting</h2>
+            <h3>1. Defining Pretexting</h3>
 
             <p>
-                Pretexting is a social engineering attack where the attacker
-                creates a false scenario (pretext) to manipulate a target into
-                revealing sensitive information or performing actions they
-                shouldn't. Unlike phishing, pretexting is often conducted
-                through direct communication like phone calls or instant
-                messages.
+                Pretexting is a form of social engineering where an
+                attacker invents an elaborate scenario (a "pretext") and
+                assumes a fabricated persona to trick a target into
+                surrendering confidential information or granting
+                unauthorized access.
+            </p>
+
+            <p>
+                Unlike impulsive phishing emails designed to provoke
+                immediate panic, pretexting often involves a slow-burn,
+                trust-building strategy. The adversary engages the remote
+                worker across multiple casual interactions, laying a
+                foundation of rapport and credibility before making a
+                request.
             </p>
         </article>
 
-
         <article>
-            <h2>Key Concepts to Know</h2>
+            <h3>2. Pretexting Persona Construction</h3>
 
             <p>
-                Understanding these core concepts will help you identify
-                pretexting attempts:
+                Threat actors research organizational roles to design
+                believable characters:
             </p>
 
-            <div class="module-concepts-list">
+            <ul>
+                <li>
+                    <strong>The External Auditor / Compliance Officer:</strong>
+                    The attacker claims to be conducting an urgent "data
+                    privacy audit" or "software licensing check." They
+                    request internal directory charts, system architecture
+                    documents, or employee listings.
+                </li>
 
-                <div class="module-concept">
-                    <h4>Authority Impersonation</h4>
+                <li>
+                    <strong>The New Vendor / Subcontractor:</strong> The
+                    actor poses as a newly hired third-party service
+                    provider who needs "sample data files" or access to
+                    internal staging servers to prepare for an upcoming
+                    project.
+                </li>
 
-                    <p>
-                        Attackers impersonate authority figures like IT
-                        support, management, or government officials to
-                        pressure targets into complying with requests that
-                        seem legitimate due to the perceived power of the
-                        caller.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>False Scenario Construction</h4>
-
-                    <p>
-                        Attackers craft elaborate false situations such as
-                        system outages, security investigations, and account
-                        suspensions using technical jargon and internal
-                        knowledge to convince targets the scenario is real.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Urgency and Fear Manipulation</h4>
-
-                    <p>
-                        Pretexting exploits urgency ("act immediately") and
-                        fear ("your account will be locked") to prevent
-                        targets from thinking critically or verifying the
-                        request through normal channels.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Trust Establishment</h4>
-
-                    <p>
-                        Attackers build rapport by asking harmless questions
-                        first, providing legitimate-sounding details, and
-                        using industry terminology to establish credibility
-                        before asking for sensitive information.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Verification Bypass Techniques</h4>
-
-                    <p>
-                        Attackers use pretexts to convince targets to skip
-                        normal verification procedures ("due to the emergency,
-                        we need to bypass the approval process") or to directly
-                        provide information instead of using secure channels.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>The Distressed Remote Colleague:</strong> The
+                    scammer impersonates a fellow remote employee locked
+                    out of their system while travelling, appealing to
+                    empathy to convince the target to share internal files
+                    or forward login details.
+                </li>
+            </ul>
         </article>
 
-
         <article>
-            <h2>Real-World Examples</h2>
+            <h3>3. Bypassing Workflow Protocols</h3>
 
             <p>
-                Learn from actual examples of pretexting attacks and how to
-                spot them.
+                Pretexters rely on social norms—such as politeness,
+                willingness to help, and deference to authority—to
+                convince targets to ignore standard operational procedures.
+                Common tactics include:
             </p>
 
-            <div class="module-examples-list">
+            <ul>
+                <li>
+                    <strong>Resisting Official Ticketing:</strong> The
+                    pretexter actively discourages the victim from opening
+                    a formal IT ticket or routing the request through
+                    administrative review (e.g., "Opening a ticket takes 3
+                    days, and the VP needs this file in 10 minutes").
+                </li>
 
-                <div class="module-example">
-                    <h3>Example 1: The Fake IT Support Call</h3>
+                <li>
+                    <strong>Flattery and Sympathy:</strong> Manipulating
+                    the remote worker's emotions to make them feel like a
+                    helpful savior.
+                </li>
+            </ul>
+        </article>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        An employee received a call from someone claiming to
-                        be from "IT Support" saying a critical security update
-                        needed to be installed immediately and asking for
-                        remote access to their computer.
-                    </p>
+        <article>
+            <h3>4. Real-World Remote Work Scenario</h3>
 
-                    <p>
-                        <strong>Red flags:</strong>
-                        Urgent pressure to grant access, unsolicited technical
-                        support call, claims of emergency situation, request
-                        to bypass normal ticketing procedures.
-                    </p>
+            <p><strong>Scenario: The Fake HR Benefits Survey</strong></p>
 
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker used technical language, claimed internal
-                        knowledge, and created urgency that prevented the
-                        employee from verifying the call.
-                    </p>
-                </div>
+            <p>
+                David, a remote administrative assistant, receives a
+                connection request and direct message on LinkedIn from
+                "Elena, Senior HR Director at Global HR Solutions." Elena
+                sends a friendly message: <em>"Hi David, your company has
+                contracted us to review remote employee benefit
+                satisfaction. We are conducting brief 5-minute
+                interviews."</em>
+            </p>
 
+            <p>
+                Over three days of polite messaging, Elena builds rapport.
+                On day four, she sends an "Employee Verification Portal"
+                link, asking David to confirm his corporate ID, home
+                address, and internal manager's email. Because the
+                interaction felt natural over multiple days, David submits
+                the data without checking with his actual internal HR
+                department.
+            </p>
+        </article>
 
-                <div class="module-example">
-                    <h3>Example 2: The Payroll Department Deception</h3>
+        <article>
+            <h3>5. Verification & Structural Controls</h3>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        A freelancer received a call from someone claiming to
-                        be from "Payroll" asking to update their banking
-                        information due to "a system migration" and requesting
-                        account numbers over the phone.
-                    </p>
+            <ol>
+                <li>
+                    <strong>Never Bypass Formal Ticketing:</strong> Require
+                    all administrative, data, or access requests to go
+                    through official, authenticated ticketing systems.
+                </li>
 
-                    <p>
-                        <strong>Red flags:</strong>
-                        Request for sensitive financial information over
-                        phone, unsolicited payroll communication, urgency
-                        around account changes, no official notification
-                        prior.
-                    </p>
+                <li>
+                    <strong>Verify Third-Party Credentials
+                    Independently:</strong> If an external auditor or
+                    vendor contacts you, confirm their contract status with
+                    your manager or procurement lead before sharing any
+                    files.
+                </li>
 
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker used internal terminology, referenced
-                        real company systems, and claimed legitimacy through
-                        the false authority of the payroll department.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 3: The Security Investigation Pretext</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        An employee received a message claiming to be from
-                        "Security Team" investigating suspicious account
-                        activity and asking for their password to verify they
-                        weren't compromised.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Request for password "for verification," urgent
-                        investigation language, bypass of normal verification
-                        procedures, communication outside official channels.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The pretext combined fear (account being compromised)
-                        with false legitimacy (security team investigation) to
-                        pressure quick compliance.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 4: The False Emergency Scenario</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        A manager received an urgent message claiming to be
-                        from the CEO saying "We have a data breach and need
-                        all employee contact information compiled immediately
-                        and sent securely. Do not tell anyone."
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Artificial urgency, emergency scenario with high
-                        stakes, request for mass data compilation, instruction
-                        to keep secret, unusual communication channel.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The false emergency scenario combined with authority
-                        impersonation and a secrecy instruction prevented the
-                        manager from verifying the request.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>Be Wary of Overly Elaborate
+                    Explanations:</strong> Legitimate corporate
+                    interactions rarely require complicated stories to
+                    justify bypassing standard security checks.
+                </li>
+            </ol>
         </article>
 
     </section>
 
+    <section id="pretexting-red-flags">
+        <h2>Red Flag Indicators & Defensive Checklist</h2>
 
-    <!-- =========================
-         Pretexting Video
-         ========================= -->
+        <ul>
+            <li>
+                <strong>Unsolicited Multi-Day Outreach:</strong> Contacts
+                who build casual rapport over several days before making
+                data or file requests.
+            </li>
 
-    <section
-        id="pretexting-awareness-guide-video"
-        class="module-video-section"
-    >
+            <li>
+                <strong>Pressure to Avoid Official Channels:</strong>
+                Requests to avoid logging tickets, emailing official
+                distribution lists, or involving managers.
+            </li>
 
-        <h2>Video: Understanding Pretexting Attacks</h2>
+            <li>
+                <strong>Inquiries Into Internal Operations:</strong> Casual
+                questions about organizational hierarchies, software
+                versions, or internal tools.
+            </li>
 
-        <p>
-            To learn more about how pretexting creates false scenarios
-            to manipulate people through direct communication.
-        </p>
-
-        <div class="video-player">
-            <!-- Video will be embedded here later -->
-            <p>
-                [Video Placeholder - Pretexting Awareness Video will be
-                embedded here]
-            </p>
-        </div>
-
+            <li>
+                <strong>Appeals to Empathy / Authority:</strong> Stories
+                emphasizing extreme distress, impending disciplinary
+                action, or executive deadlines to force compliance.
+            </li>
+        </ul>
     </section>
 
+    <section id="pretexting-curated-resources">
+        <h2>Curated Resources & References</h2>
+
+        <ul>
+            <li>
+                <strong>Video Source:</strong>
+                <a href="https://www.youtube.com/watch?v=cbL_IBAi6tA" target="_blank" rel="noopener noreferrer">
+                    SANS Institute — "What Is a Pretexting Attack?"
+                </a>
+            </li>
+
+            <li>
+                <strong>Reference Guide:</strong>
+                <a href="https://securityboulevard.com/2026/06/pretexting-examples-real-world-scams-explained/" target="_blank" rel="noopener noreferrer">
+                    Security Boulevard — Pretexting Examples: Real-World Scams Explained
+                </a>
+            </li>
+        </ul>
+    </section>
 
     <!-- =========================
          Module Quiz Section
@@ -316,7 +284,7 @@
         </p>
 
         <a
-            href="../quiz/pretexting-quiz.html"
+            href="../quiz/module-5/easy/question-1.html"
             class="take-quiz-button"
         >
             Take a Quiz

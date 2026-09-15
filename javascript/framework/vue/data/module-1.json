@@ -1,0 +1,279 @@
+{
+  "moduleId": "module-1",
+  "moduleName": "Quishing",
+  "totalQuestions": 10,
+  "standardCount": 7,
+  "scenarioBasedCount": 3,
+  "questions": [
+    {
+      "id": 1,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "The presence of \"HTTPS\" and a padlock icon in the browser address bar guarantees that a login website is legitimate and safe.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Threat actors can easily acquire free SSL/TLS certificates for fraudulent domain names, displaying HTTPS padlock icons on malicious credential-harvesting websites."
+    },
+    {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "c",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which domain name represents an example of \"typosquatting\"?",
+      "options": [
+        {
+          "value": "a",
+          "text": "support.google.com"
+        },
+        {
+          "value": "b",
+          "text": "login.microsoft.com"
+        },
+        {
+          "value": "c",
+          "text": "security-update@micros0ft-verify.com"
+        },
+        {
+          "value": "d",
+          "text": "portal.slack.com"
+        }
+      ],
+      "explanation": "micros0ft-verify.com uses a zero ('0') in place of the letter 'o' to trick users into believing it is an official Microsoft communication channel."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the primary objective of an email phishing attack targeting remote employees?",
+      "options": [
+        {
+          "value": "a",
+          "text": "To test home internet connection speeds"
+        },
+        {
+          "value": "b",
+          "text": "To trick users into revealing credentials, sensitive data, or executing unauthorized actions"
+        },
+        {
+          "value": "c",
+          "text": "To automatically upgrade operating system software"
+        },
+        {
+          "value": "d",
+          "text": "To clean junk files from a local hard drive"
+        }
+      ],
+      "explanation": "Email phishing uses deceptive messages to trick victims into sharing private credentials, executing malware, or surrendering sensitive organizational data."
+    },
+    {
+      "id": 4,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Why do quishing attacks often succeed when targeting remote employees?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Smartphones cannot connect to Wi-Fi networks"
+        },
+        {
+          "value": "b",
+          "text": "Scanning the QR code shifts the browsing session to a mobile device outside the company's desktop security monitoring"
+        },
+        {
+          "value": "c",
+          "text": "QR codes automatically disable smartphone antivirus apps"
+        },
+        {
+          "value": "d",
+          "text": "Mobile screens automatically encrypt all user passwords"
+        }
+      ],
+      "explanation": "Scanning QR codes on personal phones redirects traffic outside the desktop perimeter firewalls and email monitoring systems maintained by corporate networks."
+    },
+    {
+      "id": 5,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the safest way to access a company cloud portal after receiving a suspicious email notification?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Click the link in the email, enter credentials, then log out"
+        },
+        {
+          "value": "b",
+          "text": "Open a fresh browser tab, type the verified official URL manually or use a saved bookmark"
+        },
+        {
+          "value": "c",
+          "text": "Reply to the email asking if the link is safe"
+        },
+        {
+          "value": "d",
+          "text": "Copy and paste the link into a personal social media post to ask colleagues"
+        }
+      ],
+      "explanation": "Navigating independently via a trusted bookmark or manual URL entry completely bypasses any malicious redirects embedded in the email."
+    },
+    {
+      "id": 6,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Hovering your mouse over a hyperlinked button in an email allows you to preview the actual destination URL before clicking.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "True. Hovering over a hyperlink reveals the true underlying web destination address in the browser or mail client status bar."
+    },
+    {
+      "id": 7,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You scan a QR code from a vendor PDF. It opens a Google Sign-In page asking you to \"Grant Full OAuth Permissions to App XYZ.\" Granting access is safe because the URL starts with accounts.google.com.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Malicious OAuth applications use real Google/Microsoft sign-in portals to request excessive account permissions. Once granted, the attacker gets persistent cloud access without needing your password."
+    },
+    {
+      "id": 8,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A virtual assistant receives an email displaying the company CEO's exact name and profile photo. The sender address is ceo-office@exec-mail-corp.com (not the corporate @company.com domain). The message requests an urgent purchase of gift card vouchers for an ongoing client event. What social engineering tactic is being deployed?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Mass Ransomware Distribution"
+        },
+        {
+          "value": "b",
+          "text": "Executive Spoofing via Combosquatting Phishing"
+        },
+        {
+          "value": "c",
+          "text": "Authorized Corporate Expense Request"
+        },
+        {
+          "value": "d",
+          "text": "Automated Database Synchronization"
+        }
+      ],
+      "explanation": "The attacker uses executive identity impersonation combined with a combosquatted external domain (exec-mail-corp.com) to trick the assistant into making unauthorized purchases."
+    },
+    {
+      "id": 9,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A remote software engineer receives an email containing a link to a \"Critical Security Patch\" hosted on github-downloads-security.net. What is the most rigorous way to confirm if this patch is legitimate?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Click the link, download the file, and scan it with a free online tool"
+        },
+        {
+          "value": "b",
+          "text": "Check official internal engineering channels (e.g., internal Slack/Teams or company repo) and consult the lead system administrator"
+        },
+        {
+          "value": "c",
+          "text": "Forward the email to external contacts on LinkedIn to ask if they received it"
+        },
+        {
+          "value": "d",
+          "text": "Reply directly asking the sender for their corporate employee ID number"
+        }
+      ],
+      "explanation": "Internal verification via official out-of-band communication channels is the only reliable way to confirm patch validity."
+    },
+    {
+      "id": 10,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "If you realize you entered your corporate credentials into a fake login portal 5 minutes ago, what immediate steps must you execute? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": "Change the password immediately across your corporate account and any accounts reusing that password"
+        },
+        {
+          "value": "b",
+          "text": "Revoke active user sessions and alert your organization's IT/Security team"
+        },
+        {
+          "value": "c",
+          "text": "Delete your browser history and turn off your home router for 24 hours"
+        },
+        {
+          "value": "d",
+          "text": "Check active multi-factor authentication (MFA) devices registered to your account for unauthorized additions"
+        }
+      ],
+      "explanation": "Resetting credentials, revoking active sessions, alerting IT, and auditing registered MFA devices stops ongoing unauthorized account access. Deleting local browser history does not stop the remote attacker."
+    }
+  ]
+}

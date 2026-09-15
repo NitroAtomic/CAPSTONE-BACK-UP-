@@ -1,0 +1,56 @@
+@layer components {
+  .site-header {
+    @apply w-full border-t border-b border-black;
+  }
+
+  .navbar {
+    @apply h-16 py-0 px-[22px] flex items-center justify-between max-[620px]:px-3;
+  }
+
+  .nav-left,
+  .nav-right {
+    @apply flex items-center gap-[18px] max-[620px]:gap-2.5;
+  }
+
+  .nav-link {
+    @apply text-[18px] text-gray-500;
+  }
+
+  /* Vue Router auto-applies this class to the link matching the current
+     route — replaces the old static .nav-link.active */
+  .nav-link.router-link-exact-active {
+    @apply text-black font-bold;
+  }
+
+  .search-box {
+    @apply relative max-[900px]:hidden;
+  }
+
+  .search-box input {
+    @apply w-[305px] h-10 py-0 px-[18px] border border-black rounded-lg text-[17px] outline-none;
+  }
+
+  .search-results {
+    @apply absolute top-full left-0 z-20 mt-1 w-full border border-black rounded-lg bg-white overflow-hidden;
+  }
+
+  .search-result-item {
+    @apply block py-2 px-[18px] text-[15px] text-black;
+  }
+
+  .search-result-item:hover {
+    @apply bg-gray-100;
+  }
+
+  .search-no-results {
+    @apply py-2 px-[18px] text-[15px] text-gray-500;
+  }
+
+  .btn-login {
+    @apply bg-white;
+  }
+
+  .btn-premium {
+    @apply bg-gray-300 font-semibold;
+  }
+}

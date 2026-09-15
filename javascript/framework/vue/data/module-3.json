@@ -1,0 +1,275 @@
+{
+  "moduleId": "module-3",
+  "moduleName": "Smishing",
+  "totalQuestions": 10,
+  "standardCount": 7,
+  "scenarioBasedCount": 3,
+  "questions": [
+    {
+      "id": 1,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the safest action to take when receiving a suspicious text message?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Tap the link to see where it leads."
+        },
+        {
+          "value": "b",
+          "text": "Delete the message, report it, and do not click any links."
+        },
+        {
+          "value": "c",
+          "text": "Forward the message to 10 friends."
+        },
+        {
+          "value": "d",
+          "text": "Call the unknown number and insult the caller."
+        }
+      ],
+      "explanation": "Refraining from interaction and deleting/reporting the message mitigates risk."
+    },
+    {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Replying \"STOP\" to a smishing text message from an unknown scammer will safely unsubscribe you from their list.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Replying to a scam text confirms to the attacker that your phone number is active, leading to more targeted attacks."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What does the term \"Smishing\" stand for?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Secure Mail Phishing"
+        },
+        {
+          "value": "b",
+          "text": "SMS Phishing (Short Message Service Phishing)"
+        },
+        {
+          "value": "c",
+          "text": "Software Management Phishing"
+        },
+        {
+          "value": "d",
+          "text": "System Media Injection"
+        }
+      ],
+      "explanation": "Smishing combines \"SMS\" (text messaging) and \"phishing\"."
+    },
+    {
+      "id": 4,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You receive a text message: \"USPS Alert: Your package cannot be delivered due to an incorrect house number. Update info here: bit.ly/3xY9zQ\". You are expecting a package. What is the correct action?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Tap the link immediately and enter your home address."
+        },
+        {
+          "value": "b",
+          "text": "Do not tap the link; open your official USPS app or browser bookmark independently to track the package."
+        },
+        {
+          "value": "c",
+          "text": "Reply \"STOP\" to check if the sender is real."
+        },
+        {
+          "value": "d",
+          "text": "Text back your credit card details."
+        }
+      ],
+      "explanation": "Always verify parcel delivery alerts by accessing the official website or app independently, never through unsolicited SMS links."
+    },
+    {
+      "id": 5,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Legitimate banks routinely send text messages asking customers to directly text back their full PIN or password.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Financial institutions explicitly prohibit requesting sensitive passwords, PINs, or OTPs via text."
+    },
+    {
+      "id": 6,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What shortcode number can users in many regions forward spam or smishing texts to for reporting?",
+      "options": [
+        {
+          "value": "a",
+          "text": "911"
+        },
+        {
+          "value": "b",
+          "text": "7726 (SPAM)"
+        },
+        {
+          "value": "c",
+          "text": "411"
+        },
+        {
+          "value": "d",
+          "text": "0000"
+        }
+      ],
+      "explanation": "Forwarding spam texts to 7726 (SPAM) alerts carriers to investigate and block malicious sender numbers."
+    },
+    {
+      "id": 7,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You receive a WhatsApp text from an unknown international number displaying your company logo: \"Hi, I am John from Corporate IT. We are updating mobile profiles. Click this link to install our security certificate.\" How should you respond?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Install the certificate immediately."
+        },
+        {
+          "value": "b",
+          "text": "Ignore and report the WhatsApp message; IT does not deploy security certificates via unsolicited WhatsApp texts."
+        },
+        {
+          "value": "c",
+          "text": "Send the sender your personal national ID card."
+        },
+        {
+          "value": "d",
+          "text": "Ask the sender to call your personal home phone."
+        }
+      ],
+      "explanation": "Corporate IT security profiles are deployed through formal Mobile Device Management (MDM) tools, never random instant messages."
+    },
+    {
+      "id": 8,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Advanced smishing kits can deploy mobile malware that automatically reads incoming SMS verification codes and forwards them to a remote C2 server.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Malicious mobile applications (e.g., infected APKs) can request SMS permissions to intercept and exfiltrate OTPs."
+    },
+    {
+      "id": 9,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You attempt to log into your work portal. A minute later, you receive a text: \"IT Helpdesk: We detected an abnormal login. Reply YES with the code you just received to block the login.\" What is happening?",
+      "options": [
+        {
+          "value": "a",
+          "text": "IT is securely helping you protect your account."
+        },
+        {
+          "value": "b",
+          "text": "An attacker triggered your real login prompt and is trying to trick you into texting them your OTP."
+        },
+        {
+          "value": "c",
+          "text": "Your phone has a hardware virus that generates text messages."
+        },
+        {
+          "value": "d",
+          "text": "Your mobile service provider is upgrading its network towers."
+        }
+      ],
+      "explanation": "Attackers trigger a real login prompt to generate a genuine OTP, then smish the victim to forward that OTP to complete the breach."
+    },
+    {
+      "id": 10,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What technology allows scammers to change the phone number or name displayed on your mobile incoming text screen?",
+      "options": [
+        {
+          "value": "a",
+          "text": "OAuth 2.0"
+        },
+        {
+          "value": "b",
+          "text": "Caller ID / Alpha-Numeric Sender ID Spoofing"
+        },
+        {
+          "value": "c",
+          "text": "Transport Layer Security"
+        },
+        {
+          "value": "d",
+          "text": "Fiber Optic Splicing"
+        }
+      ],
+      "explanation": "Sender ID spoofing allows SMS gateways to modify the header sender text displayed on receiver phones."
+    }
+  ]
+}

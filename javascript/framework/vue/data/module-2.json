@@ -1,0 +1,271 @@
+{
+  "moduleId": "module-2",
+  "moduleName": "Spear Phishing",
+  "totalQuestions": 10,
+  "standardCount": 9,
+  "scenarioBasedCount": 1,
+  "questions": [
+    {
+      "id": 1,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "How does spear phishing differ from generic mass phishing?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Spear phishing is automated using pop-up advertisements"
+        },
+        {
+          "value": "b",
+          "text": "Spear phishing is highly targeted at a specific individual or team using researched details"
+        },
+        {
+          "value": "c",
+          "text": "Spear phishing only targets mobile phones using text messages"
+        },
+        {
+          "value": "d",
+          "text": "Spear phishing requires physical entry into an office building"
+        }
+      ],
+      "explanation": "Spear phishing relies on prior reconnaissance to tailor realistic messages directly to specific targets."
+    },
+    {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Public professional profiles on LinkedIn can provide attackers with information used to craft spear phishing messages.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "True. Attackers mine job titles, reporting structures, vendor software, and current projects from LinkedIn profiles to build convincing pretexts."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Why do attackers often send password-protected .zip files containing malicious attachments?",
+      "options": [
+        {
+          "value": "a",
+          "text": "To save hard drive storage space on remote laptops"
+        },
+        {
+          "value": "b",
+          "text": "To prevent email security gateways from scanning the encrypted contents for malware"
+        },
+        {
+          "value": "c",
+          "text": "To make the file download faster over home Wi-Fi networks"
+        },
+        {
+          "value": "d",
+          "text": "Because password protection automatically executes scripts"
+        }
+      ],
+      "explanation": "Email gateway scanners cannot inspect encrypted archive contents without the password, allowing malicious payloads past boundary defenses."
+    },
+    {
+      "id": 4,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which public sources are commonly harvested by adversaries during the OSINT phase of a spear phishing campaign? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": "LinkedIn corporate organizational charts"
+        },
+        {
+          "value": "b",
+          "text": "Public GitHub code repositories detailing software libraries"
+        },
+        {
+          "value": "c",
+          "text": "Personal social media posts detailing travel or conference attendance"
+        },
+        {
+          "value": "d",
+          "text": "Encrypted database servers operating behind private firewalls"
+        }
+      ],
+      "explanation": "LinkedIn, GitHub, and social media posts provide open public data. Private encrypted database servers are not public OSINT sources."
+    },
+    {
+      "id": 5,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Spear phishers only target executives; entry-level remote contractors are never targeted because they lack system permissions.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Entry-level contractors are frequently targeted as initial access points to pivot deeper into enterprise networks or harvest credentials."
+    },
+    {
+      "id": 6,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Reducing the amount of detailed operational information shared on public social media accounts helps reduce your exposure to OSINT reconnaissance.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "True. Practicing digital footprint hygiene limits the intelligence attackers can use to build spear phishing lures."
+    },
+    {
+      "id": 7,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "An email claiming to be from your company's HR department contains a link to “Updated W-2 Tax Forms.” The link URL points to an external domain unrelated to your company. What is the safest course of action?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Click the link and enter your Social Security Number."
+        },
+        {
+          "value": "b",
+          "text": "Hover over the link, identify the external domain, do not click, and report it to security/HR."
+        },
+        {
+          "value": "c",
+          "text": "Email your password to HR to check for you."
+        },
+        {
+          "value": "d",
+          "text": "Ignore all future HR emails forever."
+        }
+      ],
+      "explanation": "Identifying external, non-company domain names by hovering over links helps detect phishing portals before entering credentials."
+    },
+    {
+      "id": 8,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Spear phishing relies solely on technical software exploits and does not use psychological manipulation.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Spear phishing is a socio-technical attack combining technical delivery vectors with psychological manipulation (trust, urgency, authority)."
+    },
+    {
+      "id": 9,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What step should you take before opening a password-protected .zip file from an external party?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Open it on a personal device to protect work systems."
+        },
+        {
+          "value": "b",
+          "text": "Verify the source out-of-band and inspect unzipped contents in an isolated environment or sandbox."
+        },
+        {
+          "value": "c",
+          "text": "Forward the password to your bank."
+        },
+        {
+          "value": "d",
+          "text": "Disable your endpoint firewall."
+        }
+      ],
+      "explanation": "Verifying the source through another channel and inspecting files securely prevents payload execution."
+    },
+    {
+      "id": 10,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What information can an attacker gather from your public GitHub profile to make a spear-phishing email believable?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Your private home Wi-Fi password"
+        },
+        {
+          "value": "b",
+          "text": "Programming languages used, active repositories, and collaborator usernames"
+        },
+        {
+          "value": "c",
+          "text": "Your hardware MFA seed keys"
+        },
+        {
+          "value": "d",
+          "text": "Your credit card PIN"
+        }
+      ],
+      "explanation": "Public GitHub repositories display technical environments, active projects, and peer collaborators."
+    }
+  ]
+}

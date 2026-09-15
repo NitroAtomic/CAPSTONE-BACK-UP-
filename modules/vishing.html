@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        A Vishing Awareness Guide: Recognize and Protect Against Voice Phishing Phone Call Attacks
+        Module 4: Vishing
     </title>
 
     <link rel="stylesheet" href="../css/global.css">
@@ -19,11 +19,13 @@
 
     <header>
         <nav>
-            <a href="../index.html">Home</a>
+            <a href="../index.html" class="home">
+                <span class="icon">🏠</span>Home
+            </a>
         </nav>
 
-        <h1>Vishing</h1>
-        <p>Module 5 of 6</p>
+        <h1>Vishing (Voice Phishing & Social Engineering Calls)</h1>
+        <p>Module 4 of 6</p>
     </header>
 
 
@@ -35,264 +37,249 @@
         id="vishing-awareness-guide"
         class="module-awareness-guide"
     >
+        <h2>Module Metadata</h2>
+
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> Remote workers in client
+            support, phone-based operations, sales, executive support, or
+            administrative roles.
+        </p>
 
         <article>
-            <h2>Learning Outcomes</h2>
+            <h3>Explicit Learning Objectives:</h3>
 
-            <p>By the end of this module, you will be able to:</p>
+            <p>After completing this module, the learner should be able to:</p>
 
             <ul>
                 <li>
-                    Identify vishing attacks conducted through phone calls and
-                    voice communication where attackers impersonate legitimate
-                    organizations or authority figures
+                    Analyze the technical mechanics of Caller ID spoofing
+                    and VoIP-based voice manipulation.
                 </li>
 
                 <li>
-                    Recognize how caller ID spoofing, voice manipulation, and
-                    technical jargon are used to establish false credibility
-                    and bypass skepticism
+                    Deconstruct how real-time vocal interactions induce
+                    cognitive overload and compliance pressure.
                 </li>
 
                 <li>
-                    Understand the unique dangers of voice-based attacks where
-                    real-time pressure and emotional manipulation are used to
-                    extract sensitive information
+                    Recognize common vishing pretexts, such as imposter IT
+                    support desks, emergency financial holds, and
+                    remote-management software installations.
+                </li>
+
+                <li>
+                    Apply systematic identity verification protocols and
+                    out-of-band phone confirmation workflows before sharing
+                    credentials or approving access.
                 </li>
             </ul>
         </article>
 
+    </section>
+
+
+    <section id="vishing-reading-material">
+        <h2>Website Reading Material</h2>
 
         <article>
-            <h2>Introduction to Vishing</h2>
+            <h3>1. The Threat of Voice Phishing (Vishing)</h3>
 
             <p>
-                Vishing is voice phishing conducted through phone calls.
-                Attackers use phone calls to create personal interaction and
-                real-time pressure that makes it harder for targets to verify
-                the legitimacy of the call or think critically before
-                complying with requests.
+                Vishing (Voice Phishing) uses phone calls or Voice over IP
+                (VoIP) channels to trick targets into disclosing sensitive
+                data, financial details, or granting system access. Unlike
+                email or text-based attacks where a victim has time to
+                review messaging syntax, real-time voice communications
+                create intense conversational pressure.
             </p>
         </article>
 
-
         <article>
-            <h2>Key Concepts to Know</h2>
+            <h3>2. Technical Tactics: Caller ID Spoofing & VoIP Platforms</h3>
 
             <p>
-                Understanding these core concepts will help you identify
-                vishing attempts:
+                Vishers exploit phone system protocols to alter the
+                information displayed on a victim's incoming call screen:
             </p>
 
-            <div class="module-concepts-list">
+            <ul>
+                <li>
+                    <strong>Caller ID Spoofing:</strong> Attackers use
+                    web-based VoIP services to manipulate the outbound
+                    Caller ID metadata, making the call appear as if it
+                    originates from an internal extension (e.g., "Corporate
+                    IT Helpdesk" or "HQ Executive Office") or an official
+                    bank customer service line.
+                </li>
 
-                <div class="module-concept">
-                    <h4>Caller ID Spoofing</h4>
-
-                    <p>
-                        Technology that allows attackers to make calls appear
-                        to come from legitimate numbers, such as your bank or
-                        company, by displaying a fake caller ID on the
-                        recipient's phone.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Real-Time Pressure and Urgency</h4>
-
-                    <p>
-                        Voice calls create immediate pressure to respond.
-                        Attackers use urgency, authority, and emotional
-                        manipulation to prevent targets from taking time to
-                        verify claims or think critically.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Technical Jargon and Authority</h4>
-
-                    <p>
-                        Attackers use technical language, internal terminology,
-                        and confident speaking patterns to establish credibility
-                        and authority, making targets less likely to question
-                        their legitimacy.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Information Extraction Techniques</h4>
-
-                    <p>
-                        Attackers ask seemingly innocent questions first to
-                        gather information, build rapport, and lower the
-                        target's guard before requesting sensitive information
-                        such as passwords or account details.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Emotional Manipulation</h4>
-
-                    <p>
-                        Vishing exploits emotions such as fear, urgency, trust,
-                        and embarrassment to bypass rational decision-making
-                        and pressure victims into acting quickly.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>Interactive Voice Response (IVR) Robocalls:</strong>
+                    Attackers deploy automated phone menus ("Press 1 to
+                    speak to our fraud department") to simulate legitimate
+                    banking call centers before routing the victim to a
+                    live scammer.
+                </li>
+            </ul>
         </article>
 
-
         <article>
-            <h2>Real-World Examples</h2>
+            <h3>3. Psychological Manipulation & Cognitive Load</h3>
 
             <p>
-                Learn from actual examples of vishing attacks and how to
-                spot them.
+                Voice communication allows threat actors to dynamically
+                adapt their tactics based on a victim's tone and hesitation:
             </p>
 
-            <div class="module-examples-list">
+            <ul>
+                <li>
+                    <strong>Artificial Urgency & Panic:</strong> Scammers
+                    claim an active cyberattack or fraudulent transaction is
+                    occurring right now, demanding immediate action.
+                </li>
 
-                <div class="module-example">
-                    <h3>Example 1: The Bank Verification Call</h3>
+                <li>
+                    <strong>Impersonation of Authority:</strong> The caller
+                    assumes an authoritative persona (e.g., Senior Systems
+                    Administrator, Financial Auditor, Executive Assistant)
+                    to compel compliance.
+                </li>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        An employee received a call from a number matching
-                        their bank's official line claiming to be from the
-                        "Fraud Prevention Team" and warning of suspicious
-                        charges.
-                    </p>
+                <li>
+                    <strong>High Cognitive Pressure:</strong> By creating a
+                    fast-paced environment, the caller prevents the target
+                    from stepping back to critically evaluate the
+                    situation.
+                </li>
+            </ul>
+        </article>
 
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unsolicited call, urgent warning, request for sensitive
-                        information, caller ID that could be spoofed, and
-                        pressure to confirm details quickly.
-                    </p>
+        <article>
+            <h3>4. Common Vishing Pretexts targeting Remote Workers</h3>
 
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The caller ID matched the bank, creating false
-                        legitimacy, while the fraud warning created urgency
-                        that reduced skepticism.
-                    </p>
-                </div>
+            <ul>
+                <li>
+                    <strong>The IT Helpdesk "Password Reset" Call:</strong>
+                    The caller claims your remote access account has
+                    suspicious logins and asks you to read aloud an
+                    incoming SMS OTP or approve a push notification.
+                </li>
 
+                <li>
+                    <strong>Remote Management Tool Deployment:</strong> The
+                    caller claims your laptop requires an urgent patch and
+                    instructs you to download and execute remote
+                    administration software (e.g., AnyDesk, TeamViewer,
+                    Quick Assist). Once installed, the attacker gains full
+                    remote control over your workstation.
+                </li>
+            </ul>
+        </article>
 
-                <div class="module-example">
-                    <h3>Example 2: The IT Support Call</h3>
+        <article>
+            <h3>5. Real-World Remote Work Scenario</h3>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        A caller claiming to be an IT technician told an
-                        employee that a critical vulnerability had been found
-                        and requested remote access to install a security patch.
-                    </p>
+            <p><strong>Scenario: The Fake IT Helpdesk Push Bombing Attack</strong></p>
 
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unsolicited technical support call, request for
-                        password credentials, use of technical jargon to
-                        establish authority, and claim of an emergency.
-                    </p>
+            <p>
+                Mark, a remote systems engineer, receives 15 consecutive
+                MFA push notifications on his mobile phone at 10 PM.
+                Seconds later, his phone rings. The Caller ID displays
+                "Internal IT Operations."
+            </p>
 
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker used confident technical language and an
-                        emergency scenario that made the employee hesitant to
-                        question the request.
-                    </p>
-                </div>
+            <p>
+                The voice on the line states: <em>"Hi Mark, this is Dave
+                from IT SecOps. We see automated push alerts flooding your
+                phone due to a gateway glitch. I am pushing one final
+                prompt now—please tap 'Approve' to clear the queue so your
+                account isn't locked overnight."</em>
+            </p>
 
+            <p>
+                Stressed and tired, Mark taps "Approve." The caller was an
+                attacker who possessed Mark's password and used vishing
+                combined with push fatigue to bypass MFA.
+            </p>
+        </article>
 
-                <div class="module-example">
-                    <h3>Example 3: The IRS Impersonation</h3>
+        <article>
+            <h3>6. Verification Protocols & Live Incident Safeguards</h3>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        Someone called claiming to be from the IRS, warning of
-                        an audit and threatening legal action unless payment
-                        was made immediately.
-                    </p>
+            <ol>
+                <li>
+                    <strong>Never Disclose Credentials or OTPs over the
+                    Phone:</strong> Legitimate IT staff will never ask for
+                    your password, PIN, or MFA codes over an incoming phone
+                    call.
+                </li>
 
-                    <p>
-                        <strong>Red flags:</strong>
-                        Threat of legal action, demand for immediate payment,
-                        unusual payment methods, high-pressure tone, and an
-                        unsolicited call.
-                    </p>
+                <li>
+                    <strong>Hang Up and Call Back (Out-of-Band):</strong> If
+                    a caller claims to represent an internal department or
+                    bank, end the call immediately. Find the official phone
+                    number from the internal company directory or card back
+                    and call back independently.
+                </li>
 
-                    <p>
-                        <strong>Why it worked:</strong>
-                        Authority impersonation, legal threats, and artificial
-                        urgency created fear that interfered with rational
-                        decision-making.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 4: The Remote Access Trojan Attack</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        An attacker called claiming to be from a technical
-                        support company and warned that malware had been
-                        detected on the victim's computer.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unsolicited malware warning, request for remote access,
-                        technical jargon used to establish credibility, and
-                        urgency to act immediately.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The combination of authority impersonation, technical
-                        language, and malware scare tactics convinced the
-                        victim to grant remote access.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>Refuse Unsolicited Remote Software
+                    Installs:</strong> Never install remote access software
+                    (AnyDesk, TeamViewer) based on an inbound phone call.
+                </li>
+            </ol>
         </article>
 
     </section>
 
+    <section id="vishing-red-flags">
+        <h2>Red Flag Indicators & Defensive Checklist</h2>
 
-    <!-- =========================
-         Vishing Video
-         ========================= -->
+        <ul>
+            <li>
+                <strong>Unsolicited Technical Support Calls:</strong>
+                Incoming calls claiming to be "Internal IT" asking for
+                system access or password disclosures.
+            </li>
 
-    <section
-        id="vishing-awareness-guide-video"
-        class="module-video-section"
-    >
+            <li>
+                <strong>Demands for Remote Access Tools:</strong> Requests
+                to download AnyDesk, TeamViewer, or LogMeIn during an
+                unexpected phone call.
+            </li>
 
-        <h2>Video: Understanding Vishing Attacks</h2>
+            <li>
+                <strong>Demands for MFA Verification:</strong> Callers
+                asking you to approve a push notification or read aloud a
+                One-Time Password.
+            </li>
 
-        <p>
-            To learn more about how vishing attacks use phone calls and
-            voice manipulation to trick people into revealing sensitive
-            information.
-        </p>
-
-        <div class="video-player">
-            <p>
-                [Video Placeholder - Vishing Awareness Video will be embedded here]
-            </p>
-        </div>
-
+            <li>
+                <strong>High-Pressure Intimidation:</strong> Aggressive
+                language or threats of immediate employment termination or
+                legal action if you do not comply.
+            </li>
+        </ul>
     </section>
 
+    <section id="vishing-curated-resources">
+        <h2>Curated Resources & References</h2>
+
+        <ul>
+            <li>
+                <strong>Video Source:</strong>
+                <a href="https://www.youtube.com/watch?v=zE60tK9M1x8" target="_blank" rel="noopener noreferrer">
+                    Global Cyber Alliance — "What is Vishing? Understanding This High-Tech Phone Scam"
+                </a>
+            </li>
+
+            <li>
+                <strong>Reference Guide:</strong>
+                <a href="https://www.cisco.com/site/us/en/learn/topics/security/what-is-vishing.html" target="_blank" rel="noopener noreferrer">
+                    Cisco Security Topics — What is Vishing?
+                </a>
+            </li>
+        </ul>
+    </section>
 
     <!-- =========================
          Module Quiz Section
@@ -308,7 +295,7 @@
         </p>
 
         <a
-            href="../quiz/vishing-quiz.html"
+            href="../quiz/module-4/easy/question-1.html"
             class="take-quiz-button"
         >
             Take a Quiz

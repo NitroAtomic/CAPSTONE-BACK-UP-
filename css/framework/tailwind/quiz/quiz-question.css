@@ -1,0 +1,128 @@
+@layer components {
+
+  /* =========================
+     Quiz Page
+     ========================= */
+
+  .quiz-page {
+    @apply w-[min(700px,calc(100%-40px))] mx-auto my-14;
+  }
+
+  .quiz-container {
+    @apply w-full;
+  }
+
+  /* =========================
+     Quiz Header
+     ========================= */
+
+  .quiz-header {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  .quiz-header h1 {
+    @apply text-xl font-medium;
+  }
+
+  .quiz-question-counter {
+    @apply text-gray-500 text-lg;
+  }
+
+  /* =========================
+     Progress Bar
+     ========================= */
+
+  .quiz-progress-container {
+    @apply w-full h-[14px] mb-[38px] border border-black rounded-full overflow-hidden;
+  }
+
+  .quiz-progress-bar {
+    @apply h-full bg-black transition-[width] duration-300;
+  }
+
+  /* =========================
+     Question Content
+     ========================= */
+
+  .quiz-question-type {
+    @apply inline-block mb-5 px-3 py-1 border border-black rounded-full bg-gray-300 text-xs font-semibold;
+  }
+
+  .quiz-question-text {
+    @apply mb-[34px] text-[23px] leading-[1.25] font-normal;
+  }
+
+  /* =========================
+     Answer Choices
+     ========================= */
+
+  .quiz-answer-list {
+    @apply flex flex-col gap-4;
+  }
+
+  .quiz-answer-option {
+    @apply min-h-[52px] px-5 flex items-center gap-3.5 border-2 border-black rounded-[10px] cursor-pointer;
+  }
+
+  .quiz-answer-option:hover {
+    @apply bg-gray-100;
+  }
+
+  .quiz-answer-option input[type="radio"],
+  .quiz-answer-option input[type="checkbox"] {
+    @apply shrink-0;
+  }
+
+  .quiz-answer-option span {
+    @apply text-[17px];
+  }
+
+  /* =========================
+     Navigation Buttons
+     ========================= */
+
+  .quiz-navigation {
+    @apply flex items-center justify-between mt-16;
+  }
+
+  /* NEW vs. the old static site: old markup used <a> tags for Back/Next,
+     which have no concept of being "disabled". QuizQuestion.vue now uses
+     real <button> elements instead, so we can disable Next/Submit until
+     the current question is answered — this :disabled style is an addition,
+     not a conversion of an existing rule. */
+  .quiz-navigation-button {
+    @apply min-w-[98px] min-h-[42px] px-[18px] inline-flex items-center justify-center
+           border border-black rounded-lg bg-white text-black text-base
+           no-underline cursor-pointer;
+  }
+
+  .quiz-navigation-button:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  .quiz-next-button {
+    @apply bg-gray-300;
+  }
+
+  /* =========================
+     Responsive
+     ========================= */
+
+  @media (max-width: 620px) {
+    .quiz-page {
+      @apply mt-8;
+    }
+
+    .quiz-question-text {
+      @apply text-xl;
+    }
+
+    .quiz-question-counter {
+      @apply text-[15px];
+    }
+
+    .quiz-navigation {
+      @apply mt-10;
+    }
+  }
+}

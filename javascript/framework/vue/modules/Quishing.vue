@@ -1,0 +1,219 @@
+<template>
+  <main class="module-page">
+    <header class="module-header">
+        <nav>
+            <router-link to="/" class="home">
+                <span class="icon">🏠</span>Home
+            </router-link>
+        </nav>
+
+        <h1>Email Phishing, Fake Login Pages & QR Code Exploits (Quishing)</h1>
+        <p>Module 1 of 6</p>
+    </header>
+
+
+    <!-- =========================
+         Phishing Learning Guide
+         ========================= -->
+
+    <section
+        id="quishing-awareness-guide"
+        class="module-awareness-guide"
+    >
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> All remote workers, freelancers,
+            virtual assistants, and distributed contractors.
+        </p>
+
+        <article>
+            <h2>Explicit Learning Objectives:</h2>
+
+            <p>After completing this module, the learner will be able to:</p>
+
+            <ul>
+                <li>
+                    Identify structural red flags in deceptive email communications,
+                    including typosquatting domains, spoofed sender headers, and
+                    urgent call-to-action lures.
+                </li>
+
+                <li>
+                    Explain the operational mechanism of Quick Response (QR) code
+                    phishing (Quishing) and why image-based links bypass traditional
+                    Security Email Gateways (SEGs).
+                </li>
+
+                <li>
+                    Apply a standardized 3-step verification workflow before
+                    interacting with embedded hyperlinks, scanning QR codes, or
+                    entering credentials into web portals.
+                </li>
+            </ul>
+        </article>
+
+    </section>
+
+
+    <section>
+        <h2>Core Reading Material & Article Content</h2>
+
+        <article>
+            <h3>The Evolution of Phishing in Cloud-First Environments</h3>
+
+            <p>
+                In centralized corporate offices, employee workstations operate
+                behind enterprise-grade firewalls, intrusion prevention systems
+                (IPS), and monitored Security Email Gateways (SEGs). In remote and
+                hybrid setups, professionals connect directly to cloud services
+                (e.g., Google Workspace, Microsoft 365, Slack) across residential
+                Wi-Fi networks and personal devices (BYOD). Threat actors capitalize
+                on this decentralization by deploying socio-technical phishing
+                campaigns that mimic everyday productivity platforms.
+            </p>
+
+            <p>
+                Modern phishing relies on domain manipulation techniques such as 
+                typosquatting (e.g., registering micros0ft-verify.com instead of microsoft.com) and combosquatting (e.g., slack-login-security.net). 
+                Furthermore, because attackers install free SSL/TLS certificates on fraudulent servers, web browsers display the "HTTPS" padlock icon. 
+                This deceives users into believing a counterfeit login portal is secure and legitimate. 
+            </p>
+        </article>
+
+        <figure>
+            <img src="/images/Phishing-and-Quishing-Comparison.png" alt="Flowchart comparing traditional email phishing to quishing. Traditional: deceptive email link, clicked by user through the email gateway. Quishing: embedded QR code in a message or document, scanned by the user's phone camera, opened outside the company's firewall protection.">
+            <figcaption>Traditional phishing relies on a clickable link scanned by the email gateway; quishing hides the link inside a QR code image, which the gateway can't inspect, and the user opens it on an unmonitored personal phone instead.</figcaption>
+        </figure>
+
+        <article>
+            <h3>Understanding Quishing (QR Code Phishing)</h3>
+
+            <p>
+                Quick Response (QR) code exploits—known as Quishing—represent a 
+                growing attack vector targeting distributed employees. Traditional email 
+                security solutions parse written HTML text and embedded plain-text URLs. 
+                They rarely OCR (optical character recognize) or decode raw image files inside 
+                PDF attachments or inline email graphics. 
+            </p>
+
+            <p>
+                When a threat actor embeds a QR code into a counterfeit email claiming to 
+                be an "MFA Security Update" or "HR Employee Handbook Review," the 
+                security gateway allows the message into the user's inbox. The user scans the 
+                QR code using their personal smartphone camera. This shifts the browsing 
+                session off the monitored corporate computer and onto an unmonitored 
+                personal mobile device, directing the user to an OAuth consent-granting 
+                page or a credential-harvesting web form. 
+            </p>
+        </article>
+
+        <article>
+            <h3>Key Red Flag Checklist</h3>
+
+            <ul>
+                <li>
+                    <strong>Sender Address Domain Mismatches:</strong> The display
+                    name states "IT Helpdesk," but the header email reads
+                    support@mail-system-update24.net.
+                </li>
+
+                <li>
+                    <strong>Artificial Urgency & Fear Lures:</strong> Subject lines 
+                    like "Urgent: Account Suspension in 2 Hours" or "Unusual Login 
+                    Detected - Verify Immediately" designed to bypass critical thinking. 
+                </li>
+
+                <li>
+                    <strong>Unsolicited QR Codes:</strong> Emails directing you to
+                    scan a QR code using a mobile device to authenticate access to a
+                    desktop web service.
+                </li>
+
+                <li>
+                    <strong>Generic Salutations & Mismatched URLs:</strong> Messages
+                    starting with "Dear Customer" or hyperlinked text displaying
+                    portal.company.com while pointing to an unrelated destination IP
+                    address.
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Step-by-Step Defense Workflow for Remote Workers</h3>
+
+            <ol>
+                <li>
+                    <strong>Inspect Header Details:</strong> Hover over the sender's 
+                    name to view the full, unexpanded email address. Verify that the 
+                    domain matches official corporate records.
+                </li>
+
+                <li>
+                    <strong>Never Scan Unverified QR Codes:</strong> If an email requires QR code scanning for login or password resets, open a 
+                    browser window manually and navigate directly to the official corporate 
+                    portal URL.
+                </li>
+
+                <li>
+                    <strong>Report & Isolate:</strong> Use your email client's
+                    "Report Phishing" button immediately. If credentials were 
+                    submitted, alert your security team and change passwords
+                    immediately across connected systems.
+                </li>
+            </ol>
+        </article>
+
+    </section>
+
+    <article>
+        <h2>Curated External Resources & References</h2>
+        
+        <ul>
+            <li>
+                <strong>Official Technical Guide:</strong>
+                <a href="https://www.cisa.gov/resources-tools/resources/phishing-guidance-stopping-attack-cycle-phase-one" target="_blank" rel="noopener noreferrer">
+                    CISA, NSA, FBI, & MS-ISAC — Phishing Guidance: Stopping the Attack Cycle at Phase One
+                </a>
+            </li>
+
+            <li>
+                <strong>Industry Overview:</strong>
+                <a href="https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams" target="_blank" rel="noopener noreferrer">
+                    FTC — Recognizing and Avoiding Phishing Scams
+                </a>
+            </li>
+
+            <li>
+                <strong>Academic Reference:</strong> Alkhalil, Z., Hewage, C.,
+                Nawaf, L., & Khan, I. (2021). Phishing attacks: A recent
+                comprehensive study and a new anatomy.
+                <em>Frontiers in Computer Science</em>, 3, Article 563060.
+            </li>
+        </ul>
+    </article>
+
+    <!-- =========================
+         Module Quiz Section
+         ========================= -->
+
+    <section class="module-quiz-section">
+
+        <h2>Test Your Knowledge</h2>
+
+        <p>
+            Ready to check what you've learned? Take a randomized
+            10-question quiz based on this module.
+        </p>
+
+        <router-link to="/quiz/module-1/question" class="take-quiz-button">
+            Take a Quiz
+        </router-link>
+
+    </section>
+
+        <!-- =========================
+         AI Chatbot
+         ========================= -->
+  </main>
+</template>
+
+<script src="./Quishing.js"></script>

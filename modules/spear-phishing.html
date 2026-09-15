@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        A Spear Phishing Awareness Guide: Recognize and Protect Against Targeted Personalized Attacks
+        Module 2: Spear Phishing
     </title>
 
     <link rel="stylesheet" href="../css/global.css">
@@ -19,10 +19,12 @@
 
     <header>
         <nav>
-            <a href="../index.html">Home</a>
+            <a href="../index.html" class="home">
+                <span class="icon">🏠</span>Home
+            </a>
         </nav>
 
-        <h1>Spear Phishing</h1>
+        <h1>Spear Phishing & Targeted Digital Surveillance</h1>
         <p>Module 2 of 6</p>
     </header>
 
@@ -35,267 +37,171 @@
         id="spear-phishing-awareness-guide"
         class="module-awareness-guide"
     >
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> Remote personnel with system
+            access, administrative privileges, financial responsibilities,
+            or public social media profiles.
+        </p>
 
         <article>
-            <h2>Learning Outcomes</h2>
+            <h2>Explicit Learning Objectives:</h2>
 
-            <p>By the end of this module, you will be able to:</p>
+            <p>After completing this module, the learner will be able to:</p>
 
             <ul>
                 <li>
-                    Identify targeted spear phishing attacks that use
-                    personalized information to appear legitimate and
-                    increase success rates
+                    Differentiate between broad mass phishing and targeted,
+                    reconnaissance-driven spear phishing.
                 </li>
 
                 <li>
-                    Recognize how attackers research and gather personal
-                    details from social media, LinkedIn, and public
-                    databases to craft convincing messages
+                    Identify how threat actors use Open Source Intelligence
+                    (OSINT) gathered from public platforms (LinkedIn, GitHub,
+                    X) to craft personalized lures.
                 </li>
 
                 <li>
-                    Understand the unique dangers of spear phishing compared
-                    to generic phishing and how to spot subtle red flags in
-                    personalized communications
+                    Recognize execution risks associated with macro-enabled
+                    attachments, double file extensions, and out-of-band
+                    messaging channels.
                 </li>
             </ul>
         </article>
 
+    </section>
+
+
+    <section>
+        <h2>Core Reading Material & Article Content</h2>
 
         <article>
-            <h2>Introduction to Spear Phishing</h2>
+            <h3>The Mechanics of Spear Phishing</h3>
 
             <p>
-                Spear phishing is a highly targeted form of phishing where
-                attackers customize messages to a specific individual or
-                organization using personal information. Unlike generic
-                phishing, spear phishing feels personal and relevant, making
-                it much more dangerous.
+                Mass phishing relies on broad distribution, sending
+                thousands of identical, generic messages hoping a small
+                percentage of recipients click. In contrast, spear phishing
+                is a targeted, asymmetric attack focused on a specific
+                individual, team, or organization.
+            </p>
+
+            <p>
+                Because spear phishing messages reference real names,
+                current client engagements, internal software platforms, or
+                recent company events, the victim's psychological threshold
+                to suspect deception is significantly lower.
             </p>
         </article>
 
+        <figure>
+            <img src="/images/OSINT-for-Targeted-Spear-Phishing-Process-Flow.png" alt="Diagram showing three Open Source Intelligence sources feeding into a customized spear phishing message: a LinkedIn profile revealing job role, work experience, and connections; a GitHub repository revealing projects, code and technologies, and commit history; and Social Media/X revealing posts, activity patterns, and tools or technologies mentioned. All three funnel into a single result labeled Customized Spear Phishing Targeted Communication.">
+            <figcaption>Attackers combine details pulled from LinkedIn, GitHub, and social media/X profiles to assemble a single, highly convincing spear phishing message aimed at one specific target.</figcaption>
+        </figure>
 
         <article>
-            <h2>Key Concepts to Know</h2>
+            <h3>Open Source Intelligence (OSINT) Reconnaissance</h3>
 
             <p>
-                Understanding these core concepts will help you identify
-                spear phishing attempts:
+                Before sending a single email, a spear phisher conducts
+                detailed reconnaissance using publicly accessible data:
             </p>
 
-            <div class="module-concepts-list">
+            <ul>
+                <li>
+                    <strong>LinkedIn:</strong> Maps corporate reporting
+                    hierarchies, job titles, active projects, and vendor
+                    relationships.
+                </li>
 
-                <div class="module-concept">
-                    <h4>Personal Information Research</h4>
+                <li>
+                    <strong>GitHub / Technical Blogs:</strong> Identifies
+                    specific programming frameworks, internal repository
+                    names, and outdated software dependencies used by a
+                    company's engineering team.
+                </li>
 
-                    <p>
-                        Attackers research their targets on LinkedIn,
-                        social media, and company websites to gather names,
-                        job titles, relationships, and work history to create
-                        convincing personalized messages.
-                    </p>
-                </div>
+                <li>
+                    <strong>Social Media / X:</strong> Tracks employee
+                    vacation schedules, conference attendance, or remote
+                    work locations.
+                </li>
+            </ul>
 
+            <p>
+                Using this OSINT, an attacker might draft an email appearing
+                to come from a real co-worker currently attending a
+                conference, referencing a real client project:
+            </p>
 
-                <div class="module-concept">
-                    <h4>Executive Impersonation</h4>
-
-                    <p>
-                        Cybercriminals pose as chief executives, managers, or
-                        authority figures within an organization and request
-                        urgent actions such as wire transfers or credential
-                        submissions.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Business Email Compromise</h4>
-
-                    <p>
-                        Attackers compromise or spoof legitimate business
-                        email addresses and use internal knowledge to convince
-                        employees that requests are legitimate, often
-                        involving financial transactions.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Relationship Exploitation</h4>
-
-                    <p>
-                        Attackers identify professional relationships such as
-                        clients, vendors, and colleagues, then impersonate
-                        these trusted contacts to extract sensitive
-                        information or money through context-based requests.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Urgency and Secrecy Tactics</h4>
-
-                    <p>
-                        Spear phishing messages often include artificial
-                        urgency such as "act immediately" and requests for
-                        secrecy such as "don't tell anyone" to prevent targets
-                        from verifying the request through legitimate
-                        channels.
-                    </p>
-                </div>
-
-            </div>
+            <p>
+                <em>"Hi Alex, I'm at the TechSummit conference right now.
+                Could you check the attached update for the Acme Corp
+                project proposal? Password to unzip is 1234."</em>
+            </p>
         </article>
 
-
         <article>
-            <h2>Real-World Examples</h2>
+            <h3>Weaponized Attachments & Evasion</h3>
 
             <p>
-                Learn from actual examples of spear phishing attacks and how
-                to spot them.
+                Spear phishing campaigns frequently deliver malicious
+                payloads hidden inside weaponized files:
             </p>
 
-            <div class="module-examples-list">
+            <ul>
+                <li>
+                    <strong>Macro-Enabled Office Documents (.docm, .xlsm):</strong>
+                    Contain embedded Visual Basic for Applications (VBA)
+                    scripts that download secondary malware
+                    (trojans/infostealers) when macros are enabled.
+                </li>
 
-                <div class="module-example">
-                    <h3>Example 1: The CEO Impersonation</h3>
+                <li>
+                    <strong>Double Extensions (.pdf.exe, .docx.iso):</strong>
+                    Operating systems often hide known extensions by
+                    default. A file named Quarterly_Report.pdf.exe appears
+                    to the user as Quarterly_Report.pdf.
+                </li>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        An accountant received an email from the "CEO"
-                        requesting an urgent wire transfer to pay a vendor
-                        invoice, with company details matching the
-                        organization's normal practices.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Urgent financial request, unusual communication
-                        channel, request for secrecy, and pressure to bypass
-                        normal approval processes.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker researched the company structure, used
-                        internal terminology, and relied on the target's
-                        hesitation to question authority.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 2: The Client Impersonation</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        A freelancer received an email from their "longtime
-                        client" requesting an updated invoice template with
-                        banking information for a new project.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Request for sensitive financial information, slightly
-                        different email format than usual, and a new request
-                        outside the normal workflow.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker found the client-freelancer relationship
-                        through public information and mimicked the client's
-                        professional communication style.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 3: The LinkedIn Research Scam</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        A job seeker received an email from "a recruiter" for
-                        a well-known technology company, offering a job
-                        interview based on information from their LinkedIn
-                        profile.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unsolicited job offer, unusually perfect match to the
-                        target's profile, request to download a file, and a
-                        link outside the company's official recruitment
-                        portal.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker used publicly available LinkedIn
-                        information to craft a convincing job opportunity.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 4: The Vendor Email Compromise</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        An employee received an email from a regular vendor
-                        requesting payment to a new bank account due to
-                        "corporate restructuring," with correct internal
-                        order numbers and contact names.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unexpected change in payment procedures, unusual bank
-                        account information, and reliance on internal details
-                        to establish legitimacy.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker compromised or spoofed the vendor's email
-                        and used information gathered from previous business
-                        communications.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>Encrypted Archives (.zip, .rar, .7z):</strong>
+                    Attackers encrypt the attached archive file and provide
+                    the password in the email body. Because the gateway
+                    cannot inspect the encrypted contents without the
+                    password, the malicious attachment bypasses automated
+                    perimeter scanners.
+                </li>
+            </ul>
         </article>
 
     </section>
 
+    <article>
+        <h2>Curated External Resources & References</h2>
 
-    <!-- =========================
-         Spear Phishing Video
-         ========================= -->
+        <ul>
+            <li>
+                <strong>Technical Taxonomy:</strong>
+                <a href="https://attack.mitre.org/techniques/T1566/001/" target="_blank" rel="noopener noreferrer">
+                    MITRE ATT&CK Framework — Phishing: Spearphishing Attachment (Technique T1566.001)
+                </a>
+            </li>
 
-    <section
-        id="spear-phishing-awareness-guide-video"
-        class="module-video-section"
-    >
+            <li>
+                <strong>Research Survey:</strong> Birthriya, S. K., Ahlawat,
+                P., & Jain, A. K. (2025). Detection and prevention of spear
+                phishing attacks: A comprehensive survey.
+                <em>Computers & Security</em>, 151, 104317.
+            </li>
 
-        <h2>Video: Understanding Spear Phishing Attacks</h2>
-
-        <p>
-            To learn more about how spear phishing uses personalized
-            information to create targeted attacks and deceive individuals.
-        </p>
-
-        <div class="video-player">
-            <p>
-                [Video Placeholder - Spear Phishing Awareness Video will be embedded here]
-            </p>
-        </div>
-
-    </section>
-
+            <li>
+                <strong>Security Advisory:</strong>
+                <a href="https://www.cisa.gov/news-events/news/spear-phishing-threats-and-prevention" target="_blank" rel="noopener noreferrer">
+                    CISA — Protecting Against Spear Phishing & OSINT Exploitation
+                </a>
+            </li>
+        </ul>
+    </article>
 
     <!-- =========================
          Module Quiz Section
@@ -311,7 +217,7 @@
         </p>
 
         <a
-            href="../quiz/spear-phishing-quiz.html"
+            href="../quiz/module-2/easy/question-1.html"
             class="take-quiz-button"
         >
             Take a Quiz

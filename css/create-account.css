@@ -21,8 +21,24 @@
 }
 
 .premium-crown-icon {
-    font-size: 42px;
-    line-height: 1;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto;
+}
+
+.premium-crown-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.inline-crown-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    vertical-align: -2px;
+    display: inline-block;
 }
 
 .account-creation-heading h1 {
@@ -218,14 +234,23 @@
     top: 50%;
     right: 8px;
 
+    width: 20px;
+    height: 20px;
+
     transform: translateY(-50%);
 
     border: none;
     background: none;
-
-    font-size: 15px;
+    padding: 0;
 
     cursor: pointer;
+}
+
+.password-visibility-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 

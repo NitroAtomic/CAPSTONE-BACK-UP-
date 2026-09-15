@@ -255,6 +255,14 @@
     font-size: 19px;
 }
 
+.inline-crown-icon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    vertical-align: -2px;
+    display: inline-block;
+}
+
 .dashboard-premium-badge {
     padding: 8px 14px;
 

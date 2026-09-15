@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        A Smishing Awareness Guide: Recognize and Protect Against SMS Text Message Phishing Attacks
+        Module 3: Smishing
     </title>
 
     <link rel="stylesheet" href="../css/global.css">
@@ -19,10 +19,12 @@
 
     <header>
         <nav>
-            <a href="../index.html">Home</a>
+            <a href="../index.html" class="home">
+                <span class="icon">🏠</span>Home
+            </a>
         </nav>
 
-        <h1>Smishing</h1>
+        <h1>Smishing (SMS & Mobile Messaging Attacks)</h1>
         <p>Module 3 of 6</p>
     </header>
 
@@ -35,259 +37,244 @@
         id="smishing-awareness-guide"
         class="module-awareness-guide"
     >
+        <h2>Module Metadata</h2>
+
+        <p class="module-key-details">
+            <strong>Target Audience:</strong> Remote employees and
+            freelancers using personal or mobile endpoints (BYOD) for
+            multi-factor authentication (MFA), client messaging, and team
+            communication.
+        </p>
 
         <article>
-            <h2>Learning Outcomes</h2>
+            <h3>Explicit Learning Objectives:</h3>
 
-            <p>By the end of this module, you will be able to:</p>
+            <p>After completing this module, the learner should be able to:</p>
 
             <ul>
                 <li>
-                    Identify smishing attacks delivered through SMS text
-                    messages and recognize how they differ from email phishing
-                    in urgency and format
+                    Explain the psychological drivers that make mobile text
+                    messaging a high-trust, high-vulnerability attack vector.
                 </li>
 
                 <li>
-                    Recognize common smishing tactics including fake delivery
-                    notifications, bank alerts, prize notifications, and
-                    two-factor authentication scams
+                    Identify technical smishing techniques including URL
+                    shortener obfuscation, sender ID spoofing, and fake
+                    portal redirects.
                 </li>
 
                 <li>
-                    Understand why text messages feel more trustworthy than
-                    emails and how attackers exploit this perception to
-                    compromise devices and accounts
+                    Differentiate between legitimate institutional/logistics
+                    SMS alerts and malicious smishing lures.
+                </li>
+
+                <li>
+                    Implement mobile device hardening, OTP/MFA protection
+                    habits, and secure reporting procedures.
                 </li>
             </ul>
         </article>
 
+    </section>
+
+
+    <section id="smishing-reading-material">
+        <h2>Website Reading Material</h2>
 
         <article>
-            <h2>Introduction to Smishing</h2>
+            <h3>1. The Mobile Vulnerability Landscape</h3>
 
             <p>
-                Smishing is phishing conducted through SMS (Short Message
-                Service) text messages. Because text messages feel more
-                personal and trustworthy than emails, smishing attacks often
-                have higher success rates than traditional email phishing.
+                Smishing (SMS Phishing) delivers malicious links or
+                deceptive calls via Short Message Service (SMS) or instant
+                messaging platforms (WhatsApp, Signal, Telegram). As
+                organizations adopt mobile Multi-Factor Authentication (MFA)
+                and mobile collaboration tools, threat actors increasingly
+                target personal smartphones.
+            </p>
+
+            <p>Mobile endpoints present specific security challenges:</p>
+
+            <ul>
+                <li>
+                    <strong>High User Trust:</strong> Users traditionally
+                    view SMS as a direct, personal communication channel,
+                    leading to higher open and click-through rates compared
+                    to email.
+                </li>
+
+                <li>
+                    <strong>Mobile Interface Constraints:</strong> Mobile
+                    browsers hide full URL structures due to limited screen
+                    real estate, making it difficult to inspect destination
+                    domains.
+                </li>
+
+                <li>
+                    <strong>BYOD Exposure:</strong> Personal mobile devices
+                    often lack enterprise-grade endpoint detection and
+                    response (EDR) agents or web filtering controls.
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>2. Common Smishing Attack Patterns</h3>
+
+            <p>
+                Threat actors design smishing lures around high-probability
+                daily scenarios:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Logistics & Delivery Scams:</strong> Messages
+                    claiming a parcel (e.g., FedEx, DHL, postal services)
+                    cannot be delivered without address confirmation or a
+                    small fee. The included link redirects to a credential
+                    or credit card harvesting page.
+                </li>
+
+                <li>
+                    <strong>Financial Fraud Alerts:</strong> Text alerts
+                    claiming an urgent security hold or unauthorized
+                    transaction has occurred on a bank account. The victim
+                    is urged to "click here immediately to verify identity".
+                </li>
+
+                <li>
+                    <strong>MFA Interception & OTP Harvesting:</strong> The
+                    attacker attempts to log in to a victim's corporate
+                    account, triggering a real One-Time Password (OTP) text
+                    to the victim's phone. Simultaneously, the attacker
+                    sends a smishing text: "IT Desk: We detected suspicious
+                    activity. Reply with the 6-digit code sent to your
+                    device to secure your account."
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>3. Technical Obfuscation: URL Shorteners & Sender ID Spoofing</h3>
+
+            <p>
+                Smishers rely on URL shorteners (bit.ly, tinyurl.com, t.co)
+                or lookalike domains (bank-secure-login.site) to hide the
+                true destination of their links. Additionally, attackers
+                utilize SMS gateway tools to perform Alpha-Numeric Sender ID
+                Spoofing, causing the fake text message to appear in the
+                exact same SMS conversation thread as legitimate messages
+                from banks or service providers.
             </p>
         </article>
 
-
         <article>
-            <h2>Key Concepts to Know</h2>
+            <h3>4. Real-World Remote Work Scenario</h3>
+
+            <p><strong>Scenario: The IT System Unlocking Text</strong></p>
 
             <p>
-                Understanding these core concepts will help you identify
-                smishing attempts:
+                Sarah, a remote customer support agent, receives an SMS at
+                8:00 AM: <em>"OKTA ALERT: Your remote access account has
+                been flagged for compliance review. Resolve within 30
+                minutes to maintain shift access:
+                https://okta-sso-verify.link/login"</em>
             </p>
 
-            <div class="module-concepts-list">
-
-                <div class="module-concept">
-                    <h4>Delivery and Logistics Scams</h4>
-
-                    <p>
-                        Fake text messages claim that packages cannot be
-                        delivered and ask users to click a link to reschedule
-                        delivery or pay fees. These messages imitate legitimate
-                        shipping notifications.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Banking and Financial Alerts</h4>
-
-                    <p>
-                        Fraudulent SMS messages pretend to be from banks and
-                        warn of suspicious account activity. They may request
-                        verification of personal or financial information
-                        through a malicious link.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Prize and Raffle Notifications</h4>
-
-                    <p>
-                        Scam text messages claim that the recipient has won a
-                        prize, gift card, or raffle and must click a link to
-                        claim it within a limited time, creating false urgency.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Two-Factor Authentication Bypasses</h4>
-
-                    <p>
-                        Attackers send SMS messages that imitate legitimate
-                        authentication alerts or ask users to verify their
-                        identity, attempting to trick them into revealing
-                        actual authentication codes.
-                    </p>
-                </div>
-
-
-                <div class="module-concept">
-                    <h4>Shortened URLs and Link Obfuscation</h4>
-
-                    <p>
-                        Attackers may use shortened URLs to hide the true
-                        destination of a malicious link, making it difficult
-                        to know where the link leads before clicking it.
-                    </p>
-                </div>
-
-            </div>
+            <p>
+                Fearing she will miss her shift and face disciplinary
+                action, Sarah taps the link on her phone. The page renders
+                an exact copy of her company's SSO login portal. She enters
+                her username, password, and the push MFA token, unknowingly
+                handing her enterprise credentials directly to an attacker.
+            </p>
         </article>
 
-
         <article>
-            <h2>Real-World Examples</h2>
+            <h3>5. Defense & Remediation Protocols</h3>
 
-            <p>
-                Learn from actual examples of smishing attacks and how to
-                spot them.
-            </p>
+            <ol>
+                <li>
+                    <strong>Never Click Links in Unsolicited SMS:</strong>
+                    Treat all text messages containing clickable links as
+                    untrusted. If an alert claims to be from your bank or
+                    employer, navigate to the official app or website
+                    independently.
+                </li>
 
-            <div class="module-examples-list">
+                <li>
+                    <strong>Protect OTPs and MFA Codes:</strong> Never share
+                    One-Time Passwords or MFA tokens with anyone over text
+                    or phone. Legitimate IT departments will never ask you
+                    to text back an OTP.
+                </li>
 
-                <div class="module-example">
-                    <h3>Example 1: The Fake Delivery Notification</h3>
+                <li>
+                    <strong>Use Short-Link Unshorteners:</strong> Use URL
+                    expansion tools or expansion preview settings before
+                    tapping shortened links on mobile devices.
+                </li>
 
-                    <p>
-                        <strong>What happened:</strong>
-                        A remote worker received a text saying
-                        "Your package could not be delivered. Click here to
-                        reschedule: bit.ly/delivery123" from what appeared to
-                        be a delivery company.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Shortened URL hiding the real destination, urgency to
-                        act, request to click an unfamiliar link, and an
-                        unexpected message.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The victim was expecting a delivery and the message
-                        felt legitimate because package notifications are
-                        common.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 2: The Bank Alert Scam</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        An employee received a text saying their bank account
-                        had unusual activity and asking them to verify their
-                        identity through a link.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Suspicious link, generic greeting, request for
-                        verification, and pressure to act quickly.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        People may trust messages that appear to come from
-                        their bank, especially when the message creates fear
-                        and urgency.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 3: The Prize Notification</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        Multiple people received identical texts claiming
-                        they had won a $500 Amazon gift card and needed to
-                        claim it within 24 hours.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Unsolicited prize claim, limited-time offer, shortened
-                        URL, identical messages sent to many people, and no
-                        prior contest entry.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The promise of free money and fake time pressure made
-                        people act without thinking critically.
-                    </p>
-                </div>
-
-
-                <div class="module-example">
-                    <h3>Example 4: The Two-Factor Authentication Code Trick</h3>
-
-                    <p>
-                        <strong>What happened:</strong>
-                        A freelancer received a text containing a
-                        two-factor authentication code and a link saying to
-                        click if they did not request the code.
-                    </p>
-
-                    <p>
-                        <strong>Red flags:</strong>
-                        Suspicious security-related link and pressure to act
-                        through the message instead of checking the account
-                        directly.
-                    </p>
-
-                    <p>
-                        <strong>Why it worked:</strong>
-                        The attacker attempted to make the message look like
-                        a legitimate security alert so the victim would trust
-                        the provided link.
-                    </p>
-                </div>
-
-            </div>
+                <li>
+                    <strong>Report Smishing:</strong> Forward scam texts to
+                    SPAM (7726) on supported mobile networks or report them
+                    to your security team.
+                </li>
+            </ol>
         </article>
 
     </section>
 
+    <section id="smishing-red-flags">
+        <h2>Red Flag Indicators & Defensive Checklist</h2>
 
-    <!-- =========================
-         Smishing Video
-         ========================= -->
+        <ul>
+            <li>
+                <strong>Urgent Demands via Text:</strong> Messages
+                threatening account suspension, missed deliveries, or
+                legal action requiring immediate link clicks.
+            </li>
 
-    <section
-        id="smishing-awareness-guide-video"
-        class="module-video-section"
-    >
+            <li>
+                <strong>Shortened / Obscured Links:</strong> URLs using
+                services like bit.ly, tiny.cc, or unusual top-level
+                domains (.xyz, .site, .info).
+            </li>
 
-        <h2>Video: Understanding Smishing Attacks</h2>
+            <li>
+                <strong>Requests for OTPs:</strong> Texts or callers
+                asking you to text back or read aloud a multi-factor
+                authentication code.
+            </li>
 
-        <p>
-            To learn more about how smishing attacks work through text
-            messages and how to protect your mobile device.
-        </p>
-
-        <div class="video-player">
-            <p>
-                [Video Placeholder - Smishing Awareness Video will be embedded here]
-            </p>
-        </div>
-
+            <li>
+                <strong>Generic 10-Digit Sender Numbers:</strong>
+                Official bank or corporate alerts arriving from standard
+                individual mobile phone numbers rather than registered
+                shortcodes.
+            </li>
+        </ul>
     </section>
 
+    <section id="smishing-curated-resources">
+        <h2>Curated Resources & References</h2>
+
+        <ul>
+            <li>
+                <strong>Video Source:</strong>
+                <a href="https://www.youtube.com/watch?v=2n-1ZInI_vE" target="_blank" rel="noopener noreferrer">
+                    Federal Communications Commission (FCC) — "Avoid the Temptation of Smishing Scams"
+                </a>
+            </li>
+
+            <li>
+                <strong>Reference Guide:</strong>
+                <a href="https://www.fcc.gov/avoid-temptation-smishing-scams" target="_blank" rel="noopener noreferrer">
+                    FCC Consumer Guide — Avoid the Temptation of Smishing Scams
+                </a>
+            </li>
+        </ul>
+    </section>
 
     <!-- =========================
          Module Quiz Section
@@ -303,7 +290,7 @@
         </p>
 
         <a
-            href="../quiz/smishing-quiz.html"
+            href="../quiz/module-3/easy/question-1.html"
             class="take-quiz-button"
         >
             Take a Quiz
