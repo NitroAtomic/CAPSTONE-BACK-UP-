@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node backend-node/server.js",
+    "postinstall": "cd backend-node && npm install",
+    "deploy:build": "npm run build && cd backend-node && npm install --omit=dev"
   },
   "dependencies": {
     "pinia": "^2.3.1",
@@ -22,5 +25,8 @@
   },
   "overrides": {
     "esbuild": "^0.25.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

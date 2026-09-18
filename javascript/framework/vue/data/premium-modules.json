@@ -1,0 +1,100 @@
+{
+  "modules": [
+    {
+      "slug": "client-impersonation",
+      "title": "Client Impersonation",
+      "summary": "Someone posing as your real client, mid-project.",
+      "audience": "Freelancers, virtual assistants, and contractors working with several clients.",
+      "sections": [
+        {
+          "heading": "How the attack works",
+          "body": "The attacker already knows the project exists. They have read your public portfolio, a shared LinkedIn post, or a job board listing, and they know roughly where the work has reached. They contact you on a channel adjacent to the real one, a new email address with the client's name, or a message on a platform you both use, and continue the conversation as if nothing has changed.\n\nBecause the project is real and the details are right, the usual signals are absent. There is no spelling mistake and no improbable story. The only thing that has changed is the account the message came from."
+        },
+        {
+          "heading": "What they usually ask for",
+          "body": "The request is almost always something you would normally do: send the latest files, share access to a workspace, or update the account that receives payment. Each is a reasonable thing for a client to ask, which is the point.\n\nA request to change payment details is the one worth treating as a stop signal. It is the single most profitable outcome for the attacker and the hardest for you to reverse."
+        },
+        {
+          "heading": "Red flags",
+          "body": "A new address or handle, even when the display name is correct. Pressure to act before a deadline that was never mentioned before. Reluctance to move the conversation back to the original channel. A change to payment details that arrives alongside an invoice you were already expecting."
+        },
+        {
+          "heading": "What to do",
+          "body": "Reply in the channel you have always used, not the one the message arrived on. If the client normally emails and a message arrives on WhatsApp, email them.\n\nFor anything involving money or access, confirm by a method the attacker would have to compromise separately, a phone call to the number you already had, or a message in the workspace you have been using since the project started. Asking \"is this really you?\" in the same thread proves nothing, because whoever controls it can simply answer yes."
+        }
+      ]
+    },
+    {
+      "slug": "invoice-scams",
+      "title": "Invoice and Payment Scams",
+      "summary": "Spoofed payment confirmations and redirected invoices.",
+      "audience": "Anyone who sends invoices or approves payments.",
+      "sections": [
+        {
+          "heading": "How the attack works",
+          "body": "There are two directions. In the first, the attacker intercepts or imitates your invoice and sends the client a version with different bank details. You are never contacted, and you find out when the payment does not arrive.\n\nIn the second, you receive a payment confirmation that looks like it came from a payment provider, showing a transfer that never happened. The goal is to get you to release work or goods against a payment that does not exist."
+        },
+        {
+          "heading": "Why confirmations are convincing",
+          "body": "Payment provider emails are templated, and those templates are public. Anyone can copy the layout, the logo, and the wording precisely. A screenshot is easier still, and proves nothing at all, since it is an image someone assembled.\n\nThe only reliable confirmation is the money appearing in the account you control, checked by logging in yourself rather than through a link in the message."
+        },
+        {
+          "heading": "Red flags",
+          "body": "Bank details that differ from the last payment, however small the change. A confirmation arriving from a domain that is close to but not exactly the provider's. Pressure to release work immediately because the transfer is \"already sent\". A screenshot offered as proof instead of a transaction you can verify."
+        },
+        {
+          "heading": "What to do",
+          "body": "Treat any change to payment details as unverified until confirmed by voice on a number you already had. Attackers rely on this feeling rude to ask.\n\nCheck receipts by logging into the payment provider directly, never through a link in the email. If the transfer is real it will be visible in your account without anyone sending you anywhere."
+        }
+      ]
+    },
+    {
+      "slug": "fake-recruiters",
+      "title": "Fake Job and Recruiter Offers",
+      "summary": "Recruitment scams aimed at freelancers and remote workers.",
+      "audience": "Anyone job hunting or open to contract work.",
+      "sections": [
+        {
+          "heading": "How the attack works",
+          "body": "An approach arrives with a strong offer: remote, well paid, and a good fit for the skills on your public profile. The early stages are normal, a conversation, perhaps a short interview over chat.\n\nThe attack sits in the onboarding step. Once you believe you have the role, you are asked for the documents a new employer would reasonably need, and the sense of having already been hired is what stops you questioning it."
+        },
+        {
+          "heading": "What they are actually collecting",
+          "body": "Identity documents are the usual target: a passport or ID scan, a photo of yourself holding it, your address and date of birth. That set is enough to open accounts in your name.\n\nA second variant asks you to pay for equipment or training up front, with a promise of reimbursement in the first paycheque. A third sends a cheque to deposit and asks you to forward part of it, which leaves you liable when the cheque turns out to be worthless."
+        },
+        {
+          "heading": "Red flags",
+          "body": "An offer without a real interview, or one conducted entirely over text. Identity documents requested before any contract exists. Any request for money from you, for any reason. Communication only through personal accounts rather than a company domain. A role that pays noticeably above the market rate for the work described."
+        },
+        {
+          "heading": "What to do",
+          "body": "Look up the company independently and contact them through details you found yourself, not ones in the message. A genuine recruiter will not mind.\n\nHold identity documents back until there is a signed contract with a verified organisation. No legitimate employer needs a passport scan to decide whether to interview you, and no legitimate job requires you to pay to start it."
+        }
+      ]
+    },
+    {
+      "slug": "client-data",
+      "title": "Secure Client Data Handling",
+      "summary": "Protecting client files, credentials, and access.",
+      "audience": "Anyone holding files or logins that belong to someone else.",
+      "sections": [
+        {
+          "heading": "Why this is different",
+          "body": "When the data belongs to a client, a mistake is not only yours. A breach affects their customers, their obligations, and your standing with them.\n\nRemote work spreads this data further than an office would: a personal laptop, a phone, a cloud drive, a chat history, and whatever was attached to an email eighteen months ago and never deleted."
+        },
+        {
+          "heading": "Access, not files",
+          "body": "The safest handover is often access rather than a copy. A shared folder can be revoked when the project ends; a file you emailed cannot.\n\nWhere sharing is necessary, prefer a link with an expiry over an attachment, and give the narrowest permission that works. View only is enough far more often than it is used."
+        },
+        {
+          "heading": "Credentials",
+          "body": "Shared logins are common in freelance work and consistently the weakest point. When a password is shared over chat it is permanently in that history, readable by anyone who later gains access to either account.\n\nAsk for your own account wherever possible. Where a shared credential is unavoidable, move it through a password manager's sharing feature rather than a message, and have it changed when the engagement ends."
+        },
+        {
+          "heading": "Ending an engagement",
+          "body": "Offboarding yourself is a step most people skip. When a project finishes, remove the client's files from your devices and cloud storage, leave shared workspaces, and confirm in writing what you have deleted.\n\nThis protects both sides. It limits what a future compromise of your account could expose, and it gives the client a clear record."
+        }
+      ]
+    }
+  ]
+}

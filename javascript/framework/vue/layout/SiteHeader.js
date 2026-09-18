@@ -1,9 +1,14 @@
+import auth from '../services/auth.js'
+
 export default {
   name: 'SiteHeader',
 
   data() {
     return {
       searchQuery: '',
+      // Re-read on every route change so the nav reflects signing in or out
+      // without needing a full page reload.
+      user: auth.getUser(),
       modules: [
         { id: 1, title: 'Quishing', link: '/modules/quishing' },
         { id: 2, title: 'Spear Phishing', link: '/modules/spear-phishing' },
@@ -19,7 +24,28 @@ export default {
     }
   },
 
+  watch: {
+    // vue-router keeps this component mounted across navigations, so the
+    // auth state has to be refreshed explicitly when the route changes.
+    $route() {
+      this.user = auth.getUser()
+    }
+  },
+
   computed: {
+    // These derive from this.user rather than calling auth directly, because
+    // auth reads sessionStorage, which Vue cannot track. A computed with no
+    // reactive dependency caches its first result forever, which is why the
+    // nav kept offering "Go Premium" to an account that had just upgraded.
+    isPremium() {
+      return this.user?.subscription_type === 'Premium' &&
+             this.user?.subscription_status === 'active'
+    },
+
+    isAdmin() {
+      return this.user?.role === 'admin'
+    },
+
     searchResults() {
       const query = this.searchQuery.trim().toLowerCase()
       if (!query) return []
@@ -30,6 +56,13 @@ export default {
   },
 
   methods: {
+    async signOut() {
+      await auth.logout()
+      this.user = null
+      this.$router.push('/')
+    },
+
+
     clearSearch() {
       this.searchQuery = ''
     },

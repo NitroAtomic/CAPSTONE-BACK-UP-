@@ -37,7 +37,7 @@
             ? 'chatbot-user-message'
             : 'chatbot-assistant-message'"
         >
-          {{ message.text }}
+          <span v-for="(para, i) in message.text.split('\n\n')" :key="i" class="chatbot-para">{{ para }}</span>
         </div>
       </div>
 
@@ -52,12 +52,14 @@
             v-model="draft"
             type="text"
             name="message"
-            placeholder="Ask the AI Assistant something..."
+            :placeholder="busy ? 'Thinking...' : 'Ask the AI Assistant something...'"
+            :disabled="busy"
             autocomplete="off"
           >
           <button
             type="submit"
             class="chatbot-send-button"
+            :disabled="busy"
             aria-label="Send message"
           >
             ➤

@@ -130,4 +130,18 @@
     @apply fixed right-[26px] bottom-3.5 py-2.5 px-5 bg-white border border-black rounded-[7px] text-[16px] font-semibold cursor-pointer;
   }
 
+  /* The dashed border reads as locked, so an active subscriber gets the
+     same solid treatment as the free module cards. */
+  .premium-card-open {
+    @apply border-solid text-inherit no-underline;
+  }
+
+  .premium-card-open:hover {
+    @apply bg-gray-100;
+  }
+
+  .premium-active-note {
+    @apply mt-2 text-center text-[13px] text-gray-500;
+  }
+
 }

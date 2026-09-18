@@ -1,0 +1,27 @@
+{
+  "name": "se-aware-backend",
+  "version": "1.0.0",
+  "description": "SE-AWARE backend API - Node.js + Express + MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "kb:build": "node scripts/build-knowledge-base.js"
+  },
+  "keywords": [],
+  "author": "Juan Paolo Dente",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.3.0",
+    "mysql2": "^3.24.3",
+    "nodemailer": "^10.0.1"
+  }
+}

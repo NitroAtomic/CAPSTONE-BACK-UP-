@@ -1,0 +1,700 @@
+{
+  "builtAt": "2026-09-17T12:55:01.701Z",
+  "entries": [
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "Module 6: Essential Safe Practices for Remote Environments\n 🏠 Home\n Essential Safe Practices for Remote Environments\n Module 6 of 6"
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: Explicit Learning Objectives:",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "After completing this module, the learner should be able to:\n Evaluate multi-factor authentication (MFA)\n architectures and transition from vulnerable SMS-MFA to\n app-based (TOTP) or hardware key authenticators. Configure and harden home network environments,\n including router administrative controls, WPA3\n encryption, and guest network isolation. Formulate and enforce Out-of-Band (OOB) verification\n workflows for high-risk administrative or financial\n communications. Develop daily cyber hygiene protocols covering BYOD\n patching, password management, and swift incident\n reporting."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: 1. Security in Perimeterless Workspaces",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "In a traditional office, security relies on centralized\n perimeter defenses: corporate firewalls, intrusion\n detection systems, and physical access controls. Remote\n work eliminates this traditional perimeter. Data moves\n across home Wi-Fi networks, personal routers, and\n commercial mobile networks. In this environment, every remote endpoint is its own\n perimeter. Maintaining security requires proactive\n technical hardening and disciplined personal operational\n habits."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: 2. Multi-Factor Authentication (MFA) Hardening",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "Multi-Factor Authentication adds a critical layer of\n defense beyond passwords. However, not all MFA methods\n offer equal protection:\n SMS-Based MFA (Vulnerable): SMS\n authentication codes can be intercepted via\n SIM-swapping attacks, mobile malware, or smishing\n lures. Authenticator Apps (TOTP - Recommended): \n Time-based One-Time Password apps (e.g., Google\n Authenticator, Microsoft Authenticator, 1Password)\n generate codes locally on your device without relying\n on cellular SMS networks. FIDO2 Hardware Keys (Gold Standard): \n Physical USB/NFC security keys (e.g., YubiKey) provide\n phishing-resistant authentication by cryptographically\n binding the login assertion to the verified site\n domain."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: 3. Securing Home Networks & BYOD Endpoints",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "Home Wi-Fi networks are prime targets for threat actors\n seeking lateral entry into remote work systems:\n Change Router Default Credentials: \n Default administrative passwords (admin/admin) on\n home routers are publicly known and routinely scanned\n by automated botnets. Enable WPA3/WPA2 Enterprise Encryption: \n Ensure home wireless networks use strong encryption\n standards. Disable outdated WEP or plain WPA\n protocols. Isolate IoT Devices on a Guest Network: \n Smart TVs, connected appliances, and security cameras\n often have unpatched vulnerabilities. Connect work\n laptops to an isolated Guest Wi-Fi Network so\n compromised IoT devices cannot intercept work traffic. Automated OS Patching: Keep operating\n systems, browsers, and security software updated. Unpatched software vulnerabilities allow drive-by\n downloads when browsing."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: 4. Out-of-Band (OOB) Verification Protocols",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "Establish a personal operational rule: Any unexpected\n request involving money, password resets, access grants,\n or sensitive data transfers requires Out-of-Band\n verification. Example: If a client emails asking you to\n send invoice payments to a new bank account, call them\n using a phone number verified from a previous paper\n contract—never use the phone number printed on the new\n invoice."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: 5. Incident Reporting: The Speed Advantage",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "If you accidentally click a suspicious link, enter\n credentials on a questionable site, or download an\n untrusted file, time is critical. Immediately disconnect the affected device from\n Wi-Fi/Ethernet to halt potential lateral malware\n movement or remote command execution. Report the incident to your company's IT security\n team or client contact. Early reporting allows\n security teams to revoke compromised tokens before\n adversaries pivot deeper into internal systems."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: Red Flag Indicators & Defensive Checklist",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "SMS-Only MFA Reliance: Relying on SMS\n text passcodes instead of authenticator apps or hardware\n keys. Default Router Passwords: Running home\n Wi-Fi networks using factory default admin passwords. Single Network for Work & Smart Home: \n Keeping work laptops on the same Wi-Fi subnet as unpatched\n smart home IoT devices. Delayed Software Patching: Postponing\n operating system and browser security updates for weeks."
+    },
+    {
+      "title": "Module 6: Essential Safe Practices for Remote Environments: Curated Resources & References",
+      "source": "modules/essential-safe-practices-remote-environments.html",
+      "text": "Video Source: \n Cybersecurity and Infrastructure Security Agency (CISA) — \"Cybersecurity for Remote Work: Best Practices to Stay Safe Online\"\n Reference Guide: \n NIST (National Institute of Standards and Technology) — Guide to Enterprise Telework, Remote Access, and Bring Your Own Device (BYOD) Security (NIST SP 800-46 Rev. 2)"
+    },
+    {
+      "title": "Module 5: Pretexting: Module Metadata",
+      "source": "modules/pretexting.html",
+      "text": "Target Audience: Remote workers handling\n administrative data, HR workflows, customer records, vendor\n management, or client onboarding."
+    },
+    {
+      "title": "Module 5: Pretexting: Explicit Learning Objectives:",
+      "source": "modules/pretexting.html",
+      "text": "After completing this module, the learner should be able to:\n Define pretexting and contrast its slow-burn,\n trust-building structure with impulsive phishing\n attacks. Identify common pretexting personas, including fake\n external auditors, new vendors, HR representatives, and\n distressed contractors. Recognize subtle conversational tactics used to bypass\n standard identity checks and organizational ticketing\n workflows. Establish and execute strict verification protocols for\n unannounced administrative or directory data requests."
+    },
+    {
+      "title": "Module 5: Pretexting: 1. Defining Pretexting",
+      "source": "modules/pretexting.html",
+      "text": "Pretexting is a form of social engineering where an\n attacker invents an elaborate scenario (a \"pretext\") and\n assumes a fabricated persona to trick a target into\n surrendering confidential information or granting\n unauthorized access. Unlike impulsive phishing emails designed to provoke\n immediate panic, pretexting often involves a slow-burn,\n trust-building strategy. The adversary engages the remote\n worker across multiple casual interactions, laying a\n foundation of rapport and credibility before making a\n request."
+    },
+    {
+      "title": "Module 5: Pretexting: 2. Pretexting Persona Construction",
+      "source": "modules/pretexting.html",
+      "text": "Threat actors research organizational roles to design\n believable characters:\n The External Auditor / Compliance Officer: \n The attacker claims to be conducting an urgent \"data\n privacy audit\" or \"software licensing check.\" They\n request internal directory charts, system architecture\n documents, or employee listings. The New Vendor / Subcontractor: The\n actor poses as a newly hired third-party service\n provider who needs \"sample data files\" or access to\n internal staging servers to prepare for an upcoming\n project. The Distressed Remote Colleague: The\n scammer impersonates a fellow remote employee locked\n out of their system while travelling, appealing to\n empathy to convince the target to share internal files\n or forward login details."
+    },
+    {
+      "title": "Module 5: Pretexting: 3. Bypassing Workflow Protocols",
+      "source": "modules/pretexting.html",
+      "text": "Pretexters rely on social norms—such as politeness,\n willingness to help, and deference to authority—to\n convince targets to ignore standard operational procedures. Common tactics include:\n Resisting Official Ticketing: The\n pretexter actively discourages the victim from opening\n a formal IT ticket or routing the request through\n administrative review (e.g., \"Opening a ticket takes 3\n days, and the VP needs this file in 10 minutes\"). Flattery and Sympathy: Manipulating\n the remote worker's emotions to make them feel like a\n helpful savior."
+    },
+    {
+      "title": "Module 5: Pretexting: 4. Real-World Remote Work Scenario",
+      "source": "modules/pretexting.html",
+      "text": "Scenario: The Fake HR Benefits Survey \n David, a remote administrative assistant, receives a\n connection request and direct message on LinkedIn from\n \"Elena, Senior HR Director at Global HR Solutions.\" Elena\n sends a friendly message: \"Hi David, your company has\n contracted us to review remote employee benefit\n satisfaction. We are conducting brief 5-minute\n interviews.\" \n Over three days of polite messaging, Elena builds rapport. On day four, she sends an \"Employee Verification Portal\"\n link, asking David to confirm his corporate ID, home\n address, and internal manager's email. Because the\n interaction felt natural over multiple days, David submits\n the data without checking with his actual internal HR\n department."
+    },
+    {
+      "title": "Module 5: Pretexting: 5. Verification & Structural Controls",
+      "source": "modules/pretexting.html",
+      "text": "Never Bypass Formal Ticketing: Require\n all administrative, data, or access requests to go\n through official, authenticated ticketing systems. Verify Third-Party Credentials\n Independently: If an external auditor or\n vendor contacts you, confirm their contract status with\n your manager or procurement lead before sharing any\n files. Be Wary of Overly Elaborate\n Explanations: Legitimate corporate\n interactions rarely require complicated stories to\n justify bypassing standard security checks."
+    },
+    {
+      "title": "Module 5: Pretexting: Red Flag Indicators & Defensive Checklist",
+      "source": "modules/pretexting.html",
+      "text": "Unsolicited Multi-Day Outreach: Contacts\n who build casual rapport over several days before making\n data or file requests. Pressure to Avoid Official Channels: \n Requests to avoid logging tickets, emailing official\n distribution lists, or involving managers. Inquiries Into Internal Operations: Casual\n questions about organizational hierarchies, software\n versions, or internal tools. Appeals to Empathy / Authority: Stories\n emphasizing extreme distress, impending disciplinary\n action, or executive deadlines to force compliance."
+    },
+    {
+      "title": "Module 5: Pretexting: Curated Resources & References",
+      "source": "modules/pretexting.html",
+      "text": "Video Source: \n SANS Institute — \"What Is a Pretexting Attack?\"\n Reference Guide: \n Security Boulevard — Pretexting Examples: Real-World Scams Explained"
+    },
+    {
+      "title": "Module 5: Pretexting: Test Your Knowledge",
+      "source": "modules/pretexting.html",
+      "text": "Ready to check what you've learned? Take a randomized\n 10-question quiz based on this module. Take a Quiz"
+    },
+    {
+      "title": "Module 1: Quishing",
+      "source": "modules/quishing.html",
+      "text": "Module 1: Quishing\n 🏠 Home\n Email Phishing, Fake Login Pages & QR Code Exploits (Quishing)\n Module 1 of 6\n Target Audience: All remote workers, freelancers,\n virtual assistants, and distributed contractors."
+    },
+    {
+      "title": "Module 1: Quishing: Explicit Learning Objectives:",
+      "source": "modules/quishing.html",
+      "text": "After completing this module, the learner will be able to:\n Identify structural red flags in deceptive email communications,\n including typosquatting domains, spoofed sender headers, and\n urgent call-to-action lures. Explain the operational mechanism of Quick Response (QR) code\n phishing (Quishing) and why image-based links bypass traditional\n Security Email Gateways (SEGs). Apply a standardized 3-step verification workflow before\n interacting with embedded hyperlinks, scanning QR codes, or\n entering credentials into web portals."
+    },
+    {
+      "title": "Module 1: Quishing: The Evolution of Phishing in Cloud-First Environments",
+      "source": "modules/quishing.html",
+      "text": "In centralized corporate offices, employee workstations operate\n behind enterprise-grade firewalls, intrusion prevention systems\n (IPS), and monitored Security Email Gateways (SEGs). In remote and\n hybrid setups, professionals connect directly to cloud services\n (e.g., Google Workspace, Microsoft 365, Slack) across residential\n Wi-Fi networks and personal devices (BYOD). Threat actors capitalize\n on this decentralization by deploying socio-technical phishing\n campaigns that mimic everyday productivity platforms. Modern phishing relies on domain manipulation techniques such as \n typosquatting (e.g., registering micros0ft-verify.com instead of microsoft.com) and combosquatting (e.g., slack-login-security.net). Furthermore, because attackers install free SSL/TLS certificates on fraudulent servers, web browsers display the \"HTTPS\" padlock icon."
+    },
+    {
+      "title": "Module 1: Quishing: The Evolution of Phishing in Cloud-First Environments",
+      "source": "modules/quishing.html",
+      "text": "This deceives users into believing a counterfeit login portal is secure and legitimate. Traditional phishing relies on a clickable link scanned by the email gateway; quishing hides the link inside a QR code image, which the gateway can't inspect, and the user opens it on an unmonitored personal phone instead."
+    },
+    {
+      "title": "Module 1: Quishing: Understanding Quishing (QR Code Phishing)",
+      "source": "modules/quishing.html",
+      "text": "Quick Response (QR) code exploits—known as Quishing—represent a \n growing attack vector targeting distributed employees. Traditional email \n security solutions parse written HTML text and embedded plain-text URLs. They rarely OCR (optical character recognize) or decode raw image files inside \n PDF attachments or inline email graphics. When a threat actor embeds a QR code into a counterfeit email claiming to \n be an \"MFA Security Update\" or \"HR Employee Handbook Review,\" the \n security gateway allows the message into the user's inbox. The user scans the \n QR code using their personal smartphone camera."
+    },
+    {
+      "title": "Module 1: Quishing: Understanding Quishing (QR Code Phishing)",
+      "source": "modules/quishing.html",
+      "text": "This shifts the browsing \n session off the monitored corporate computer and onto an unmonitored \n personal mobile device, directing the user to an OAuth consent-granting \n page or a credential-harvesting web form."
+    },
+    {
+      "title": "Module 1: Quishing: Key Red Flag Checklist",
+      "source": "modules/quishing.html",
+      "text": "Sender Address Domain Mismatches: The display\n name states \"IT Helpdesk,\" but the header email reads\n support@mail-system-update24.net. Artificial Urgency & Fear Lures: Subject lines \n like \"Urgent: Account Suspension in 2 Hours\" or \"Unusual Login \n Detected - Verify Immediately\" designed to bypass critical thinking. Unsolicited QR Codes: Emails directing you to\n scan a QR code using a mobile device to authenticate access to a\n desktop web service. Generic Salutations & Mismatched URLs: Messages\n starting with \"Dear Customer\" or hyperlinked text displaying\n portal.company.com while pointing to an unrelated destination IP\n address."
+    },
+    {
+      "title": "Module 1: Quishing: Step-by-Step Defense Workflow for Remote Workers",
+      "source": "modules/quishing.html",
+      "text": "Inspect Header Details: Hover over the sender's \n name to view the full, unexpanded email address. Verify that the \n domain matches official corporate records. Never Scan Unverified QR Codes: If an email requires QR code scanning for login or password resets, open a \n browser window manually and navigate directly to the official corporate \n portal URL. Report & Isolate: Use your email client's\n \"Report Phishing\" button immediately. If credentials were \n submitted, alert your security team and change passwords\n immediately across connected systems."
+    },
+    {
+      "title": "Module 1: Quishing: Curated External Resources & References",
+      "source": "modules/quishing.html",
+      "text": "Official Technical Guide: \n CISA, NSA, FBI, & MS-ISAC — Phishing Guidance: Stopping the Attack Cycle at Phase One\n Industry Overview: \n FTC — Recognizing and Avoiding Phishing Scams\n Academic Reference: Alkhalil, Z., Hewage, C.,\n Nawaf, L., & Khan, I. (2021). Phishing attacks: A recent\n comprehensive study and a new anatomy. Frontiers in Computer Science , 3, Article 563060."
+    },
+    {
+      "title": "Module 1: Quishing: Test Your Knowledge",
+      "source": "modules/quishing.html",
+      "text": "Ready to check what you've learned? Take a randomized\n 10-question quiz based on this module. Take a Quiz"
+    },
+    {
+      "title": "Module 3: Smishing: Module Metadata",
+      "source": "modules/smishing.html",
+      "text": "Target Audience: Remote employees and\n freelancers using personal or mobile endpoints (BYOD) for\n multi-factor authentication (MFA), client messaging, and team\n communication."
+    },
+    {
+      "title": "Module 3: Smishing: Explicit Learning Objectives:",
+      "source": "modules/smishing.html",
+      "text": "After completing this module, the learner should be able to:\n Explain the psychological drivers that make mobile text\n messaging a high-trust, high-vulnerability attack vector. Identify technical smishing techniques including URL\n shortener obfuscation, sender ID spoofing, and fake\n portal redirects. Differentiate between legitimate institutional/logistics\n SMS alerts and malicious smishing lures. Implement mobile device hardening, OTP/MFA protection\n habits, and secure reporting procedures."
+    },
+    {
+      "title": "Module 3: Smishing: 1. The Mobile Vulnerability Landscape",
+      "source": "modules/smishing.html",
+      "text": "Smishing (SMS Phishing) delivers malicious links or\n deceptive calls via Short Message Service (SMS) or instant\n messaging platforms (WhatsApp, Signal, Telegram). As\n organizations adopt mobile Multi-Factor Authentication (MFA)\n and mobile collaboration tools, threat actors increasingly\n target personal smartphones. Mobile endpoints present specific security challenges:\n High User Trust: Users traditionally\n view SMS as a direct, personal communication channel,\n leading to higher open and click-through rates compared\n to email. Mobile Interface Constraints: Mobile\n browsers hide full URL structures due to limited screen\n real estate, making it difficult to inspect destination\n domains. BYOD Exposure: Personal mobile devices\n often lack enterprise-grade endpoint detection and\n response (EDR) agents or web filtering controls."
+    },
+    {
+      "title": "Module 3: Smishing: 2. Common Smishing Attack Patterns",
+      "source": "modules/smishing.html",
+      "text": "Threat actors design smishing lures around high-probability\n daily scenarios:\n Logistics & Delivery Scams: Messages\n claiming a parcel (e.g., FedEx, DHL, postal services)\n cannot be delivered without address confirmation or a\n small fee. The included link redirects to a credential\n or credit card harvesting page. Financial Fraud Alerts: Text alerts\n claiming an urgent security hold or unauthorized\n transaction has occurred on a bank account. The victim\n is urged to \"click here immediately to verify identity\". MFA Interception & OTP Harvesting: The\n attacker attempts to log in to a victim's corporate\n account, triggering a real One-Time Password (OTP) text\n to the victim's phone."
+    },
+    {
+      "title": "Module 3: Smishing: 2. Common Smishing Attack Patterns",
+      "source": "modules/smishing.html",
+      "text": "Simultaneously, the attacker\n sends a smishing text: \"IT Desk: We detected suspicious\n activity. Reply with the 6-digit code sent to your\n device to secure your account.\""
+    },
+    {
+      "title": "Module 3: Smishing: 3. Technical Obfuscation: URL Shorteners & Sender ID Spoofing",
+      "source": "modules/smishing.html",
+      "text": "Smishers rely on URL shorteners (bit.ly, tinyurl.com, t.co)\n or lookalike domains (bank-secure-login.site) to hide the\n true destination of their links. Additionally, attackers\n utilize SMS gateway tools to perform Alpha-Numeric Sender ID\n Spoofing, causing the fake text message to appear in the\n exact same SMS conversation thread as legitimate messages\n from banks or service providers."
+    },
+    {
+      "title": "Module 3: Smishing: 4. Real-World Remote Work Scenario",
+      "source": "modules/smishing.html",
+      "text": "Scenario: The IT System Unlocking Text \n Sarah, a remote customer support agent, receives an SMS at\n 8:00 AM: \"OKTA ALERT: Your remote access account has\n been flagged for compliance review. Resolve within 30\n minutes to maintain shift access:\n https://okta-sso-verify.link/login\" \n Fearing she will miss her shift and face disciplinary\n action, Sarah taps the link on her phone. The page renders\n an exact copy of her company's SSO login portal. She enters\n her username, password, and the push MFA token, unknowingly\n handing her enterprise credentials directly to an attacker."
+    },
+    {
+      "title": "Module 3: Smishing: 5. Defense & Remediation Protocols",
+      "source": "modules/smishing.html",
+      "text": "Never Click Links in Unsolicited SMS: \n Treat all text messages containing clickable links as\n untrusted. If an alert claims to be from your bank or\n employer, navigate to the official app or website\n independently. Protect OTPs and MFA Codes: Never share\n One-Time Passwords or MFA tokens with anyone over text\n or phone. Legitimate IT departments will never ask you\n to text back an OTP. Use Short-Link Unshorteners: Use URL\n expansion tools or expansion preview settings before\n tapping shortened links on mobile devices. Report Smishing: Forward scam texts to\n SPAM (7726) on supported mobile networks or report them\n to your security team."
+    },
+    {
+      "title": "Module 3: Smishing: Red Flag Indicators & Defensive Checklist",
+      "source": "modules/smishing.html",
+      "text": "Urgent Demands via Text: Messages\n threatening account suspension, missed deliveries, or\n legal action requiring immediate link clicks. Shortened / Obscured Links: URLs using\n services like bit.ly, tiny.cc, or unusual top-level\n domains (.xyz, .site, .info). Requests for OTPs: Texts or callers\n asking you to text back or read aloud a multi-factor\n authentication code. Generic 10-Digit Sender Numbers: \n Official bank or corporate alerts arriving from standard\n individual mobile phone numbers rather than registered\n shortcodes."
+    },
+    {
+      "title": "Module 3: Smishing: Curated Resources & References",
+      "source": "modules/smishing.html",
+      "text": "Video Source: \n Federal Communications Commission (FCC) — \"Avoid the Temptation of Smishing Scams\"\n Reference Guide: \n FCC Consumer Guide — Avoid the Temptation of Smishing Scams"
+    },
+    {
+      "title": "Module 3: Smishing: Test Your Knowledge",
+      "source": "modules/smishing.html",
+      "text": "Ready to check what you've learned? Take a randomized\n 10-question quiz based on this module. Take a Quiz"
+    },
+    {
+      "title": "Module 2: Spear Phishing",
+      "source": "modules/spear-phishing.html",
+      "text": "Module 2: Spear Phishing\n 🏠 Home\n Spear Phishing & Targeted Digital Surveillance\n Module 2 of 6\n Target Audience: Remote personnel with system\n access, administrative privileges, financial responsibilities,\n or public social media profiles."
+    },
+    {
+      "title": "Module 2: Spear Phishing: Explicit Learning Objectives:",
+      "source": "modules/spear-phishing.html",
+      "text": "After completing this module, the learner will be able to:\n Differentiate between broad mass phishing and targeted,\n reconnaissance-driven spear phishing. Identify how threat actors use Open Source Intelligence\n (OSINT) gathered from public platforms (LinkedIn, GitHub,\n X) to craft personalized lures. Recognize execution risks associated with macro-enabled\n attachments, double file extensions, and out-of-band\n messaging channels."
+    },
+    {
+      "title": "Module 2: Spear Phishing: The Mechanics of Spear Phishing",
+      "source": "modules/spear-phishing.html",
+      "text": "Mass phishing relies on broad distribution, sending\n thousands of identical, generic messages hoping a small\n percentage of recipients click. In contrast, spear phishing\n is a targeted, asymmetric attack focused on a specific\n individual, team, or organization. Because spear phishing messages reference real names,\n current client engagements, internal software platforms, or\n recent company events, the victim's psychological threshold\n to suspect deception is significantly lower. Attackers combine details pulled from LinkedIn, GitHub, and social media/X profiles to assemble a single, highly convincing spear phishing message aimed at one specific target."
+    },
+    {
+      "title": "Module 2: Spear Phishing: Open Source Intelligence (OSINT) Reconnaissance",
+      "source": "modules/spear-phishing.html",
+      "text": "Before sending a single email, a spear phisher conducts\n detailed reconnaissance using publicly accessible data:\n LinkedIn: Maps corporate reporting\n hierarchies, job titles, active projects, and vendor\n relationships. GitHub / Technical Blogs: Identifies\n specific programming frameworks, internal repository\n names, and outdated software dependencies used by a\n company's engineering team. Social Media / X: Tracks employee\n vacation schedules, conference attendance, or remote\n work locations. Using this OSINT, an attacker might draft an email appearing\n to come from a real co-worker currently attending a\n conference, referencing a real client project:\n \"Hi Alex, I'm at the TechSummit conference right now. Could you check the attached update for the Acme Corp\n project proposal?"
+    },
+    {
+      "title": "Module 2: Spear Phishing: Weaponized Attachments & Evasion",
+      "source": "modules/spear-phishing.html",
+      "text": "Spear phishing campaigns frequently deliver malicious\n payloads hidden inside weaponized files:\n Macro-Enabled Office Documents (.docm, .xlsm): \n Contain embedded Visual Basic for Applications (VBA)\n scripts that download secondary malware\n (trojans/infostealers) when macros are enabled. Double Extensions (.pdf.exe, .docx.iso): \n Operating systems often hide known extensions by\n default. A file named Quarterly_Report.pdf.exe appears\n to the user as Quarterly_Report.pdf. Encrypted Archives (.zip, .rar, .7z): \n Attackers encrypt the attached archive file and provide\n the password in the email body. Because the gateway\n cannot inspect the encrypted contents without the\n password, the malicious attachment bypasses automated\n perimeter scanners."
+    },
+    {
+      "title": "Module 2: Spear Phishing: Curated External Resources & References",
+      "source": "modules/spear-phishing.html",
+      "text": "Technical Taxonomy: \n MITRE ATT&CK Framework — Phishing: Spearphishing Attachment (Technique T1566.001)\n Research Survey: Birthriya, S. K., Ahlawat,\n P., & Jain, A. K. (2025). Detection and prevention of spear\n phishing attacks: A comprehensive survey. Computers & Security , 151, 104317. Security Advisory: \n CISA — Protecting Against Spear Phishing & OSINT Exploitation"
+    },
+    {
+      "title": "Module 2: Spear Phishing: Test Your Knowledge",
+      "source": "modules/spear-phishing.html",
+      "text": "Ready to check what you've learned? Take a randomized\n 10-question quiz based on this module. Take a Quiz"
+    },
+    {
+      "title": "Module 4: Vishing",
+      "source": "modules/vishing.html",
+      "text": "Module 4: Vishing\n 🏠 Home\n Vishing (Voice Phishing & Social Engineering Calls)\n Module 4 of 6"
+    },
+    {
+      "title": "Module 4: Vishing: Explicit Learning Objectives:",
+      "source": "modules/vishing.html",
+      "text": "After completing this module, the learner should be able to:\n Analyze the technical mechanics of Caller ID spoofing\n and VoIP-based voice manipulation. Deconstruct how real-time vocal interactions induce\n cognitive overload and compliance pressure. Recognize common vishing pretexts, such as imposter IT\n support desks, emergency financial holds, and\n remote-management software installations. Apply systematic identity verification protocols and\n out-of-band phone confirmation workflows before sharing\n credentials or approving access."
+    },
+    {
+      "title": "Module 4: Vishing: 1. The Threat of Voice Phishing (Vishing)",
+      "source": "modules/vishing.html",
+      "text": "Vishing (Voice Phishing) uses phone calls or Voice over IP\n (VoIP) channels to trick targets into disclosing sensitive\n data, financial details, or granting system access. Unlike\n email or text-based attacks where a victim has time to\n review messaging syntax, real-time voice communications\n create intense conversational pressure."
+    },
+    {
+      "title": "Module 4: Vishing: 2. Technical Tactics: Caller ID Spoofing & VoIP Platforms",
+      "source": "modules/vishing.html",
+      "text": "Vishers exploit phone system protocols to alter the\n information displayed on a victim's incoming call screen:\n Caller ID Spoofing: Attackers use\n web-based VoIP services to manipulate the outbound\n Caller ID metadata, making the call appear as if it\n originates from an internal extension (e.g., \"Corporate\n IT Helpdesk\" or \"HQ Executive Office\") or an official\n bank customer service line. Interactive Voice Response (IVR) Robocalls: \n Attackers deploy automated phone menus (\"Press 1 to\n speak to our fraud department\") to simulate legitimate\n banking call centers before routing the victim to a\n live scammer."
+    },
+    {
+      "title": "Module 4: Vishing: 3. Psychological Manipulation & Cognitive Load",
+      "source": "modules/vishing.html",
+      "text": "Voice communication allows threat actors to dynamically\n adapt their tactics based on a victim's tone and hesitation:\n Artificial Urgency & Panic: Scammers\n claim an active cyberattack or fraudulent transaction is\n occurring right now, demanding immediate action. Impersonation of Authority: The caller\n assumes an authoritative persona (e.g., Senior Systems\n Administrator, Financial Auditor, Executive Assistant)\n to compel compliance. High Cognitive Pressure: By creating a\n fast-paced environment, the caller prevents the target\n from stepping back to critically evaluate the\n situation."
+    },
+    {
+      "title": "Module 4: Vishing: 4. Common Vishing Pretexts targeting Remote Workers",
+      "source": "modules/vishing.html",
+      "text": "The IT Helpdesk \"Password Reset\" Call: \n The caller claims your remote access account has\n suspicious logins and asks you to read aloud an\n incoming SMS OTP or approve a push notification. Remote Management Tool Deployment: The\n caller claims your laptop requires an urgent patch and\n instructs you to download and execute remote\n administration software (e.g., AnyDesk, TeamViewer,\n Quick Assist). Once installed, the attacker gains full\n remote control over your workstation."
+    },
+    {
+      "title": "Module 4: Vishing: 5. Real-World Remote Work Scenario",
+      "source": "modules/vishing.html",
+      "text": "Scenario: The Fake IT Helpdesk Push Bombing Attack \n Mark, a remote systems engineer, receives 15 consecutive\n MFA push notifications on his mobile phone at 10 PM. Seconds later, his phone rings. The Caller ID displays\n \"Internal IT Operations.\"\n The voice on the line states: \"Hi Mark, this is Dave\n from IT SecOps. We see automated push alerts flooding your\n phone due to a gateway glitch. I am pushing one final\n prompt now—please tap 'Approve' to clear the queue so your\n account isn't locked overnight.\" \n Stressed and tired, Mark taps \"Approve.\" The caller was an\n attacker who possessed Mark's password and used vishing\n combined with push fatigue to bypass MFA."
+    },
+    {
+      "title": "Module 4: Vishing: 6. Verification Protocols & Live Incident Safeguards",
+      "source": "modules/vishing.html",
+      "text": "Never Disclose Credentials or OTPs over the\n Phone: Legitimate IT staff will never ask for\n your password, PIN, or MFA codes over an incoming phone\n call. Hang Up and Call Back (Out-of-Band): If\n a caller claims to represent an internal department or\n bank, end the call immediately. Find the official phone\n number from the internal company directory or card back\n and call back independently. Refuse Unsolicited Remote Software\n Installs: Never install remote access software\n (AnyDesk, TeamViewer) based on an inbound phone call."
+    },
+    {
+      "title": "Module 4: Vishing: Red Flag Indicators & Defensive Checklist",
+      "source": "modules/vishing.html",
+      "text": "Unsolicited Technical Support Calls: \n Incoming calls claiming to be \"Internal IT\" asking for\n system access or password disclosures. Demands for Remote Access Tools: Requests\n to download AnyDesk, TeamViewer, or LogMeIn during an\n unexpected phone call. Demands for MFA Verification: Callers\n asking you to approve a push notification or read aloud a\n One-Time Password. High-Pressure Intimidation: Aggressive\n language or threats of immediate employment termination or\n legal action if you do not comply."
+    },
+    {
+      "title": "Module 4: Vishing: Curated Resources & References",
+      "source": "modules/vishing.html",
+      "text": "Video Source: \n Global Cyber Alliance — \"What is Vishing? Understanding This High-Tech Phone Scam\"\n Reference Guide: \n Cisco Security Topics — What is Vishing?"
+    },
+    {
+      "title": "Module 4: Vishing: Test Your Knowledge",
+      "source": "modules/vishing.html",
+      "text": "Ready to check what you've learned? Take a randomized\n 10-question quiz based on this module. Take a Quiz"
+    },
+    {
+      "title": "Client Impersonation: How the attack works",
+      "source": "role-based modules",
+      "text": "The attacker already knows the project exists. They have read your public portfolio, a shared LinkedIn post, or a job board listing, and they know roughly where the work has reached. They contact you on a channel adjacent to the real one, a new email address with the client's name, or a message on a platform you both use, and continue the conversation as if nothing has changed. Because the project is real and the details are right, the usual signals are absent. There is no spelling mistake and no improbable story. The only thing that has changed is the account the message came from."
+    },
+    {
+      "title": "Client Impersonation: What they usually ask for",
+      "source": "role-based modules",
+      "text": "The request is almost always something you would normally do: send the latest files, share access to a workspace, or update the account that receives payment. Each is a reasonable thing for a client to ask, which is the point. A request to change payment details is the one worth treating as a stop signal. It is the single most profitable outcome for the attacker and the hardest for you to reverse."
+    },
+    {
+      "title": "Client Impersonation: Red flags",
+      "source": "role-based modules",
+      "text": "A new address or handle, even when the display name is correct. Pressure to act before a deadline that was never mentioned before. Reluctance to move the conversation back to the original channel. A change to payment details that arrives alongside an invoice you were already expecting."
+    },
+    {
+      "title": "Client Impersonation: What to do",
+      "source": "role-based modules",
+      "text": "Reply in the channel you have always used, not the one the message arrived on. If the client normally emails and a message arrives on WhatsApp, email them. For anything involving money or access, confirm by a method the attacker would have to compromise separately, a phone call to the number you already had, or a message in the workspace you have been using since the project started. Asking \"is this really you?\" in the same thread proves nothing, because whoever controls it can simply answer yes."
+    },
+    {
+      "title": "Invoice and Payment Scams: How the attack works",
+      "source": "role-based modules",
+      "text": "There are two directions. In the first, the attacker intercepts or imitates your invoice and sends the client a version with different bank details. You are never contacted, and you find out when the payment does not arrive. In the second, you receive a payment confirmation that looks like it came from a payment provider, showing a transfer that never happened. The goal is to get you to release work or goods against a payment that does not exist."
+    },
+    {
+      "title": "Invoice and Payment Scams: Why confirmations are convincing",
+      "source": "role-based modules",
+      "text": "Payment provider emails are templated, and those templates are public. Anyone can copy the layout, the logo, and the wording precisely. A screenshot is easier still, and proves nothing at all, since it is an image someone assembled. The only reliable confirmation is the money appearing in the account you control, checked by logging in yourself rather than through a link in the message."
+    },
+    {
+      "title": "Invoice and Payment Scams: Red flags",
+      "source": "role-based modules",
+      "text": "Bank details that differ from the last payment, however small the change. A confirmation arriving from a domain that is close to but not exactly the provider's. Pressure to release work immediately because the transfer is \"already sent\". A screenshot offered as proof instead of a transaction you can verify."
+    },
+    {
+      "title": "Invoice and Payment Scams: What to do",
+      "source": "role-based modules",
+      "text": "Treat any change to payment details as unverified until confirmed by voice on a number you already had. Attackers rely on this feeling rude to ask. Check receipts by logging into the payment provider directly, never through a link in the email. If the transfer is real it will be visible in your account without anyone sending you anywhere."
+    },
+    {
+      "title": "Fake Job and Recruiter Offers: How the attack works",
+      "source": "role-based modules",
+      "text": "An approach arrives with a strong offer: remote, well paid, and a good fit for the skills on your public profile. The early stages are normal, a conversation, perhaps a short interview over chat. The attack sits in the onboarding step. Once you believe you have the role, you are asked for the documents a new employer would reasonably need, and the sense of having already been hired is what stops you questioning it."
+    },
+    {
+      "title": "Fake Job and Recruiter Offers: What they are actually collecting",
+      "source": "role-based modules",
+      "text": "Identity documents are the usual target: a passport or ID scan, a photo of yourself holding it, your address and date of birth. That set is enough to open accounts in your name. A second variant asks you to pay for equipment or training up front, with a promise of reimbursement in the first paycheque. A third sends a cheque to deposit and asks you to forward part of it, which leaves you liable when the cheque turns out to be worthless."
+    },
+    {
+      "title": "Fake Job and Recruiter Offers: Red flags",
+      "source": "role-based modules",
+      "text": "An offer without a real interview, or one conducted entirely over text. Identity documents requested before any contract exists. Any request for money from you, for any reason. Communication only through personal accounts rather than a company domain. A role that pays noticeably above the market rate for the work described."
+    },
+    {
+      "title": "Fake Job and Recruiter Offers: What to do",
+      "source": "role-based modules",
+      "text": "Look up the company independently and contact them through details you found yourself, not ones in the message. A genuine recruiter will not mind. Hold identity documents back until there is a signed contract with a verified organisation. No legitimate employer needs a passport scan to decide whether to interview you, and no legitimate job requires you to pay to start it."
+    },
+    {
+      "title": "Secure Client Data Handling: Why this is different",
+      "source": "role-based modules",
+      "text": "When the data belongs to a client, a mistake is not only yours. A breach affects their customers, their obligations, and your standing with them. Remote work spreads this data further than an office would: a personal laptop, a phone, a cloud drive, a chat history, and whatever was attached to an email eighteen months ago and never deleted."
+    },
+    {
+      "title": "Secure Client Data Handling: Access, not files",
+      "source": "role-based modules",
+      "text": "The safest handover is often access rather than a copy. A shared folder can be revoked when the project ends; a file you emailed cannot. Where sharing is necessary, prefer a link with an expiry over an attachment, and give the narrowest permission that works. View only is enough far more often than it is used."
+    },
+    {
+      "title": "Secure Client Data Handling: Credentials",
+      "source": "role-based modules",
+      "text": "Shared logins are common in freelance work and consistently the weakest point. When a password is shared over chat it is permanently in that history, readable by anyone who later gains access to either account. Ask for your own account wherever possible. Where a shared credential is unavoidable, move it through a password manager's sharing feature rather than a message, and have it changed when the engagement ends."
+    },
+    {
+      "title": "Secure Client Data Handling: Ending an engagement",
+      "source": "role-based modules",
+      "text": "Offboarding yourself is a step most people skip. When a project finishes, remove the client's files from your devices and cloud storage, leave shared workspaces, and confirm in writing what you have deleted. This protects both sides. It limits what a future compromise of your account could expose, and it gives the client a clear record."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "The presence of \"HTTPS\" and a padlock icon in the browser address bar guarantees that a login website is legitimate and safe. False. Threat actors can easily acquire free SSL/TLS certificates for fraudulent domain names, displaying HTTPS padlock icons on malicious credential-harvesting websites."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "Which domain name represents an example of \"typosquatting\"? micros0ft-verify.com uses a zero ('0') in place of the letter 'o' to trick users into believing it is an official Microsoft communication channel."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "What is the primary objective of an email phishing attack targeting remote employees? Email phishing uses deceptive messages to trick victims into sharing private credentials, executing malware, or surrendering sensitive organizational data."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "Why do quishing attacks often succeed when targeting remote employees? Scanning QR codes on personal phones redirects traffic outside the desktop perimeter firewalls and email monitoring systems maintained by corporate networks."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "You receive an email notification stating your company cloud portal requires urgent re-authentication, with a link included. What is the safest way to access the portal? Navigating independently via a trusted bookmark or manual URL entry completely bypasses any malicious redirects embedded in the email."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "Before clicking a hyperlinked \"Verify Account\" button in an email, you hover your mouse over it without clicking. Does this let you preview the actual destination URL before you click? True. Hovering over a hyperlink reveals the true underlying web destination address in the browser or mail client status bar."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "You scan a QR code from a vendor PDF. It opens a Google Sign-In page asking you to \"Grant Full OAuth Permissions to App XYZ.\" Granting access is safe because the URL starts with accounts.google.com. False. Malicious OAuth applications use real Google/Microsoft sign-in portals to request excessive account permissions. Once granted, the attacker gets persistent cloud access without needing your password."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "A virtual assistant receives an email displaying the company CEO's exact name and profile photo. The sender address is ceo-office@exec-mail-corp.com (not the corporate @company.com domain). The message requests an urgent purchase of gift card vouchers for an ongoing client event. What social engineering tactic is being deployed? The attacker uses executive identity impersonation combined with a combosquatted external domain (exec-mail-corp.com) to trick the assistant into making unauthorized purchases."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "A remote software engineer receives an email containing a link to a \"Critical Security Patch\" hosted on github-downloads-security.net. What is the most rigorous way to confirm if this patch is legitimate? Internal verification via official out-of-band communication channels is the only reliable way to confirm patch validity."
+    },
+    {
+      "title": "Quishing",
+      "source": "quiz/module-1.json",
+      "text": "If you realize you entered your corporate credentials into a fake login portal 5 minutes ago, what immediate steps must you execute? (Select ALL that apply) Resetting credentials, revoking active sessions, alerting IT, and auditing registered MFA devices stops ongoing unauthorized account access. Deleting local browser history does not stop the remote attacker."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "How does spear phishing differ from generic mass phishing? Spear phishing relies on prior reconnaissance to tailor realistic messages directly to specific targets."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "Public professional profiles on LinkedIn can provide attackers with information used to craft spear phishing messages. True. Attackers mine job titles, reporting structures, vendor software, and current projects from LinkedIn profiles to build convincing pretexts."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "A vendor you've never worked with emails you a password-protected .zip file labeled \"Invoice_Overdue.zip\" and asks you to enter the password from a separate message to open it. Why might an attacker package a malicious attachment this way? Email gateway scanners cannot inspect encrypted archive contents without the password, allowing malicious payloads past boundary defenses."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "Which public sources are commonly harvested by adversaries during the OSINT phase of a spear phishing campaign? (Select ALL that apply) LinkedIn, GitHub, and social media posts provide open public data. Private encrypted database servers are not public OSINT sources."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "Spear phishers only target executives; entry-level remote contractors are never targeted because they lack system permissions. Entry-level contractors are frequently targeted as initial access points to pivot deeper into enterprise networks or harvest credentials."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "You've been posting detailed updates about your work travel, conference attendance, and current projects on your public social media accounts. Does reducing this kind of detailed operational information lower your exposure to OSINT reconnaissance used in spear phishing? True. Practicing digital footprint hygiene limits the intelligence attackers can use to build spear phishing lures."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "An email claiming to be from your company's HR department contains a link to “Updated W-2 Tax Forms.” The link URL points to an external domain unrelated to your company. What is the safest course of action? Identifying external, non-company domain names by hovering over links helps detect phishing portals before entering credentials."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "Spear phishing relies solely on technical software exploits and does not use psychological manipulation. Spear phishing is a socio-technical attack combining technical delivery vectors with psychological manipulation (trust, urgency, authority)."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "What step should you take before opening a password-protected .zip file from an external party? Verifying the source through another channel and inspecting files securely prevents payload execution."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "quiz/module-2.json",
+      "text": "An attacker researching you before sending a spear-phishing email finds your public GitHub profile. What information could they gather there to make their message more believable? Public GitHub repositories display technical environments, active projects, and peer collaborators."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "You receive a text message from an unknown number containing a suspicious link and urging you to act immediately. What is the safest action to take? Refraining from interaction and deleting/reporting the message mitigates risk."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "You get an unsolicited promotional text from an unknown sender and reply \"STOP,\" expecting to be removed from their list. Will this safely unsubscribe you from a smishing scammer's messages? Replying to a scam text confirms to the attacker that your phone number is active, leading to more targeted attacks."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "What does the term \"Smishing\" stand for? Smishing combines \"SMS\" (text messaging) and \"phishing\"."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "You receive a text message: \"USPS Alert: Your package cannot be delivered due to an incorrect house number. Update info here: bit.ly/3xY9zQ\". You are expecting a package. What is the correct action? Always verify parcel delivery alerts by accessing the official website or app independently, never through unsolicited SMS links."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "Legitimate banks routinely send text messages asking customers to directly text back their full PIN or password. Financial institutions explicitly prohibit requesting sensitive passwords, PINs, or OTPs via text."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "What shortcode number can users in many regions forward spam or smishing texts to for reporting? Forwarding spam texts to 7726 (SPAM) alerts carriers to investigate and block malicious sender numbers."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "You receive a WhatsApp text from an unknown international number displaying your company logo: \"Hi, I am John from Corporate IT. We are updating mobile profiles. Click this link to install our security certificate.\" How should you respond? Corporate IT security profiles are deployed through formal Mobile Device Management (MDM) tools, never random instant messages."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "Advanced smishing kits can deploy mobile malware that automatically reads incoming SMS verification codes and forwards them to a remote C2 server. Malicious mobile applications (e.g., infected APKs) can request SMS permissions to intercept and exfiltrate OTPs."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "You attempt to log into your work portal. A minute later, you receive a text: \"IT Helpdesk: We detected an abnormal login. Reply YES with the code you just received to block the login.\" What is happening? Attackers trigger a real login prompt to generate a genuine OTP, then smish the victim to forward that OTP to complete the breach."
+    },
+    {
+      "title": "Smishing",
+      "source": "quiz/module-3.json",
+      "text": "What technology allows scammers to change the phone number or name displayed on your mobile incoming text screen? Sender ID spoofing allows SMS gateways to modify the header sender text displayed on receiver phones."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "Caller ID information displayed on a smartphone screen can be easily spoofed by attackers using web VoIP services. Caller ID metadata can be modified by outbound VoIP gateways to show fake names and numbers."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "An unknown caller on the phone becomes aggressive and demands that you immediately verify your account details over the call. What is the best immediate response? Aggressive emotional pressure is a hallmark of vishing; hanging up terminates the attack vector."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "Official company helpdesks frequently call remote workers unannounced to demand their personal email passwords. Legitimate helpdesks do not require your private account passwords to perform administrative tasks."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "While on a call with someone claiming to be from IT, you accidentally approve a fraudulent MFA push prompt they triggered. What should you do next? Swift incident reporting enables security teams to isolate compromised sessions before lateral movement occurs."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "An official bank representative will hang up on you if you state that you are hanging up to call back via the number on your payment card. Legitimate representatives encourage safe verification habits and welcome callbacks to official lines."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "Interactive Voice Response (IVR) robocall systems are only used by legitimate companies and cannot be set up by cybercriminals. Attackers frequently create automated IVR phone trees to imitate official bank menus before transferring victims to live scammers."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "Generative AI tools now allow vishing attackers to clone an executive's voice using short audio samples taken from public videos or webinars. AI voice cloning enables realistic synthetic audio impersonation of targeted individuals."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "An incoming call displays your bank's exact toll-free phone number. The caller states: \"Security Alert: A $900 transfer was attempted. Read the code we just sent your phone to cancel it.\" What should you do? Spoofed Caller ID makes fake calls appear genuine; hanging up and calling back independently confirms authenticity."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "A caller claims to be from the internal finance team: \"I am processing your remote equipment reimbursement, but the system is throwing an error. What is your full bank account and routing number?\" How should you respond? Financial distribution updates must follow encrypted, formal portal workflows rather than verbal disclosures."
+    },
+    {
+      "title": "Vishing",
+      "source": "quiz/module-4.json",
+      "text": "Which of the following information should you NEVER read aloud or share during an inbound phone call? (Select TWO) Passwords and OTPs must remain confidential and should never be disclosed over inbound calls."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "Pretexting relies heavily on human psychological traits like helpfulness, politeness, and respect for authority. Attackers exploit natural human social tendencies to manipulate targets."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "A caller you don't recognize asks you to send over sensitive corporate information, claiming it's urgently needed for a same-day audit. What is the gold standard rule for handling this kind of request? Always verify identity and clearance before transmitting sensitive data."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "What structural control prevents pretexting attempts from compromising internal resources? Formal channels and strict verification neutralize pretexting narratives."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "How does pretexting differ from mass phishing? Pretexting prioritizes narrative depth and trust over volume."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "What role does flattery play in pretexting interactions? Flattery creates positive rapport, encouraging the target to comply with requests."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "Someone posing as a vendor pressures you to resolve their \"urgent\" access request directly with them instead of submitting an official IT service ticket. Why might a pretexter want to avoid the formal ticketing process? Formal ticketing creates an audit trail that alerts legitimate security personnel."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "Pretexters never target remote workers who do not have executive titles. Administrative assistants, support staff, and contractors are frequently targeted for their access to directory data and internal processes."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "You receive a message from a \"new vendor\" asking for internal directory structures so they can \"prepare project integration.\" You have not received any notification from management about a new vendor. What is the correct protocol? Unverified third parties must be vetted through management before receiving internal assets."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "Out-of-band verification is ineffective against pretexting. Independent out-of-band verification effectively exposes pretexts by contacting the real organization or individual."
+    },
+    {
+      "title": "Pretexting",
+      "source": "quiz/module-5.json",
+      "text": "A remote worker receives a call from an individual claiming to be a printer technician needing internal Wi-Fi passwords to fix an office printer 500 miles away. Why is this request suspicious? Evaluating the logical plausibility of a request helps spot flawed pretexts."
+    },
+    {
+      "title": "Quishing",
+      "source": "assessment",
+      "text": "An email from your bank says your account will be suspended in 24 hours and asks you to scan a QR code to verify it. What is the strongest reason to distrust this? Security filters scan text links, not images. Hiding the destination inside a QR code and adding a deadline is designed to get you to act before checking."
+    },
+    {
+      "title": "Quishing",
+      "source": "assessment",
+      "text": "A login page looks identical to your company portal and the address bar shows a padlock. Is it safe? Anyone can get a certificate for a domain they own, including a lookalike one. The padlock says the connection is private, not that the site is legitimate."
+    },
+    {
+      "title": "Quishing",
+      "source": "assessment",
+      "text": "Which address is most likely a typosquat of microsoft.com? A zero replacing the letter o, plus an unrelated word joined by a hyphen. The real domain sits to the left of the final slash, not anywhere in the string."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "assessment",
+      "text": "What separates spear phishing from ordinary phishing? The attacker researches you first, often from public profiles, so the message fits your actual work and lowers your guard."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "assessment",
+      "text": "A file arrives named Invoice_Oct2026.pdf.exe. What does the double extension mean? Only the final extension decides what the file is. The .pdf is part of the name, designed to be the bit you notice."
+    },
+    {
+      "title": "Spear Phishing",
+      "source": "assessment",
+      "text": "A client you work with messages you on WhatsApp asking for a file to be sent urgently to a new address. What is the right first step? Asking in the same channel proves nothing, since whoever controls it can just say yes. Verifying elsewhere is what makes the check meaningful."
+    },
+    {
+      "title": "Smishing",
+      "source": "assessment",
+      "text": "A text says a package could not be delivered and links to a shortened URL. Why are shortened links a particular problem on a phone? The shortener hides where you are actually going, and a narrow address bar truncates what you could otherwise check."
+    },
+    {
+      "title": "Smishing",
+      "source": "assessment",
+      "text": "A text claiming to be from your bank asks you to reply with the verification code they just sent. Should you? The code exists to prove it is you. Anyone asking for it is trying to complete a login they started. Caller and sender IDs can be spoofed, so a matching number proves nothing."
+    },
+    {
+      "title": "Vishing",
+      "source": "assessment",
+      "text": "Someone calls saying they are from IT, that your account is compromised, and asks you to approve the login prompt on your phone. What is happening? That prompt appeared because someone entered your password. Approving it completes their login. Real IT does not need you to approve a sign in they did not make."
+    },
+    {
+      "title": "Vishing",
+      "source": "assessment",
+      "text": "An unexpected caller asks you to install AnyDesk so they can fix a problem. What is the risk? Remote access tools are legitimate, which is what makes them effective here. Once connected, the caller can act as you, including in any session you have open."
+    },
+    {
+      "title": "Pretexting",
+      "source": "assessment",
+      "text": "What makes pretexting different from a one off phishing email? The attacker invests in being credible first. By the time the request arrives it feels like a reasonable next step from someone you already know."
+    },
+    {
+      "title": "Pretexting",
+      "source": "assessment",
+      "text": "Someone claiming to be an external auditor asks for employee records and resists using the ticketing system. What does that resistance suggest? Official channels confirm identity and leave a trail. Someone steering you away from them is avoiding exactly that."
+    },
+    {
+      "title": "Safe Practices",
+      "source": "assessment",
+      "text": "Which form of multi-factor authentication is strongest? SMS can be intercepted or redirected through a SIM swap. App based codes and hardware keys stay on a device you hold."
+    },
+    {
+      "title": "Safe Practices",
+      "source": "assessment",
+      "text": "What does out-of-band verification mean? If the request is fake, the channel it arrived on is controlled by the attacker. Using a number or account you already had is what makes the check independent."
+    },
+    {
+      "title": "Safe Practices",
+      "source": "assessment",
+      "text": "Select ALL that reduce the risk of a compromised home network. (Select all that apply) Default passwords are published, remote management exposes the router to the internet, and isolating IoT devices limits what a compromised one can reach. Hiding the network name does not stop anyone scanning for it."
+    }
+  ]
+}

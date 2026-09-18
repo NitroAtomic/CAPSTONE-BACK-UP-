@@ -20,6 +20,10 @@ import Pretexting from './modules/Pretexting.vue'
 import EssentialSafePracticesRemoteEnv from './modules/EssentialSafePracticesRemoteEnv.vue'
 
 // Import quiz components
+import Assessment from './pages/Assessment.vue'
+import PremiumModules from './pages/PremiumModules.vue'
+import PremiumModule from './pages/PremiumModule.vue'
+import Admin from './pages/Admin.vue'
 import QuizQuestion from './quiz/QuizQuestion.vue'
 import QuizResults from './quiz/QuizResults.vue'
 
@@ -99,6 +103,26 @@ const routes = [
     path: '/modules/essential-safe-practices-remote-environments',
     name: 'EssentialSafePracticesRemoteEnv',
     component: EssentialSafePracticesRemoteEnv
+  },
+  {
+    path: '/assessment',
+    name: 'assessment',
+    component: Assessment
+  },
+  {
+    path: '/premium-modules',
+    name: 'premium-modules',
+    component: PremiumModules
+  },
+  {
+    path: '/premium-modules/:slug',
+    name: 'premium-module',
+    component: PremiumModule
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
   },
   // Quiz routes
   {

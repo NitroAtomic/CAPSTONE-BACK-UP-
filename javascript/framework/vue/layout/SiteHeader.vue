@@ -32,8 +32,20 @@
           </div>
         </div>
 
-        <router-link to="/login" class="btn btn-login">Log in</router-link>
-        <router-link to="/premium-subscription" class="btn btn-premium">Go Premium</router-link>
+        <template v-if="user">
+          <router-link v-if="isPremium" to="/assessment" class="nav-link">Assessment</router-link>
+          <router-link v-if="isPremium" to="/premium-modules" class="nav-link">Role-based</router-link>
+          <router-link v-if="isAdmin" to="/admin" class="nav-link">Admin</router-link>
+          <router-link to="/dashboard" class="btn btn-login">{{ user.first_name }}</router-link>
+          <router-link v-if="!isPremium" to="/premium-subscription" class="btn btn-premium">Go Premium</router-link>
+          <span v-else class="btn btn-premium-active">Premium</span>
+          <button type="button" class="btn btn-logout" @click="signOut">Log out</button>
+        </template>
+
+        <template v-else>
+          <router-link to="/login" class="btn btn-login">Log in</router-link>
+          <router-link to="/premium-subscription" class="btn btn-premium">Go Premium</router-link>
+        </template>
       </div>
 
     </nav>

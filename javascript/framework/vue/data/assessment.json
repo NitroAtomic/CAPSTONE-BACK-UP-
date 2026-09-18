@@ -1,0 +1,214 @@
+{
+  "title": "Cybersecurity Awareness Assessment",
+  "description": "Fifteen questions across the six core topics. The result identifies which areas to focus on next.",
+  "totalQuestions": 15,
+  "topics": {
+    "quishing": "Quishing",
+    "spear-phishing": "Spear Phishing",
+    "smishing": "Smishing",
+    "vishing": "Vishing",
+    "pretexting": "Pretexting",
+    "safe-practices": "Safe Practices"
+  },
+  "levels": [
+    { "key": "beginner", "label": "Beginner", "minPercent": 0,
+      "blurb": "Start with the free modules in order. They cover the patterns behind most attacks aimed at remote workers." },
+    { "key": "intermediate", "label": "Intermediate", "minPercent": 60,
+      "blurb": "You recognise the common attacks. The weak areas below are where a convincing attempt would still get through." },
+    { "key": "advanced", "label": "Advanced", "minPercent": 85,
+      "blurb": "Strong instincts across the board. Focus on the role-based scenarios, where attacks are tailored rather than generic." }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "topic": "quishing",
+      "questionText": "An email from your bank says your account will be suspended in 24 hours and asks you to scan a QR code to verify it. What is the strongest reason to distrust this?",
+      "options": [
+        { "value": "a", "text": "QR codes cannot be used by real companies" },
+        { "value": "b", "text": "Urgency plus an unsolicited QR code is a common way to bypass email link scanning" },
+        { "value": "c", "text": "Banks never send email" },
+        { "value": "d", "text": "The email arrived outside office hours" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Security filters scan text links, not images. Hiding the destination inside a QR code and adding a deadline is designed to get you to act before checking."
+    },
+    {
+      "id": 2,
+      "topic": "quishing",
+      "questionText": "A login page looks identical to your company portal and the address bar shows a padlock. Is it safe?",
+      "options": [
+        { "value": "a", "text": "Yes, the padlock confirms it is the real site" },
+        { "value": "b", "text": "Not necessarily, the padlock only means the connection is encrypted" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Anyone can get a certificate for a domain they own, including a lookalike one. The padlock says the connection is private, not that the site is legitimate."
+    },
+    {
+      "id": 3,
+      "topic": "quishing",
+      "questionText": "Which address is most likely a typosquat of microsoft.com?",
+      "options": [
+        { "value": "a", "text": "support.microsoft.com" },
+        { "value": "b", "text": "microsoft.com/support" },
+        { "value": "c", "text": "micros0ft-verify.com" },
+        { "value": "d", "text": "login.microsoftonline.com" }
+      ],
+      "correctAnswer": "c",
+      "explanation": "A zero replacing the letter o, plus an unrelated word joined by a hyphen. The real domain sits to the left of the final slash, not anywhere in the string."
+    },
+    {
+      "id": 4,
+      "topic": "spear-phishing",
+      "questionText": "What separates spear phishing from ordinary phishing?",
+      "options": [
+        { "value": "a", "text": "It is sent to far more people at once" },
+        { "value": "b", "text": "It uses details about you, your work, or your clients to seem legitimate" },
+        { "value": "c", "text": "It always contains an attachment" },
+        { "value": "d", "text": "It only targets senior management" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "The attacker researches you first, often from public profiles, so the message fits your actual work and lowers your guard."
+    },
+    {
+      "id": 5,
+      "topic": "spear-phishing",
+      "questionText": "A file arrives named Invoice_Oct2026.pdf.exe. What does the double extension mean?",
+      "options": [
+        { "value": "a", "text": "It is a PDF that opens in a special reader" },
+        { "value": "b", "text": "It is a program disguised as a document" },
+        { "value": "c", "text": "It is a compressed archive" },
+        { "value": "d", "text": "Nothing, this is normal for invoices" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Only the final extension decides what the file is. The .pdf is part of the name, designed to be the bit you notice."
+    },
+    {
+      "id": 6,
+      "topic": "spear-phishing",
+      "questionText": "A client you work with messages you on WhatsApp asking for a file to be sent urgently to a new address. What is the right first step?",
+      "options": [
+        { "value": "a", "text": "Send it, since you recognise the client" },
+        { "value": "b", "text": "Confirm through the channel you normally use with them before sending" },
+        { "value": "c", "text": "Reply asking them to confirm it is really them" },
+        { "value": "d", "text": "Send a lower quality version as a compromise" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Asking in the same channel proves nothing, since whoever controls it can just say yes. Verifying elsewhere is what makes the check meaningful."
+    },
+    {
+      "id": 7,
+      "topic": "smishing",
+      "questionText": "A text says a package could not be delivered and links to a shortened URL. Why are shortened links a particular problem on a phone?",
+      "options": [
+        { "value": "a", "text": "They load more slowly on mobile data" },
+        { "value": "b", "text": "They hide the real destination, and small screens make the address harder to inspect" },
+        { "value": "c", "text": "They only work on Android" },
+        { "value": "d", "text": "They cannot be opened in a browser" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "The shortener hides where you are actually going, and a narrow address bar truncates what you could otherwise check."
+    },
+    {
+      "id": 8,
+      "topic": "smishing",
+      "questionText": "A text claiming to be from your bank asks you to reply with the verification code they just sent. Should you?",
+      "options": [
+        { "value": "a", "text": "Yes, if the number matches the one on their website" },
+        { "value": "b", "text": "No, a legitimate organisation never asks you to share a one time code" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "The code exists to prove it is you. Anyone asking for it is trying to complete a login they started. Caller and sender IDs can be spoofed, so a matching number proves nothing."
+    },
+    {
+      "id": 9,
+      "topic": "vishing",
+      "questionText": "Someone calls saying they are from IT, that your account is compromised, and asks you to approve the login prompt on your phone. What is happening?",
+      "options": [
+        { "value": "a", "text": "Routine security maintenance" },
+        { "value": "b", "text": "They are trying to log in as you and need you to approve it" },
+        { "value": "c", "text": "A test of the alert system" },
+        { "value": "d", "text": "A network fault needing confirmation" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "That prompt appeared because someone entered your password. Approving it completes their login. Real IT does not need you to approve a sign in they did not make."
+    },
+    {
+      "id": 10,
+      "topic": "vishing",
+      "questionText": "An unexpected caller asks you to install AnyDesk so they can fix a problem. What is the risk?",
+      "options": [
+        { "value": "a", "text": "It uses a lot of bandwidth" },
+        { "value": "b", "text": "It gives the caller direct control of your machine and whatever you are signed into" },
+        { "value": "c", "text": "It is not compatible with Windows" },
+        { "value": "d", "text": "It voids your warranty" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Remote access tools are legitimate, which is what makes them effective here. Once connected, the caller can act as you, including in any session you have open."
+    },
+    {
+      "id": 11,
+      "topic": "pretexting",
+      "questionText": "What makes pretexting different from a one off phishing email?",
+      "options": [
+        { "value": "a", "text": "It always happens by phone" },
+        { "value": "b", "text": "It builds a believable role and relationship over time before asking for anything" },
+        { "value": "c", "text": "It only targets large companies" },
+        { "value": "d", "text": "It relies on malware rather than conversation" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "The attacker invests in being credible first. By the time the request arrives it feels like a reasonable next step from someone you already know."
+    },
+    {
+      "id": 12,
+      "topic": "pretexting",
+      "questionText": "Someone claiming to be an external auditor asks for employee records and resists using the ticketing system. What does that resistance suggest?",
+      "options": [
+        { "value": "a", "text": "They are busy and working efficiently" },
+        { "value": "b", "text": "They are avoiding a process that would create a record and verify who they are" },
+        { "value": "c", "text": "The ticketing system is probably down" },
+        { "value": "d", "text": "Auditors normally work outside official channels" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "Official channels confirm identity and leave a trail. Someone steering you away from them is avoiding exactly that."
+    },
+    {
+      "id": 13,
+      "topic": "safe-practices",
+      "questionText": "Which form of multi-factor authentication is strongest?",
+      "options": [
+        { "value": "a", "text": "Codes sent by SMS" },
+        { "value": "b", "text": "An authenticator app or hardware security key" },
+        { "value": "c", "text": "Security questions" },
+        { "value": "d", "text": "A longer password" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "SMS can be intercepted or redirected through a SIM swap. App based codes and hardware keys stay on a device you hold."
+    },
+    {
+      "id": 14,
+      "topic": "safe-practices",
+      "questionText": "What does out-of-band verification mean?",
+      "options": [
+        { "value": "a", "text": "Replying to the message to ask if it is genuine" },
+        { "value": "b", "text": "Confirming the request through a different channel you already trust" },
+        { "value": "c", "text": "Waiting 24 hours before acting" },
+        { "value": "d", "text": "Forwarding it to a colleague for a second opinion" }
+      ],
+      "correctAnswer": "b",
+      "explanation": "If the request is fake, the channel it arrived on is controlled by the attacker. Using a number or account you already had is what makes the check independent."
+    },
+    {
+      "id": 15,
+      "topic": "safe-practices",
+      "questionText": "Select ALL that reduce the risk of a compromised home network. (Select all that apply)",
+      "options": [
+        { "value": "a", "text": "Changing the router's default admin password" },
+        { "value": "b", "text": "Putting smart home devices on a separate guest network" },
+        { "value": "c", "text": "Hiding the network name so it is not broadcast" },
+        { "value": "d", "text": "Turning off remote management on the router" }
+      ],
+      "correctAnswer": ["a", "b", "d"],
+      "explanation": "Default passwords are published, remote management exposes the router to the internet, and isolating IoT devices limits what a compromised one can reach. Hiding the network name does not stop anyone scanning for it."
+    }
+  ]
+}

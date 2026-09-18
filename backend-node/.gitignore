@@ -1,0 +1,16 @@
+# Never commit real credentials -- .env holds the database password and
+# JWT secret. .env.example is the safe template that gets committed instead.
+.env
+.env.local
+
+# Dependencies -- anyone can regenerate these with `npm install`.
+# Committing them would add thousands of files to the repo.
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db

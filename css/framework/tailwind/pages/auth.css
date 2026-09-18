@@ -1,0 +1,734 @@
+/* =========================
+   Auth, dashboard, premium and payment pages
+   Backend and integration: IamAtomic
+   Follows the same `@layer components` pattern as the other partials in
+   this folder, and is imported from main.css rather than loaded per
+   component (see the note at the top of main.css for why).
+   ========================= */
+
+@layer components {
+
+  /* ---- shared page shell ---- */
+
+  .auth-page {
+    @apply flex justify-center px-4 py-10;
+  }
+
+  .auth-card {
+    @apply w-full max-w-md rounded-2xl border border-black p-8;
+  }
+
+  .auth-card-wide {
+    @apply max-w-xl;
+  }
+
+  .auth-heading {
+    @apply mb-6 text-center;
+  }
+
+  .auth-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .auth-heading p {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  /* ---- form fields ---- */
+
+  .auth-form {
+    @apply flex flex-col gap-4;
+  }
+
+  .auth-field {
+    @apply flex flex-col gap-1;
+  }
+
+  .auth-field label {
+    @apply text-sm font-semibold;
+  }
+
+  .auth-field input,
+  .auth-field select {
+    @apply w-full rounded-lg border border-black px-3 py-2 text-sm;
+  }
+
+  .auth-field input:disabled {
+    @apply cursor-not-allowed bg-neutral-100 text-neutral-500;
+  }
+
+  .auth-field-row {
+    @apply flex flex-col gap-4 sm:flex-row;
+  }
+
+  .auth-field-row .auth-field {
+    @apply flex-1;
+  }
+
+  /* A six-digit code reads better spaced out and centred. */
+  .auth-code-input {
+    @apply text-center text-lg tracking-[0.4em];
+  }
+
+  .auth-password-wrap {
+    @apply relative;
+  }
+
+  .auth-password-toggle {
+    @apply absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold underline;
+  }
+
+  /* ---- password rules ---- */
+
+  .auth-rules {
+    @apply mt-2 grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-neutral-500;
+  }
+
+  .auth-rules li::before {
+    content: '• ';
+  }
+
+  .auth-rule-met {
+    @apply font-semibold text-green-700;
+  }
+
+  /* ---- buttons and links ---- */
+
+  .auth-submit {
+    @apply mt-2 w-full rounded-lg border border-black bg-neutral-200 py-3 text-sm font-bold;
+  }
+
+  .auth-submit:hover:not(:disabled) {
+    @apply bg-neutral-300;
+  }
+
+  .auth-submit:disabled {
+    @apply cursor-not-allowed opacity-60;
+  }
+
+  .auth-link-right {
+    @apply -mt-2 self-end text-sm underline;
+  }
+
+  .auth-footnote {
+    @apply mt-5 text-center text-sm;
+  }
+
+  .auth-footnote a {
+    @apply font-semibold underline;
+  }
+
+  .auth-text-button {
+    @apply text-sm underline;
+  }
+
+  .auth-text-button:disabled {
+    @apply text-neutral-400 no-underline;
+  }
+
+  /* ---- messages ---- */
+
+  .auth-message {
+    @apply mb-4 rounded-lg border px-4 py-3 text-sm;
+  }
+
+  .auth-message-error {
+    @apply border-red-700 bg-red-50 text-red-800;
+  }
+
+  .auth-message-success {
+    @apply border-green-700 bg-green-50 text-green-800;
+  }
+
+  .auth-message-info {
+    @apply border-neutral-500 bg-neutral-100 text-neutral-700;
+  }
+
+  /* ---- dashboard ---- */
+
+  .dash-page {
+    @apply mx-auto max-w-4xl px-4 py-10;
+  }
+
+  .dash-status {
+    @apply py-10 text-center text-sm text-neutral-600;
+  }
+
+  .dash-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .dash-heading p {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  .dash-stats {
+    @apply mt-6 grid gap-4 sm:grid-cols-3;
+  }
+
+  .dash-stat {
+    @apply flex flex-col gap-2 rounded-2xl border border-black p-5;
+  }
+
+  .dash-stat-label {
+    @apply text-sm text-neutral-600;
+  }
+
+  .dash-stat-value {
+    @apply text-3xl font-bold;
+  }
+
+  .dash-section {
+    @apply mt-9;
+  }
+
+  .dash-section h2 {
+    @apply text-2xl font-bold;
+  }
+
+  .dash-section-note {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  .dash-cards {
+    @apply mt-4 grid gap-4 sm:grid-cols-3;
+  }
+
+  .dash-card {
+    @apply rounded-2xl border border-black p-5;
+  }
+
+  .dash-card h3 {
+    @apply font-bold;
+  }
+
+  .dash-card p {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  .dash-list {
+    @apply mt-4 divide-y divide-neutral-300 rounded-2xl border border-black;
+  }
+
+  .dash-list li {
+    @apply px-5 py-3 text-sm;
+  }
+
+  .dash-list-row {
+    @apply flex items-center justify-between gap-4;
+  }
+
+  .dash-list-meta {
+    @apply font-semibold;
+  }
+
+  .dash-upgrade-note {
+    @apply mt-8 rounded-2xl border border-dashed border-black p-5 text-sm;
+  }
+
+  .dash-upgrade-note a {
+    @apply font-semibold underline;
+  }
+
+  /* ---- premium subscription ---- */
+
+  .subscribe-page {
+    @apply flex justify-center px-4 py-10;
+  }
+
+  .subscribe-card {
+    @apply w-full max-w-lg;
+  }
+
+  .subscribe-heading {
+    @apply text-center;
+  }
+
+  .subscribe-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .subscribe-heading p {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  .subscribe-billing-toggle {
+    @apply mt-5 flex justify-center gap-2;
+  }
+
+  .subscribe-billing-toggle button {
+    @apply rounded-lg border border-black px-4 py-2 text-sm;
+  }
+
+  .subscribe-billing-toggle button.is-active {
+    @apply bg-neutral-200 font-bold;
+  }
+
+  .subscribe-plan {
+    @apply mt-5 rounded-2xl border border-black p-6;
+  }
+
+  .subscribe-plan-header {
+    @apply flex items-start justify-between gap-4 border-b border-neutral-300 pb-4;
+  }
+
+  .subscribe-plan-header h2 {
+    @apply text-xl font-bold;
+  }
+
+  .subscribe-plan-header p {
+    @apply mt-1 text-xs text-neutral-600;
+  }
+
+  .subscribe-plan-price strong {
+    @apply text-2xl font-bold;
+  }
+
+  .subscribe-plan-price span {
+    @apply text-xs text-neutral-600;
+  }
+
+  .subscribe-features {
+    @apply my-5 flex flex-col gap-2 text-sm;
+  }
+
+  .subscribe-features li::before {
+    content: '✓ ';
+    @apply font-bold;
+  }
+
+  .subscribe-continue {
+    @apply block rounded-lg border border-black py-3 text-center text-sm font-bold;
+  }
+
+  .subscribe-continue:hover {
+    @apply bg-neutral-200;
+  }
+
+  .subscribe-account-note {
+    @apply mt-4 text-center text-sm text-neutral-600;
+  }
+
+  /* ---- payment ---- */
+
+  .checkout-page {
+    @apply flex justify-center px-4 py-10;
+  }
+
+  .checkout-card {
+    @apply w-full max-w-lg;
+  }
+
+  .checkout-heading h1 {
+    @apply text-center text-3xl font-bold;
+  }
+
+  /* Deliberately loud. A convincing checkout on a platform that teaches
+     people to distrust fake payment pages has to announce itself. */
+  .checkout-demo-banner {
+    @apply mt-5 rounded-lg border-2 border-black bg-amber-50 p-4;
+  }
+
+  .checkout-demo-banner strong {
+    @apply block text-sm font-bold;
+  }
+
+  .checkout-demo-banner p {
+    @apply mt-1 text-sm leading-relaxed text-neutral-700;
+  }
+
+  .checkout-demo-banner code {
+    @apply whitespace-nowrap rounded border border-neutral-400 bg-white px-1 text-xs;
+  }
+
+  .checkout-plan-summary {
+    @apply my-5 flex items-center justify-between rounded-lg border border-black px-4 py-3 text-sm;
+  }
+
+  /* ---- nav, signed in ---- */
+
+  .btn-logout {
+    @apply rounded-lg border border-black px-4 py-2 text-sm;
+  }
+
+  .btn-logout:hover {
+    @apply bg-neutral-200;
+  }
+
+  .btn-premium-active {
+    @apply rounded-lg border border-black bg-neutral-200 px-4 py-2 text-sm font-bold;
+  }
+
+  /* ---- quiz result save status ---- */
+
+  .quiz-save-note {
+    @apply mt-3 text-center text-sm text-neutral-600;
+  }
+
+  .quiz-save-note a {
+    @apply font-semibold underline;
+  }
+
+  .quiz-save-note-failed {
+    @apply text-red-700;
+  }
+
+  /* ---- assessment ---- */
+
+  .assess-page {
+    @apply mx-auto max-w-3xl px-4 py-10;
+  }
+
+  .assess-card {
+    @apply rounded-2xl border border-black p-8;
+  }
+
+  .assess-card h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .assess-lead {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .assess-facts {
+    @apply mt-5 flex flex-col gap-1 text-sm;
+  }
+
+  .assess-facts li::before {
+    content: '- ';
+  }
+
+  .assess-note {
+    @apply mt-5 text-sm text-neutral-600;
+  }
+
+  .assess-counter {
+    @apply text-sm text-neutral-600;
+  }
+
+  .assess-progress {
+    @apply mt-2 h-1 w-full overflow-hidden rounded-full bg-neutral-200;
+  }
+
+  .assess-progress-bar {
+    @apply block h-full bg-black transition-all;
+  }
+
+  .assess-topic {
+    @apply mt-5 text-xs font-semibold uppercase tracking-wide text-neutral-500;
+  }
+
+  .assess-question {
+    @apply mt-2 text-xl font-semibold leading-snug;
+  }
+
+  .assess-options {
+    @apply mt-5 flex flex-col gap-2;
+  }
+
+  .assess-option {
+    @apply flex cursor-pointer items-start gap-3 rounded-lg border border-black p-3 text-sm;
+  }
+
+  .assess-option:hover {
+    @apply bg-neutral-100;
+  }
+
+  .assess-score {
+    @apply mt-5 flex items-baseline gap-2;
+  }
+
+  .assess-score-value {
+    @apply text-5xl font-bold;
+  }
+
+  .assess-score-total {
+    @apply text-2xl text-neutral-500;
+  }
+
+  .assess-score-percent {
+    @apply ml-2 text-sm text-neutral-600;
+  }
+
+  .assess-subheading {
+    @apply mt-8 text-xl font-bold;
+  }
+
+  .assess-topics {
+    @apply mt-3 divide-y divide-neutral-300 rounded-2xl border border-black;
+  }
+
+  .assess-topic-row {
+    @apply flex items-center justify-between px-5 py-3 text-sm;
+  }
+
+  .assess-topic-score {
+    @apply font-semibold;
+  }
+
+  .assess-topic-score small {
+    @apply ml-2 font-normal text-neutral-500;
+  }
+
+  .assess-weak {
+    @apply mt-3 flex flex-col gap-1 text-sm;
+  }
+
+  .assess-weak li::before {
+    content: '- ';
+  }
+
+  .assess-review {
+    @apply mt-3 flex flex-col gap-4;
+  }
+
+  .assess-review-item {
+    @apply rounded-2xl border border-black p-5;
+  }
+
+  .assess-review-verdict {
+    @apply flex items-center justify-between text-sm font-bold;
+  }
+
+  .assess-review-topic {
+    @apply text-xs font-normal uppercase tracking-wide text-neutral-500;
+  }
+
+  .assess-review-question {
+    @apply mt-2 text-sm font-semibold;
+  }
+
+  .assess-review-line {
+    @apply mt-1 text-sm text-neutral-700;
+  }
+
+  .assess-review-explanation {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .assess-actions {
+    @apply mt-8 flex flex-col items-center gap-3;
+  }
+
+  .assess-secondary {
+    @apply text-sm underline;
+  }
+
+  /* ---- premium modules ---- */
+
+  .premium-modules-page {
+    @apply mx-auto max-w-3xl px-4 py-10;
+  }
+
+  .premium-modules-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .premium-modules-heading p {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .premium-modules-list {
+    @apply mt-6 flex flex-col gap-3;
+  }
+
+  .premium-modules-item {
+    @apply flex items-center justify-between gap-4 rounded-2xl border border-black p-5;
+  }
+
+  .premium-modules-item h2 {
+    @apply text-lg font-bold;
+  }
+
+  .premium-modules-item p {
+    @apply mt-1 text-sm text-neutral-600;
+  }
+
+  .premium-modules-open {
+    @apply shrink-0 rounded-lg border border-black px-4 py-2 text-sm font-semibold;
+  }
+
+  .premium-modules-open:hover {
+    @apply bg-neutral-200;
+  }
+
+  .premium-modules-locked {
+    @apply shrink-0 text-sm text-neutral-500;
+  }
+
+  /* ---- a single module page ---- */
+
+  .module-page {
+    @apply mx-auto max-w-3xl px-4 py-10;
+  }
+
+  .module-kicker {
+    @apply text-xs font-semibold uppercase tracking-wide text-neutral-500;
+  }
+
+  .module-heading h1 {
+    @apply mt-1 text-3xl font-bold;
+  }
+
+  .module-summary {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .module-audience {
+    @apply mt-3 rounded-lg border border-black p-3 text-sm;
+  }
+
+  .module-section {
+    @apply mt-8;
+  }
+
+  .module-section h2 {
+    @apply text-xl font-bold;
+  }
+
+  .module-section p {
+    @apply mt-3 text-sm leading-relaxed;
+  }
+
+  .module-nav {
+    @apply mt-10 flex items-center justify-between gap-4 border-t border-neutral-300 pt-5 text-sm;
+  }
+
+  .module-nav a {
+    @apply font-semibold underline;
+  }
+
+  /* ---- about ---- */
+
+  .about-page {
+    @apply mx-auto max-w-3xl px-4 py-10;
+  }
+
+  .about-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .about-heading p {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .about-section {
+    @apply mt-8;
+  }
+
+  .about-section h2 {
+    @apply text-xl font-bold;
+  }
+
+  .about-section p {
+    @apply mt-3 text-sm leading-relaxed;
+  }
+
+  .about-note {
+    @apply mt-4 rounded-lg border border-black p-3 text-sm;
+  }
+
+  /* ---- admin ---- */
+
+  .admin-page {
+    @apply mx-auto max-w-4xl px-4 py-10;
+  }
+
+  .admin-heading h1 {
+    @apply text-3xl font-bold;
+  }
+
+  .admin-heading p {
+    @apply mt-2 text-sm text-neutral-600;
+  }
+
+  .admin-form-section,
+  .admin-list-section {
+    @apply mt-8;
+  }
+
+  .admin-form-section h2,
+  .admin-list-section h2 {
+    @apply mb-4 text-xl font-bold;
+  }
+
+  .admin-cancel {
+    @apply mt-2 w-full text-sm underline;
+  }
+
+  .admin-table {
+    @apply w-full border-collapse overflow-hidden rounded-2xl border border-black text-sm;
+  }
+
+  .admin-table th {
+    @apply border-b border-black bg-neutral-100 px-4 py-3 text-left font-bold;
+  }
+
+  .admin-table td {
+    @apply border-b border-neutral-300 px-4 py-3;
+  }
+
+  .admin-table code {
+    @apply rounded border border-neutral-300 bg-neutral-100 px-1 text-xs;
+  }
+
+  .admin-actions {
+    @apply flex gap-2;
+  }
+
+  .admin-actions button {
+    @apply rounded border border-black px-3 py-1 text-xs font-semibold;
+  }
+
+  .admin-actions button:hover {
+    @apply bg-neutral-200;
+  }
+
+  /* ---- dashboard charts ----
+     Plain bars rather than a charting library: one less dependency, and it
+     stays readable when the visual design pass happens. */
+
+  .dash-chart {
+    @apply mt-4 flex flex-col gap-2 rounded-2xl border border-black p-5;
+  }
+
+  .dash-chart-row {
+    @apply flex items-center gap-3 text-sm;
+  }
+
+  .dash-chart-label {
+    @apply w-40 shrink-0 truncate;
+  }
+
+  .dash-chart-track {
+    @apply h-3 flex-1 overflow-hidden rounded-full bg-neutral-200;
+  }
+
+  .dash-chart-bar {
+    @apply block h-full rounded-full bg-black;
+  }
+
+  .dash-chart-value {
+    @apply w-14 shrink-0 text-right font-semibold;
+  }
+
+  /* ---- chatbot ---- */
+
+  .chatbot-para {
+    @apply block;
+  }
+
+  .chatbot-para + .chatbot-para {
+    @apply mt-2;
+  }
+
+  .dash-card-link {
+    @apply block text-inherit no-underline transition-colors;
+  }
+
+  .dash-card-link:hover {
+    @apply bg-neutral-100;
+  }
+
+}

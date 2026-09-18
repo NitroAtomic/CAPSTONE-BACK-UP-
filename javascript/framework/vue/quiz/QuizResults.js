@@ -1,3 +1,4 @@
+import auth from '../services/auth.js'
 import module1 from '../data/module-1.json'
 import module2 from '../data/module-2.json'
 import module3 from '../data/module-3.json'
@@ -36,7 +37,10 @@ export default {
 
   data() {
     return {
-      results: null
+      results: null,
+      // 'idle' until a save is attempted, so a guest never sees a message
+      // about their account.
+      saveState: 'idle'
     }
   },
 
@@ -47,6 +51,12 @@ export default {
 
     modulePath() {
       return MODULE_PATHS[this.moduleId] || '/'
+    },
+
+    // '/modules/quishing' -> 'quishing', which is what the API stores.
+    moduleSlug() {
+      const path = MODULE_PATHS[this.moduleId]
+      return path ? path.split('/').pop() : null
     },
 
     nextModule() {
@@ -93,6 +103,7 @@ export default {
 
   created() {
     this.loadResults()
+    this.saveAttempt()
   },
 
   methods: {
@@ -115,15 +126,55 @@ export default {
       this.results = raw ? JSON.parse(raw) : null
     },
 
+    /** Sends the completed attempt to the account so it shows up in quiz
+     *  history and marks the module complete on the dashboard.
+     *
+     *  Guests are skipped entirely: the quiz still works for them, the score
+     *  just lives in this tab. The result is also flagged as saved in
+     *  sessionStorage so refreshing the results page does not record the same
+     *  attempt again. */
+    async saveAttempt() {
+      if (!this.results || !this.moduleSlug) return
+      if (!auth.isSignedIn()) return
+      if (this.results.savedToAccount) {
+        this.saveState = 'saved'
+        return
+      }
+
+      this.saveState = 'saving'
+      try {
+        await auth.recordQuizAttempt({
+          slug: this.moduleSlug,
+          score: this.results.score,
+          total: this.results.totalPoints
+        })
+
+        this.results.savedToAccount = true
+        sessionStorage.setItem(
+          `quiz-results-${this.moduleId}`,
+          JSON.stringify(this.results)
+        )
+        this.saveState = 'saved'
+      } catch (err) {
+        // The score is still on screen, so a failed save is worth mentioning
+        // but should not replace the results with an error.
+        console.warn('[quiz] could not save this attempt:', err.message)
+        this.saveState = 'failed'
+      }
+    },
+
     retakeQuiz() {
       sessionStorage.removeItem(`quiz-results-${this.moduleId}`)
+      this.saveState = 'idle'
       this.$router.push(`/quiz/${this.moduleId}/question`)
     }
   },
 
   watch: {
     moduleId() {
+      this.saveState = 'idle'
       this.loadResults()
+      this.saveAttempt()
     }
   }
 }

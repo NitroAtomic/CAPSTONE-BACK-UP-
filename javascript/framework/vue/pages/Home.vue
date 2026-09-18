@@ -82,36 +82,38 @@
 
         <div class="premium-grid">
 
-          <article class="premium-card">
+          <!-- Locked for guests and Free accounts, a real link once the
+               subscription is active. -->
+          <component
+            v-for="card in premiumCards"
+            :key="card.title"
+            :is="isPremium ? 'router-link' : 'article'"
+            :to="isPremium ? card.to : undefined"
+            class="premium-card"
+            :class="{ 'premium-card-open': isPremium }"
+          >
             <div>
-              <h3>Role-based<br>modules</h3>
-              <p>Freelancer and client scam scenarios</p>
+              <h3>{{ card.title }}<br>{{ card.subtitle }}</h3>
+              <p>{{ card.blurb }}</p>
             </div>
-            <img class="lock-icon" src="/images/icons/padlock.png" alt="">
-          </article>
-
-          <article class="premium-card">
-            <div>
-              <h3>Personalized<br>dashboard</h3>
-              <p>Tracking progress, quiz history, weak areas</p>
-            </div>
-            <img class="lock-icon" src="/images/icons/padlock.png" alt="">
-          </article>
-
-          <article class="premium-card">
-            <div>
-              <h3>Awareness<br>assessment</h3>
-              <p>Find your current cybersecurity awareness level</p>
-            </div>
-            <img class="lock-icon" src="/images/icons/padlock.png" alt="">
-          </article>
+            <img v-if="!isPremium" class="lock-icon" src="/images/icons/padlock.png" alt="Locked">
+          </component>
 
         </div>
 
         <div class="premium-action">
-          <router-link to="/premium-subscription" class="btn btn-upgrade">
+          <router-link v-if="!isPremium" to="/premium-subscription" class="btn btn-upgrade">
             Upgrade to premium
           </router-link>
+
+          <template v-else>
+            <router-link to="/dashboard" class="btn btn-upgrade">
+              Go to your dashboard
+            </router-link>
+            <p class="premium-active-note">
+              You're on the Premium plan, so everything above is unlocked.
+            </p>
+          </template>
         </div>
 
       </section>

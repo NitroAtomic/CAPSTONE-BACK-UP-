@@ -1,0 +1,58 @@
+# render.yaml
+# Backend and integration: IamAtomic
+#
+# Deploys the API and the built Vue frontend as a single service, so there is
+# one URL and no cross origin requests between them.
+#
+# Render's free tier does not offer MySQL, so the database is hosted
+# separately. Set the DB_* values below from that provider's connection
+# details in the Render dashboard.
+
+services:
+  - type: web
+    name: se-aware
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # Generated once by Render and kept secret. Anyone holding this could
+      # forge a login token for any account, so it is never committed.
+      - key: JWT_SECRET
+        generateValue: true
+
+      # Set these in the dashboard from your MySQL provider.
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_SSL
+        value: "true"
+
+      # Must match the deployed URL exactly, for example
+      # https://se-aware.onrender.com
+      - key: CORS_ORIGINS
+        sync: false
+
+      # Optional. Leave unset and one time codes print to the service logs
+      # instead of being emailed.
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false

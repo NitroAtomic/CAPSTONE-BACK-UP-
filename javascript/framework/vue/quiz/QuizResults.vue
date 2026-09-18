@@ -14,6 +14,20 @@
         <span class="quiz-score-total">/{{ results.totalPoints }}</span>
       </div>
 
+      <p v-if="saveState === 'saved'" class="quiz-save-note">
+        Saved to your dashboard.
+      </p>
+      <p v-else-if="saveState === 'saving'" class="quiz-save-note">
+        Saving to your dashboard...
+      </p>
+      <p v-else-if="saveState === 'failed'" class="quiz-save-note quiz-save-note-failed">
+        Your score is shown above but could not be saved to your dashboard.
+      </p>
+      <p v-else-if="saveState === 'idle'" class="quiz-save-note">
+        <router-link to="/login">Log in</router-link>
+        to save your scores and track your progress.
+      </p>
+
       <div class="quiz-results-breakdown">
         <div class="quiz-result-row">
           <span>Standard</span>
