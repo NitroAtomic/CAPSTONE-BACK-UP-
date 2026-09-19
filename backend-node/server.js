@@ -75,6 +75,11 @@ app.get('/api/health', async (req, res) => {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', database: 'connected' });
   } catch (err) {
+    // Logged, because a health check that only says "unreachable" leaves you
+    // guessing between a wrong password, a firewall, and a TLS problem. The
+    // reason stays in the server log rather than the response, since the
+    // response is public.
+    console.error('[health] database unreachable:', err.code || '', err.message);
     res.status(503).json({ status: 'degraded', database: 'unreachable' });
   }
 });
