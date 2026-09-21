@@ -1,5 +1,5 @@
 // routes/auth.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -65,10 +65,9 @@ router.post('/register', async (req, res) => {
 });
 
 // FR-09: Login
-// FR-20: Premium accounts require a second factor (emailed OTP) before a
-// real session is issued. Free accounts log in the same single step as
-// before -- this asymmetry is intentional, part of what differentiates
-// the Premium tier's account security, not an oversight.
+// FR-20: Premium accounts kailangan pa ng second factor (emailed OTP) bago
+// mabigyan ng totoong session. Free accounts, isang step lang parin — sadya
+// to, part of Premium tier's account security, hindi oversight.
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -119,8 +118,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// FR-20: Step 2 of Premium login -- verify the emailed code and, only
-// then, issue the real session token.
+// FR-20: Step 2 ng Premium login — i-verify yung emailed code, saka pa lang
+// ibibigay yung totoong session token.
 router.post('/verify-otp', async (req, res) => {
   const { pendingToken, code } = req.body;
   if (!pendingToken || !code) {
@@ -183,7 +182,7 @@ router.post('/verify-otp', async (req, res) => {
   }
 });
 
-// FR-20: Resend the OTP if the first email didn't arrive.
+// FR-20: Resend ng OTP kung hindi dumating yung una.
 router.post('/resend-otp', async (req, res) => {
   const { pendingToken } = req.body;
   if (!pendingToken) return res.status(400).json({ error: 'pendingToken is required.' });
@@ -207,15 +206,15 @@ router.post('/resend-otp', async (req, res) => {
   }
 });
 
-// FR-09: Logout. Stateless JWT, so "logout" is just the client discarding
-// the token. This endpoint exists for a consistent API shape and so the
-// frontend has a single place to call regardless of backend implementation.
+// FR-09: Logout. Stateless JWT lang, so "logout" ay client-side lang na
+// pag-discard ng token. Nandito to para consistent yung API shape, iisa lang
+// tinatawag ng frontend kahit anong nasa likod.
 router.post('/logout', requireAuth, (req, res) => {
   res.json({ message: 'Logged out.' });
 });
 
-// FR-10: Subscription/account management (high-level plan state only -
-// no pricing or payment processing, as specified in the requirement).
+// FR-10: Subscription/account management (plan state lang, walang pricing o
+// payment processing, ayon sa requirement).
 router.get('/me', requireAuth, async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -246,13 +245,13 @@ router.patch('/me/subscription', requireAuth, async (req, res) => {
 
 // ============================================================
 // PASSWORD RESET
-// Two steps: request a code by email, then submit code + new password.
+// Dalawang step: request ng code by email, tapos submit ng code + bagong
+// password.
 // ============================================================
 
-// Step 1: request a reset code.
-// Always returns the same success response whether or not the email exists.
-// This is deliberate -- responding differently would let an attacker probe
-// which email addresses have accounts on the platform.
+// Step 1: request ng reset code.
+// Palagi parehong success response, may account man o wala. Sadya to —
+// kung iba yung sagot, may makaka-alam kung anong email meron sa platform.
 router.post('/forgot-password', async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: 'Email is required.' });
@@ -272,7 +271,7 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 
-// Step 2: submit the code plus the new password.
+// Step 2: submit ng code kasama bagong password.
 router.post('/reset-password', async (req, res) => {
   const { email, code, newPassword } = req.body;
   if (!email || !code || !newPassword) {
@@ -315,8 +314,8 @@ router.post('/reset-password', async (req, res) => {
     await pool.query('UPDATE user SET password_hash = ? WHERE user_id = ?', [newHash, user.user_id]);
     await pool.query('UPDATE otpcode SET used = 1 WHERE otp_id = ?', [otp.otp_id]);
 
-    // Invalidate any other outstanding codes for this account, so an old
-    // unused code can't be replayed after the password already changed.
+    // I-invalidate din yung ibang outstanding codes ng account na to, para
+    // hindi na ma-reuse yung lumang code pagkatapos na palitan yung password.
     await pool.query(
       'UPDATE otpcode SET used = 1 WHERE user_id = ? AND used = 0',
       [user.user_id]

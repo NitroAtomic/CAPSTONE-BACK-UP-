@@ -1,30 +1,29 @@
 // config/retrieval.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 //
-// Finds the passages most relevant to a question, so the assistant answers
-// from the platform's own modules rather than from a model's general
-// knowledge.
+// Hinahanap yung mga passage na pinaka-relevant sa tanong, para sumasagot
+// yung assistant galing sa sariling modules natin, hindi galing sa general
+// knowledge lang ng model.
 //
-// Scoring is BM25, the ranking function behind most classic search engines.
-// It is chosen over embeddings deliberately:
+// BM25 yung scoring, yung ranking function na ginagamit ng karamihan ng
+// classic search engines. Sinadya to kesa embeddings dahil:
 //
-//   - no embedding API call per query, so no extra cost or latency
-//   - no vector database to run, and nothing that empties on restart
-//   - the knowledge base is a committed JSON file, so it works on a fresh
-//     clone with no setup step
+//   - walang embedding API call kada tanong, so wala extra cost/latency
+//   - walang vector database na patatakbuhin, wala nawawala pag nag-restart
+//   - JSON file lang yung knowledge base, committed na, gumagana agad sa
+//     fresh clone, walang setup step
 //
-// The tradeoff is that it matches on words rather than meaning, so a question
-// using entirely different vocabulary to the source will retrieve less well.
-// For a fixed body of teaching material with consistent terminology, that
-// tradeoff is worth taking.
+// Trade-off: word matching lang to hindi meaning, kaya kung ibang salita
+// gamit yung tanong kesa source, mas mahina yung match. Pero para sa fixed
+// na set ng teaching material na consistent yung terms, sulit yung trade-off.
 
 const fs = require('fs');
 const path = require('path');
 
 const KB_PATH = path.join(__dirname, '..', 'data', 'knowledge-base.json');
 
-// Words too common to carry meaning; keeping them would let a long passage
-// score highly just by containing "the" many times.
+// Mga salitang masyadong common, walang dalang meaning. Kung isasama, isang
+// mahabang passage lang na maraming "the" pwede na mag-score ng mataas.
 const STOP_WORDS = new Set([
   'a', 'an', 'the', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'am',
   'do', 'does', 'did', 'doing', 'have', 'has', 'had', 'having', 'i', 'you',
@@ -46,8 +45,8 @@ function tokenise(text) {
     .filter((w) => w.length > 2 && !STOP_WORDS.has(w));
 }
 
-/** Crude stemming, enough to match "phishing" with "phish" and "attacks"
- *  with "attack" without pulling in a stemming library. */
+/** Simpleng stemming lang, sapat na para mag-match "phishing" sa "phish" at
+ *  "attacks" sa "attack" nang hindi na nag-dadagdag ng library. */
 function stem(word) {
   return word
     .replace(/ing$/, '')
@@ -57,8 +56,8 @@ function stem(word) {
 }
 
 
-/** Edit distance, capped so a clearly different word bails out early rather
- *  than computing a full matrix. */
+/** Edit distance, may cap para agad huminto kung obvious naman na ibang
+ *  salita, kesa kumpletuhin pa yung buong matrix. */
 function editDistance(a, b, max) {
   if (Math.abs(a.length - b.length) > max) return max + 1;
 
@@ -81,35 +80,35 @@ function editDistance(a, b, max) {
   return prev[b.length];
 }
 
-/** Maps a mistyped query term onto the closest term the index actually has.
+/** Kapag mali-type yung search term, hahanapin yung pinaka-malapit na salita
+ *  na meron talaga sa index.
  *
- *  Without this, "pishing" matches nothing at all and the assistant claims it
- *  has no information on a topic it covers in depth. Short words are left
- *  alone, since at three or four characters an edit of one turns a word into
- *  a genuinely different one.
+ *  Kung wala to, walang mahahanap yung "pishing" kahit may sagot naman tayo.
+ *  Maiiksing salita hindi na ginagalaw, kasi sa tatlo/apat na letra, kahit
+ *  isang typo pwede na ibang salita talaga.
  */
 function nearestKnownTerm(term, topicTerms) {
-  // Four characters is the floor, because stemming shortens words before we
-  // get here: "phishing" becomes "phish" and a typo of it becomes "pish".
+  // Apat na letra minimum, kasi na-stem na bago dumating dito: "phishing"
+  // nagiging "phish", tapos yung typo niyan "pish".
   if (term.length < 4 || topicTerms.has(term)) return term;
 
-  // Longer words tolerate more, since a two character slip in a four letter
-  // word usually means a different word entirely.
+  // Mas mahabang salita, mas malaking allowance, dahil kung dalawang letra
+  // lang mali sa apat-letrang salita, malamang ibang salita na talaga.
   const allowed = term.length >= 6 ? 2 : 1;
   let best = null;
   let bestDistance = allowed + 1;
 
-  // Only topic vocabulary is a candidate, not every indexed word.
+  // Yung topic vocabulary lang candidate, hindi buong index.
   //
-  // Matching against the whole index looked fine on typos but quietly mapped
-  // unrelated questions onto real passages: "how do I bake bread" found
-  // "spread" and answered confidently about recruitment scams. Restricting
-  // the targets means an off topic word has nothing to land on, and the
-  // assistant correctly says it does not cover the subject.
+  // Dati buong index kinukumpara, ayos naman sa typo pero minsan nag-me-match
+  // pa sa hindi related: "how do I bake bread" nag-match sa "spread" tapos
+  // sumagot tungkol sa recruitment scams. Kung topic terms lang, walang
+  // matatamaan yung off-topic na salita, tapos tama yung sagot na "wala
+  // kaming info dyan".
   for (const known of topicTerms) {
-    // A typo almost never changes the first letter, but a different word
-    // frequently does. Without this check "bake" corrected to "fake" and a
-    // question about baking bread was answered with recruitment scams.
+    // Bihirang nagbabago yung unang letra sa typo, pero madalas nagbabago
+    // pag ibang salita talaga. Kung wala to, "bake" naitama sa "fake" tapos
+    // tanong tungkol sa pagluluto nasagutan ng recruitment scams.
     if (term[0] !== known[0]) continue;
 
     const d = editDistance(term, known, allowed);
@@ -136,16 +135,16 @@ function loadIndex() {
 
   const { entries } = JSON.parse(fs.readFileSync(KB_PATH, 'utf8'));
 
-  // Document frequency: how many passages each term appears in. Rare terms
-  // are worth more, which is what stops a match on a common word dominating.
+  // Document frequency: sa ilang passages lumalabas yung bawat term. Yung
+  // bihirang term mas mataas ang halaga, para hindi dominate yung common word.
   const df = new Map();
   let totalLength = 0;
 
   const prepared = entries.map((entry) => {
     const bodyTerms = tokenise(entry.text).map(stem);
-    // The title is indexed separately. Folding it into the body would let it
-    // be diluted among a hundred other words, which is why a question about
-    // invoices was matching a passage on smishing.
+    // Hiwalay na-index yung title. Kung sasabay sa body, matatabunan lang sa
+    // ibang salita — kaya dati nagkakamali, natatamaan yung smishing passage
+    // kahit tungkol sa invoices dapat.
     const titleTerms = new Set(tokenise(entry.title).map(stem));
 
     const freq = new Map();
@@ -159,8 +158,8 @@ function loadIndex() {
     return { ...entry, freq, titleTerms, length: bodyTerms.length };
   });
 
-  // Words appearing in passage titles are the subjects this platform teaches,
-  // which makes them the right targets for typo correction.
+  // Yung mga salita sa title ng passage, sila yung mismong topics na tinuturo
+  // ng platform, kaya sila yung tamang target para sa typo correction.
   const topicTerms = new Set();
   for (const entry of prepared) {
     for (const term of entry.titleTerms) topicTerms.add(term);
@@ -175,7 +174,7 @@ function loadIndex() {
   return index;
 }
 
-/** Returns the passages most relevant to the question, best first. */
+/** Ibinabalik yung mga passage na pinaka-relevant sa tanong, best-first. */
 function search(question, limit = 4) {
   const { entries, df, topicTerms, avgLength } = loadIndex();
   if (!entries.length) return [];
@@ -188,11 +187,11 @@ function search(question, limit = 4) {
   if (!queryTerms.length) return [];
 
   const N = entries.length;
-  const k1 = 1.5;   // how quickly repeated terms stop adding to the score
-  const b = 0.75;   // how much passage length is penalised
+  const k1 = 1.5;   // bilis ng pag-level off pag paulit-ulit yung term
+  const b = 0.75;   // gaano ka-penalized yung length ng passage
 
-  // A term appearing in the title is a much stronger signal than the same
-  // term buried in the body, so it carries extra weight.
+  // Mas malakas na signal yung term sa title kesa sa body, kaya dagdag
+  // weight to.
   const TITLE_WEIGHT = 2.5;
 
   const scored = entries.map((entry) => {
@@ -216,9 +215,9 @@ function search(question, limit = 4) {
       }
     }
 
-    // Matching several query terms in the title means the passage is about
-    // the question, not merely mentioning it. Without this, one strong term
-    // can outrank a passage that matches the whole question.
+    // Kung ilang query terms tumama sa title, tungkol talaga dun yung
+    // passage, hindi lang nabanggit. Kung wala to, isang malakas na term lang
+    // pwede mag-outrank sa passage na mas kumpletong tugma.
     if (titleHits > 1) score *= 1 + 0.2 * (titleHits - 1);
 
     return { entry, score };

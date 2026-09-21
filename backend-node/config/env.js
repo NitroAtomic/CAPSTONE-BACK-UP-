@@ -1,15 +1,14 @@
 // config/env.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 //
-// Reads configuration and refuses to start in production if anything
-// security critical is missing.
+// Binabasa yung config, tapos ayaw mag-start sa production kung may kulang
+// na security-critical.
 //
-// The reason this file exists: the previous version fell back to hardcoded
-// values like 'dev-secret-change-in-production' when an environment variable
-// was absent. That is fine on a laptop, but this repository is public, so
-// anyone reading the source would know the fallback and could forge their own
-// admin token against a deployed copy. Failing loudly on boot is far better
-// than running with a known secret.
+// Bakit ganito: dati may fallback na 'dev-secret-change-in-production' kapag
+// walang env var. Okay lang yun sa laptop, pero public yung repo natin, kaya
+// kahit sino makabasa ng source, alam na yung fallback tapos pwede na
+// mag-forge ng sariling admin token. Mas okay na sumigaw agad pag nag-boot
+// kesa tumakbo gamit known secret.
 
 require('dotenv').config();
 
@@ -39,8 +38,8 @@ function required(name, { minLength = 0 } = {}) {
 const jwtSecret = required('JWT_SECRET', { minLength: 32 });
 const dbPassword = required('DB_PASSWORD');
 
-// Which origins the browser is allowed to call this API from. In production
-// this must be set, otherwise the API would accept requests from any site.
+// Sino pwede mag-call ng API na to mula sa browser. Sa production, required
+// to — kundi kahit sinong site pwede na mag-request.
 const corsOrigins = (process.env.CORS_ORIGINS || '')
   .split(',')
   .map((origin) => origin.trim())
@@ -55,7 +54,7 @@ module.exports = {
 
   port: Number(process.env.PORT) || 3000,
 
-  // Local development keeps working without a .env file; production does not.
+  // Gumagana pa rin sa local kahit walang .env; sa production hindi.
   jwtSecret: jwtSecret || 'local-development-only-not-for-deployment',
 
   corsOrigins,

@@ -1,16 +1,16 @@
 // middleware/rateLimit.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 //
-// Without this, someone could try passwords against the login endpoint as
-// fast as the network allows. bcrypt makes each guess slow to verify, but it
-// does nothing to stop the attempt being made thousands of times.
+// Kung wala to, pwedeng subukan-subukan ng iba yung password sa login kasing
+// bilis ng network. Bagal ng bcrypt sa pag-verify kada guess, pero hindi
+// niya pinipigilan yung paulit-ulit na pagsubok.
 //
-// The limits are per IP address and deliberately generous enough that a real
-// person mistyping their password a few times is never affected.
+// Per IP address yung limit, at sadyang mataas para hindi maapektuhan yung
+// taong nagkamali lang ng ilang beses sa sariling password.
 
 const rateLimit = require('express-rate-limit');
 
-// Sign in, register, and password reset: the endpoints worth guessing at.
+// Login, register, reset password — sila yung sulit i-guess kaya mas mahigpit.
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 20,
@@ -19,8 +19,8 @@ const authLimiter = rateLimit({
   message: { error: 'Too many attempts from this address. Please wait a few minutes and try again.' },
 });
 
-// Verifying a one time code is stricter, since the code is only six digits
-// and the account row already tracks its own attempt count.
+// Mas mahigpit pa ito sa OTP verify, kasi 6-digit lang naman yung code at
+// meron nang sariling attempt counter sa row.
 const otpLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
@@ -29,7 +29,7 @@ const otpLimiter = rateLimit({
   message: { error: 'Too many verification attempts. Please request a new code.' },
 });
 
-// Everything else, to keep one client from flooding the API.
+// Yung iba pang endpoints, para walang isang client na mag-flood sa API.
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 300,

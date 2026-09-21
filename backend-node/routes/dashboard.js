@@ -1,12 +1,13 @@
 // routes/dashboard.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 const express = require('express');
 const pool = require('../config/db');
 const { requireAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
-// FR-12: Personalized Dashboard. Everything the dashboard needs in one call
+// FR-12: Personalized Dashboard. Lahat ng kailangan ng dashboard, isang call
+// lang.
 router.get('/', requireAuth, async (req, res) => {
   try {
     const [progress] = await pool.query(
@@ -16,7 +17,7 @@ router.get('/', requireAuth, async (req, res) => {
       [req.user.user_id]
     );
 
-    // FR-14: Quiz history, most recent first
+    // FR-14: Quiz history, pinakabago muna
     const [quizHistory] = await pool.query(
       `SELECT qr.score, qr.total, qr.date_completed, m.module_title, m.slug
        FROM quizresult qr
@@ -27,7 +28,7 @@ router.get('/', requireAuth, async (req, res) => {
       [req.user.user_id]
     );
 
-    // FR-11: Most recent assessment
+    // FR-11: Pinakabagong assessment
     const [assessmentRows] = await pool.query(
       'SELECT awareness_score AS score, total, awareness_level, by_topic, weak_areas, assessment_date FROM awarenessassessment WHERE user_id = ? ORDER BY assessment_id DESC LIMIT 1',
       [req.user.user_id]
@@ -44,8 +45,8 @@ router.get('/', requireAuth, async (req, res) => {
   }
 });
 
-// FR-15: Recommended modules. Based on assessment weak areas if one
-// exists, otherwise modules the user hasn't started yet.
+// FR-15: Mga recommended modules. Base sa weak areas ng assessment kung meron,
+// kung wala, yung mga module pa na hindi pa nasimulan.
 router.get('/recommendations', requireAuth, async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -58,8 +59,8 @@ router.get('/recommendations', requireAuth, async (req, res) => {
     const weakAreas = latest?.weak_areas || [];
 
     if (weakAreas.length) {
-      // Weakest first, so the module they struggled with most is top of the
-      // list rather than whichever row the database happened to return.
+      // Pinakamahina muna, para yung talagang pinaghirapan nila una sa list,
+      // hindi basta kung ano lang naibalik ng database.
       const byTopic = latest.by_topic || {};
       const ranked = [...weakAreas].sort((a, b) => {
         const ratio = (t) => {
@@ -69,11 +70,11 @@ router.get('/recommendations', requireAuth, async (req, res) => {
         return ratio(a) - ratio(b);
       });
 
-      // Matched on slug as well as category. The two drifted apart once
-      // already: the assessment recorded weakness in "quishing" while that
-      // module's category was "phishing", so it could never be recommended
-      // no matter how badly someone scored on it. Checking both means a
-      // future rename degrades instead of silently returning nothing.
+      // Tinugma sa slug pati category. Nagkalayo na to minsan: naka-record
+      // yung weakness sa "quishing" pero yung category ng module ay
+      // "phishing", kaya kahit gaano kababa yung score dun, hindi na-
+      // rerecommend. Kapag pareho tinigil, kahit ma-rename pa sa future,
+      // mababawasan lang, hindi bigla nawawala yung recommendation.
       const placeholders = ranked.map(() => '?').join(',');
       const [modules] = await pool.query(
         `SELECT module_id, module_title, slug, category, module_type
@@ -98,8 +99,8 @@ router.get('/recommendations', requireAuth, async (req, res) => {
       }
     }
 
-    // No assessment yet, or nothing matched. Suggest free modules they have
-    // not started, which is a reasonable place to begin.
+    // Wala pang assessment, o walang tumugma. I-suggest yung Free modules na
+    // hindi pa nasisimulan, magandang pinagsisimulan naman.
     const [modules] = await pool.query(
       `SELECT m.module_id, m.module_title, m.slug, m.category, m.module_type
        FROM module m

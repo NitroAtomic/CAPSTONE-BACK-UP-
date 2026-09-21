@@ -1,12 +1,12 @@
 // routes/modules.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 const express = require('express');
 const pool = require('../config/db');
 const { optionalAuth, requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Helper: does this request have access to Premium content?
+// Helper: may access ba to sa Premium content?
 async function hasPremiumAccess(user) {
   if (!user) return false;
   if (user.role === 'admin') return true;
@@ -18,11 +18,10 @@ async function hasPremiumAccess(user) {
   return rows[0].subscription_type === 'Premium' && rows[0].subscription_status === 'active';
 }
 
-// Public teaser list for the Premium module catalog: title/summary/category
-// only, for every module_type = 'Premium' row (admin-created ones included),
-// visible to signed-out and Free accounts alike so the value of upgrading is
-// visible. No description/video_url beyond what's already shown on the
-// marketing page — the gated detail lives behind GET /:slug below.
+// Public teaser list ng Premium catalog: title/summary/category lang, para sa
+// lahat ng module_type = 'Premium' (kasama admin-created), kahit hindi
+// naka-login o Free lang, para makita yung value ng pag-upgrade. Walang
+// description/video_url pa rito, nasa GET /:slug pa yun.
 router.get('/premium-list', async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -35,9 +34,8 @@ router.get('/premium-list', async (req, res) => {
   }
 });
 
-// List modules. Free modules are visible to everyone, Premium only to
-// Premium/admin. This check happens here, server-side, not just hidden
-// in the frontend UI.
+// List ng modules. Free modules kita ng lahat, Premium para lang sa
+// Premium/admin. Server-side to check, hindi lang tago sa frontend UI.
 router.get('/', optionalAuth, async (req, res) => {
   try {
     const premium = await hasPremiumAccess(req.user);
@@ -51,7 +49,7 @@ router.get('/', optionalAuth, async (req, res) => {
   }
 });
 
-// Get one module by slug. Returns 403 if it's Premium and the requester isn't
+// Kunin yung isang module by slug. 403 kung Premium tapos hindi entitled.
 router.get('/:slug', optionalAuth, async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT * FROM module WHERE slug = ?', [req.params.slug]);
@@ -68,7 +66,7 @@ router.get('/:slug', optionalAuth, async (req, res) => {
   }
 });
 
-// FR-17: Admin creates a module (also creates its quiz row)
+// FR-17: Admin gumagawa ng module (auto-creates yung quiz row nito)
 router.post('/', requireAdmin, async (req, res) => {
   const { module_title, description, module_type, category, slug, video_url } = req.body;
   if (!module_title || !slug) {
@@ -99,8 +97,8 @@ router.post('/', requireAdmin, async (req, res) => {
   }
 });
 
-// FR-17: Admin edits a module (also handles FR-19: switching module_type
-// between Free/Premium is just a normal field update on this same route)
+// FR-17: Admin edits ng module (FR-19 din — yung Free/Premium switch, normal
+// field update lang to sa parehong route)
 router.put('/:id', requireAdmin, async (req, res) => {
   const { module_title, description, module_type, category, slug, video_url } = req.body;
   try {
@@ -115,7 +113,7 @@ router.put('/:id', requireAdmin, async (req, res) => {
   }
 });
 
-// FR-17: Admin deletes a module
+// FR-17: Admin deletes ng module
 router.delete('/:id', requireAdmin, async (req, res) => {
   try {
     await pool.query('DELETE FROM module WHERE module_id = ?', [req.params.id]);

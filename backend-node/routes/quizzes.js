@@ -1,17 +1,18 @@
 // routes/quizzes.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 const express = require('express');
 const pool = require('../config/db');
 const { requireAuth, requireAdmin, optionalAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
-// Keep in sync with the 70% pass mark in QuizQuestion.js / QuizResults.vue.
-// A quiz below this should never mark its module "completed".
+// Sabay dapat to sa 70% pass mark sa QuizQuestion.js / QuizResults.vue. Kung
+// mababa dyan, hindi dapat "completed" yung module.
 const PASSING_SCORE_RATIO = 0.7;
 
-// Get a module's quiz questions (answers/correct_option_index are stripped
-// out before sending, so the client cannot see the answer key)
+// Kunin yung quiz questions ng isang module (tinatanggal muna yung
+// answers/correct_option_index bago ipadala, para hindi makita ng client
+// yung answer key)
 router.get('/by-module/:slug', optionalAuth, async (req, res) => {
   try {
     const [modRows] = await pool.query('SELECT module_id, module_type FROM module WHERE slug = ?', [req.params.slug]);
@@ -41,11 +42,10 @@ router.get('/by-module/:slug', optionalAuth, async (req, res) => {
   }
 });
 
-// Records an already-scored quiz attempt directly (module quizzes in this
-// codebase are scored entirely client-side via quiz-data.js, so this trusts
-// that score, the same way /api/assessment/submit trusts the client-computed
-// assessment result, rather than requiring a second, separately-seeded
-// question bank per module just to re-score server-side).
+// I-save yung attempt na na-score na (client-side scored yung module quizzes
+// dito gamit quiz-data.js, tulad ng /api/assessment/submit — trinust yung
+// score na yun, hindi na nire-recompute ulit yung separate question bank
+// server-side).
 router.post('/record-attempt', requireAuth, async (req, res) => {
   const { slug, score, total } = req.body;
   if (!slug || typeof score !== 'number' || typeof total !== 'number') {
@@ -65,8 +65,8 @@ router.post('/record-attempt', requireAuth, async (req, res) => {
       'INSERT INTO quizresult (user_id, quiz_id, score, total, date_completed) VALUES (?, ?, ?, ?, CURDATE())',
       [req.user.user_id, quizRows[0].quiz_id, score, total]
     );
-    // Only a passing score marks the module completed. A failed attempt is
-    // still recorded above (for quiz history) but must not flip progress.
+    // Passing lang ang naka-mark na "completed". May nirecord pa rin kahit
+    // failed (para sa quiz history), pero hindi nito babaguhin yung progress.
     if (score / total >= PASSING_SCORE_RATIO) {
       await conn.query(
         `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
@@ -86,12 +86,12 @@ router.post('/record-attempt', requireAuth, async (req, res) => {
   }
 });
 
-// FR-04/FR-13/FR-14: Submit quiz answers. Scored server-side (never trust
-// a client-submitted score), then records both the quiz_result and updates
-// progress for the module in one transaction. Used when the backend's own
-// quiz_questions bank for this quiz has been fully seeded to match.
+// FR-04/FR-13/FR-14: Submit ng quiz answers. Server-side scored to (hindi
+// dapat trustin yung score na galing sa client), tapos ise-save yung
+// quiz_result at ia-update yung progress, isang transaction lang. Gamit lang
+// to kung kumpleto na yung quiz_questions bank sa backend para sa quiz na to.
 router.post('/:quizId/submit', requireAuth, async (req, res) => {
-  const { answers } = req.body; // array of selected option indices, in question order
+  const { answers } = req.body; // array ng selected option indices, kasunod ng tanong
   if (!Array.isArray(answers)) {
     return res.status(400).json({ error: 'answers must be an array of selected option indices.' });
   }
@@ -116,8 +116,8 @@ router.post('/:quizId/submit', requireAuth, async (req, res) => {
       'INSERT INTO quizresult (user_id, quiz_id, score, total, date_completed) VALUES (?, ?, ?, ?, CURDATE())',
       [req.user.user_id, req.params.quizId, score, total]
     );
-    // Only a passing score marks the module completed. A failed attempt is
-    // still recorded above (for quiz history) but must not flip progress.
+    // Passing lang ang naka-mark na "completed". May nirecord pa rin kahit
+    // failed (para sa quiz history), pero hindi nito babaguhin yung progress.
     if (score / total >= PASSING_SCORE_RATIO) {
       await conn.query(
         `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
@@ -138,9 +138,9 @@ router.post('/:quizId/submit', requireAuth, async (req, res) => {
   }
 });
 
-// FR-18: Admin views a quiz's full question bank, including the answer key
-// (unlike GET /by-module/:slug, which strips it for students) so the admin
-// panel can list, edit and delete existing questions.
+// FR-18: Admin makikita yung buong question bank ng isang quiz, kasama yung
+// answer key (di gaya ng GET /by-module/:slug na tinatanggal to para sa
+// students), para makapag-edit/delete yung admin panel.
 router.get('/:quizId/questions', requireAdmin, async (req, res) => {
   try {
     const [questions] = await pool.query(
@@ -154,7 +154,7 @@ router.get('/:quizId/questions', requireAdmin, async (req, res) => {
   }
 });
 
-// FR-18: Admin adds a question to a quiz
+// FR-18: Admin nagdadagdag ng question sa isang quiz
 router.post('/:quizId/questions', requireAdmin, async (req, res) => {
   const { question_text, options, correct_option_index, order_index } = req.body;
   if (!question_text || !Array.isArray(options) || correct_option_index === undefined) {
@@ -176,7 +176,7 @@ router.post('/:quizId/questions', requireAdmin, async (req, res) => {
   }
 });
 
-// FR-18: Admin edits a quiz question (includes the answer key, admin-only route)
+// FR-18: Admin nag-eedit ng quiz question (kasama answer key, admin-only route)
 router.put('/questions/:questionId', requireAdmin, async (req, res) => {
   const { question_text, options, correct_option_index, order_index } = req.body;
   try {
@@ -191,7 +191,7 @@ router.put('/questions/:questionId', requireAdmin, async (req, res) => {
   }
 });
 
-// FR-18: Admin deletes a quiz question
+// FR-18: Admin nagdedelete ng quiz question
 router.delete('/questions/:questionId', requireAdmin, async (req, res) => {
   try {
     const [rows] = await pool.query('SELECT quiz_id FROM quizquestion WHERE question_id = ?', [req.params.questionId]);

@@ -1,26 +1,25 @@
 // config/db.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 
 const fs = require('fs');
 const path = require('path');
 const mysql = require('mysql2/promise');
 const config = require('./env');
 
-// TLS options for a hosted database.
+// TLS setup para sa hosted DB.
 //
-// Providers like Aiven sign their certificates with their own certificate
-// authority rather than one your machine already trusts, so a plain TLS
-// connection fails with "self-signed certificate in certificate chain".
+// Yung mga provider gaya ng Aiven, sarili nilang CA yung pang-sign ng cert,
+// hindi yung kilala na ng machine mo, kaya nag-e-error na "self-signed
+// certificate in certificate chain" pag plain TLS lang.
 //
-// The tempting fix is rejectUnauthorized: false, which is worth naming as a
-// bad idea: it keeps the traffic encrypted but stops checking who is on the
-// other end, so anyone able to intercept the connection could present their
-// own certificate and read everything, including the password. Supplying the
-// provider's CA keeps verification switched on.
+// Yung madaling ayos, rejectUnauthorized: false — pero bad idea to. Naka-
+// encrypt pa rin pero wala nang nag-che-check kung sino kausap, kaya kung may
+// makaharang sa connection, pwede magpanggap tapos makuha lahat, kasama
+// password. Yung provider's CA mismo ilagay, para naka-verify pa rin.
 //
-// Two ways to provide it, because deployment platforms differ:
-//   DB_SSL_CA       a path to the .pem file      (convenient locally)
-//   DB_SSL_CA_CERT  the certificate text itself  (for hosts with no file system access)
+// Dalawang paraan, kasi iba-iba yung deployment platform:
+//   DB_SSL_CA       path papunta sa .pem file    (madali sa local)
+//   DB_SSL_CA_CERT  yung cert text mismo         (kung walang file system access)
 function sslOptions() {
   if (process.env.DB_SSL !== 'true') return undefined;
 
