@@ -191,6 +191,11 @@
         </ul>
     </article>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=RVF6NVnJvd8"
+        title="IBM Technology — &quot;What Is Quishing? How Hackers Use QR Codes to Steal Your Data&quot;"
+    />
+
     <!-- =========================
          Module Quiz Section
          ========================= -->

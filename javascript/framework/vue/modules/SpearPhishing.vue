@@ -186,6 +186,11 @@
         </ul>
     </article>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=gWGhUdHItto"
+        title="IBM Technology — &quot;What is Phishing&quot; (covers the general mechanics; this module's sections above cover what makes an attack specifically targeted)"
+    />
+
     <!-- =========================
          Module Quiz Section
          ========================= -->
