@@ -6,13 +6,25 @@
       <router-link to="/premium-modules">Back to role-based modules</router-link>
     </p>
 
+    <p v-else-if="loading" class="dash-status">Loading module...</p>
+
     <template v-else-if="module">
       <header class="module-heading">
         <p class="module-kicker">Role-based module</p>
         <h1>{{ module.title }}</h1>
         <p class="module-summary">{{ module.summary }}</p>
-        <p class="module-audience"><strong>Who this is for:</strong> {{ module.audience }}</p>
+        <p v-if="module.audience" class="module-audience"><strong>Who this is for:</strong> {{ module.audience }}</p>
       </header>
+
+      <div v-if="videoEmbedUrl" class="module-video">
+        <iframe
+          :src="videoEmbedUrl"
+          title="Module video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <article class="module-body">
         <section v-for="section in module.sections" :key="section.heading" class="module-section">

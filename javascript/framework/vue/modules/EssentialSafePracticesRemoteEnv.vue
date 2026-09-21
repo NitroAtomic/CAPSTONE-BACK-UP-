@@ -235,17 +235,15 @@
         </ul>
     </section>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=2eEwUe_uI6k"
+        title="Cybersecurity and Infrastructure Security Agency (CISA) — &quot;Cybersecurity for Remote Work: Best Practices to Stay Safe Online&quot;"
+    />
+
     <section id="essential-safe-practices-curated-resources">
         <h2>Curated Resources & References</h2>
 
         <ul>
-            <li>
-                <strong>Video Source:</strong>
-                <a href="https://www.youtube.com/watch?v=2eEwUe_uI6k" target="_blank" rel="noopener noreferrer">
-                    Cybersecurity and Infrastructure Security Agency (CISA) — "Cybersecurity for Remote Work: Best Practices to Stay Safe Online"
-                </a>
-            </li>
-
             <li>
                 <strong>Reference Guide:</strong>
                 <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-46r2.pdf" target="_blank" rel="noopener noreferrer">

@@ -1,3 +1,6 @@
+import ModuleVideo from './ModuleVideo.vue'
+
 export default {
-  name: 'Pretexting'
+  name: 'Pretexting',
+  components: { ModuleVideo }
 }

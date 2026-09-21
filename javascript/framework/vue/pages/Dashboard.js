@@ -108,6 +108,12 @@ export default {
       return entry.total ? Math.round((entry.score / entry.total) * 100) + '%' : '--'
     },
 
+    // Same 70% pass mark as QuizQuestion.js / QuizResults.vue, so the badge
+    // shown here always agrees with what the user saw right after the quiz.
+    passed(entry) {
+      return entry.total ? entry.score / entry.total >= 0.7 : false
+    },
+
     formatDate(value) {
       if (!value) return ''
       const date = new Date(value)

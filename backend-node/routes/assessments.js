@@ -26,7 +26,7 @@ router.post('/submit', requireAuth, async (req, res) => {
       'INSERT INTO awarenessassessment (user_id, awareness_score, total, awareness_level, by_topic, weak_areas, assessment_date) VALUES (?, ?, ?, ?, ?, ?, CURDATE())',
       [req.user.user_id, score, total, level, JSON.stringify(by_topic), JSON.stringify(weak_areas)]
     );
-    res.json({ message: 'Assessment saved.' });
+    res.status(201).json({ message: 'Assessment saved.' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to save assessment.' });

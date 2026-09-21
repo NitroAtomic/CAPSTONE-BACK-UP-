@@ -208,6 +208,17 @@ export default {
     return request('/api/modules')
   },
 
+  /** Public teaser list of Premium modules (title/summary/category), visible
+   *  whether or not the caller is signed in or Premium. */
+  async getPremiumModulesList() {
+    return request('/api/modules/premium-list')
+  },
+
+  /** Full module record, gated server-side the same way the page itself is. */
+  async getModule(slug) {
+    return request(`/api/modules/${slug}`)
+  },
+
   /* ----- admin -----
      Every one of these is refused by the server unless the account's role is
      admin, so the interface hiding them is a convenience rather than the
@@ -222,6 +233,27 @@ export default {
 
   async adminDeleteModule(id) {
     return request(`/api/modules/${id}`, { method: 'DELETE' })
+  },
+
+  /* ----- admin: quiz questions ----- */
+  async getQuizByModule(slug) {
+    return request(`/api/quizzes/by-module/${slug}`)
+  },
+
+  async adminGetQuizQuestions(quizId) {
+    return request(`/api/quizzes/${quizId}/questions`)
+  },
+
+  async adminAddQuestion(quizId, payload) {
+    return request(`/api/quizzes/${quizId}/questions`, { method: 'POST', body: payload })
+  },
+
+  async adminUpdateQuestion(questionId, payload) {
+    return request(`/api/quizzes/questions/${questionId}`, { method: 'PUT', body: payload })
+  },
+
+  async adminDeleteQuestion(questionId) {
+    return request(`/api/quizzes/questions/${questionId}`, { method: 'DELETE' })
   },
 
   /* ----- learning assistant ----- */

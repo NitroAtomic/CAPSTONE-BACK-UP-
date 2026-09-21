@@ -6,6 +6,10 @@ const { requireAuth, requireAdmin, optionalAuth } = require('../middleware/auth'
 
 const router = express.Router();
 
+// Keep in sync with the 70% pass mark in QuizQuestion.js / QuizResults.vue.
+// A quiz below this should never mark its module "completed".
+const PASSING_SCORE_RATIO = 0.7;
+
 // Get a module's quiz questions (answers/correct_option_index are stripped
 // out before sending, so the client cannot see the answer key)
 router.get('/by-module/:slug', optionalAuth, async (req, res) => {
@@ -58,15 +62,19 @@ router.post('/record-attempt', requireAuth, async (req, res) => {
 
     await conn.beginTransaction();
     await conn.query(
-      'INSERT INTO quizresult (user_id, quiz_id, score, total) VALUES (?, ?, ?, ?)',
+      'INSERT INTO quizresult (user_id, quiz_id, score, total, date_completed) VALUES (?, ?, ?, ?, CURDATE())',
       [req.user.user_id, quizRows[0].quiz_id, score, total]
     );
-    await conn.query(
-      `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
-       VALUES (?, ?, 'completed', NOW())
-       ON DUPLICATE KEY UPDATE completion_status = 'completed', completion_date = NOW()`,
-      [req.user.user_id, moduleId]
-    );
+    // Only a passing score marks the module completed. A failed attempt is
+    // still recorded above (for quiz history) but must not flip progress.
+    if (score / total >= PASSING_SCORE_RATIO) {
+      await conn.query(
+        `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
+         VALUES (?, ?, 'completed', NOW())
+         ON DUPLICATE KEY UPDATE completion_status = 'completed', completion_date = NOW()`,
+        [req.user.user_id, moduleId]
+      );
+    }
     await conn.commit();
     res.json({ message: 'Attempt recorded.' });
   } catch (err) {
@@ -105,24 +113,44 @@ router.post('/:quizId/submit', requireAuth, async (req, res) => {
 
     await conn.beginTransaction();
     await conn.query(
-      'INSERT INTO quizresult (user_id, quiz_id, score, total) VALUES (?, ?, ?, ?)',
+      'INSERT INTO quizresult (user_id, quiz_id, score, total, date_completed) VALUES (?, ?, ?, ?, CURDATE())',
       [req.user.user_id, req.params.quizId, score, total]
     );
-    await conn.query(
-      `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
-       VALUES (?, ?, 'completed', NOW())
-       ON DUPLICATE KEY UPDATE completion_status = 'completed', completion_date = NOW()`,
-      [req.user.user_id, quizRows[0].module_id]
-    );
+    // Only a passing score marks the module completed. A failed attempt is
+    // still recorded above (for quiz history) but must not flip progress.
+    if (score / total >= PASSING_SCORE_RATIO) {
+      await conn.query(
+        `INSERT INTO progress (user_id, module_id, completion_status, completion_date)
+         VALUES (?, ?, 'completed', NOW())
+         ON DUPLICATE KEY UPDATE completion_status = 'completed', completion_date = NOW()`,
+        [req.user.user_id, quizRows[0].module_id]
+      );
+    }
     await conn.commit();
 
-    res.json({ score, total });
+    res.json({ score, total, passed: score / total >= PASSING_SCORE_RATIO });
   } catch (err) {
     await conn.rollback();
     console.error(err);
     res.status(500).json({ error: 'Failed to submit quiz.' });
   } finally {
     conn.release();
+  }
+});
+
+// FR-18: Admin views a quiz's full question bank, including the answer key
+// (unlike GET /by-module/:slug, which strips it for students) so the admin
+// panel can list, edit and delete existing questions.
+router.get('/:quizId/questions', requireAdmin, async (req, res) => {
+  try {
+    const [questions] = await pool.query(
+      'SELECT question_id, question_text, options, correct_option_index, order_index FROM quizquestion WHERE quiz_id = ? ORDER BY order_index',
+      [req.params.quizId]
+    );
+    res.json(questions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to load questions.' });
   }
 });
 

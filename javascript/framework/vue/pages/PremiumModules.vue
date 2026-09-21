@@ -15,7 +15,10 @@
       to open them.
     </p>
 
-    <ul class="premium-modules-list">
+    <p v-if="loading" class="dash-status">Loading modules...</p>
+    <p v-else-if="error" class="auth-message auth-message-error">{{ error }}</p>
+
+    <ul v-else class="premium-modules-list">
       <li v-for="mod in modules" :key="mod.slug" class="premium-modules-item">
         <div>
           <h2>{{ mod.title }}</h2>

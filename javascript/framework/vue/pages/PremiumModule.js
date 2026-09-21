@@ -8,7 +8,9 @@ export default {
   data() {
     return {
       module: null,
-      notFound: false
+      notFound: false,
+      loading: true,
+      nextModule: null
     }
   },
 
@@ -17,13 +19,14 @@ export default {
       return this.$route.params.slug
     },
 
-    // Where "next module" should point, so the set reads as a sequence
-    // rather than four unrelated pages.
-    nextModule() {
-      const all = premiumData.modules
-      const at = all.findIndex((m) => m.slug === this.slug)
-      if (at === -1 || at === all.length - 1) return null
-      return all[at + 1]
+    // Normalizes a YouTube watch/share link into its embeddable form so an
+    // admin can paste the URL they'd naturally copy from the browser bar.
+    // Anything else (a direct .mp4, Vimeo, etc.) is passed through as-is.
+    videoEmbedUrl() {
+      const url = this.module?.video_url
+      if (!url) return null
+      const watch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/)
+      return watch ? `https://www.youtube.com/embed/${watch[1]}` : url
     }
   },
 
@@ -38,7 +41,7 @@ export default {
   },
 
   methods: {
-    guardAndLoad() {
+    async guardAndLoad() {
       if (!auth.isSignedIn()) {
         this.$router.replace('/login')
         return
@@ -52,9 +55,37 @@ export default {
         return
       }
 
-      const found = premiumData.modules.find((m) => m.slug === this.slug)
-      this.module = found || null
-      this.notFound = !found
+      this.loading = true
+      this.notFound = false
+
+      const authoredList = premiumData.modules
+      const authored = authoredList.find((m) => m.slug === this.slug)
+
+      try {
+        const row = await auth.getModule(this.slug)
+        this.module = {
+          slug: row.slug,
+          title: row.module_title,
+          summary: authored?.summary || row.description || '',
+          audience: authored?.audience || '',
+          // The four modules written for the study carry a multi-section
+          // body; a module an admin created through the panel only has a
+          // plain description, so it renders as a single section instead.
+          sections: authored?.sections || (row.description
+            ? [{ heading: 'Overview', body: row.description }]
+            : []),
+          video_url: row.video_url || null
+        }
+
+        // "Next module" only makes sense as a walk through the hand-authored
+        // sequence; an admin-added module just ends the chain.
+        const at = authoredList.findIndex((m) => m.slug === this.slug)
+        this.nextModule = (at !== -1 && at < authoredList.length - 1) ? authoredList[at + 1] : null
+      } catch (err) {
+        this.notFound = true
+      } finally {
+        this.loading = false
+      }
     }
   }
 }

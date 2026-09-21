@@ -94,7 +94,12 @@
 
         <ul v-else class="dash-list">
           <li v-for="(entry, index) in quizHistory" :key="index" class="dash-list-row">
-            <span>{{ entry.module_title }}</span>
+            <span>
+              {{ entry.module_title }}
+              <span :class="['dash-badge', passed(entry) ? 'dash-badge-pass' : 'dash-badge-fail']">
+                {{ passed(entry) ? 'Pass' : 'Fail' }}
+              </span>
+            </span>
             <span class="dash-list-meta">
               {{ entry.score }}/{{ entry.total }} · {{ percent(entry) }}
               <small v-if="entry.date_completed"> · {{ formatDate(entry.date_completed) }}</small>

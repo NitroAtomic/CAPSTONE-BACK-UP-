@@ -222,6 +222,18 @@
     @apply font-semibold;
   }
 
+  .dash-badge {
+    @apply ml-2 px-2 py-0.5 rounded-full text-xs font-semibold align-middle;
+  }
+
+  .dash-badge-pass {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .dash-badge-fail {
+    @apply bg-red-100 text-red-800;
+  }
+
   .dash-upgrade-note {
     @apply mt-8 rounded-2xl border border-dashed border-black p-5 text-sm;
   }

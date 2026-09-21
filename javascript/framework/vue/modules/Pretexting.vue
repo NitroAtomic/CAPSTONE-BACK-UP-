@@ -233,17 +233,15 @@
         </ul>
     </section>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=cbL_IBAi6tA"
+        title="SANS Institute — &quot;What Is a Pretexting Attack?&quot;"
+    />
+
     <section id="pretexting-curated-resources">
         <h2>Curated Resources & References</h2>
 
         <ul>
-            <li>
-                <strong>Video Source:</strong>
-                <a href="https://www.youtube.com/watch?v=cbL_IBAi6tA" target="_blank" rel="noopener noreferrer">
-                    SANS Institute — "What Is a Pretexting Attack?"
-                </a>
-            </li>
-
             <li>
                 <strong>Reference Guide:</strong>
                 <a href="https://securityboulevard.com/2026/06/pretexting-examples-real-world-scams-explained/" target="_blank" rel="noopener noreferrer">

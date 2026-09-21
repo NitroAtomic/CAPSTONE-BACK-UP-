@@ -18,6 +18,23 @@ async function hasPremiumAccess(user) {
   return rows[0].subscription_type === 'Premium' && rows[0].subscription_status === 'active';
 }
 
+// Public teaser list for the Premium module catalog: title/summary/category
+// only, for every module_type = 'Premium' row (admin-created ones included),
+// visible to signed-out and Free accounts alike so the value of upgrading is
+// visible. No description/video_url beyond what's already shown on the
+// marketing page — the gated detail lives behind GET /:slug below.
+router.get('/premium-list', async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      "SELECT module_id, module_title, description, category, slug FROM module WHERE module_type = 'Premium' ORDER BY module_title"
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to load premium modules.' });
+  }
+});
+
 // List modules. Free modules are visible to everyone, Premium only to
 // Premium/admin. This check happens here, server-side, not just hidden
 // in the frontend UI.

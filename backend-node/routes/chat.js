@@ -104,18 +104,35 @@ function findAnswer(message) {
   return best ? best.answer : null;
 }
 
+// Redacts anything that looks like a shared password before it leaves this
+// server, whether that's to a third-party AI provider (n8n/Gemini) or into
+// a log line. This platform's own advice is "never share a password over
+// chat" (see the KNOWLEDGE entry above) — forwarding someone's actual
+// password to an external API because they typed it into this box would be
+// exactly the mistake it teaches against.
+const PASSWORD_PATTERN = /\b(pass(?:word)?|pwd)\b(\s*[:=]|\s+is)?\s*["']?([^\s"',.!?]{3,})["']?/gi;
+
+function redactSecrets(text) {
+  return text.replace(PASSWORD_PATTERN, (match, label, connector = '') => `${label}${connector} [REDACTED]`);
+}
+
 const FALLBACK =
   "I do not have a prepared answer for that one. I can help with phishing, quishing, spear phishing, smishing, vishing, pretexting, passwords, multi-factor authentication, invoice and payment scams, recruitment scams, and securing a home network.\n\nThe six free modules cover all of these in more depth.";
 
 router.post('/', async (req, res) => {
-  const { message } = req.body;
+  const { message: rawMessage } = req.body;
 
-  if (!message || typeof message !== 'string' || !message.trim()) {
+  if (!rawMessage || typeof rawMessage !== 'string' || !rawMessage.trim()) {
     return res.status(400).json({ error: 'A message is required.' });
   }
-  if (message.length > 1000) {
+  if (rawMessage.length > 1000) {
     return res.status(400).json({ error: 'That message is too long.' });
   }
+
+  // From here on, use the redacted text — this is what gets sent to any
+  // third-party provider, matched against local keywords, and would end up
+  // in a log line if one were ever added.
+  const message = redactSecrets(rawMessage);
 
   // Find the passages from our own modules that best match the question.
   // These are what the model is asked to answer from, so the assistant

@@ -47,6 +47,12 @@
           </div>
         </div>
 
+        <div class="auth-field">
+          <label for="admin-video">Video URL</label>
+          <input id="admin-video" v-model="form.video_url" type="text"
+                 placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+
         <button class="auth-submit" type="submit" :disabled="busy">
           {{ busy ? 'Saving...' : (isEditing ? 'Save changes' : 'Create module') }}
         </button>
@@ -78,11 +84,81 @@
             <td>{{ mod.module_type }}</td>
             <td class="admin-actions">
               <button type="button" @click="startEdit(mod)">Edit</button>
+              <button type="button" @click="manageQuiz(mod)">
+                {{ quizModuleId === mod.module_id ? 'Close quiz' : 'Manage quiz' }}
+              </button>
               <button type="button" class="admin-delete" @click="remove(mod)">Delete</button>
             </td>
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section v-if="quizModuleId" class="admin-form-section">
+      <h2>Quiz questions</h2>
+
+      <p v-if="quizLoading" class="dash-status">Loading questions...</p>
+
+      <template v-else>
+        <p v-if="questionMessage" class="auth-message auth-message-error">{{ questionMessage }}</p>
+
+        <table v-if="questions.length" class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question</th>
+              <th>Correct answer</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="q in questions" :key="q.question_id">
+              <td>{{ q.order_index }}</td>
+              <td>{{ q.question_text }}</td>
+              <td>{{ (Array.isArray(q.options) ? q.options : []).at(q.correct_option_index) }}</td>
+              <td class="admin-actions">
+                <button type="button" @click="startEditQuestion(q)">Edit</button>
+                <button type="button" class="admin-delete" @click="removeQuestion(q)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p v-else class="dash-section-note">No questions yet. Add the first one below.</p>
+
+        <h3>{{ isEditingQuestion ? 'Edit question' : 'Add a question' }}</h3>
+
+        <form class="auth-form" @submit.prevent="saveQuestion">
+          <div class="auth-field">
+            <label for="q-text">Question</label>
+            <input id="q-text" v-model="questionForm.question_text" type="text"
+                   placeholder="What should you do if...">
+          </div>
+
+          <div class="auth-field-row" v-for="(opt, i) in questionForm.options" :key="i">
+            <div class="auth-field">
+              <label :for="'q-option-' + i">Option {{ i + 1 }}</label>
+              <input :id="'q-option-' + i" v-model="questionForm.options[i]" type="text">
+            </div>
+            <label>
+              <input type="radio" :value="i" v-model.number="questionForm.correct_option_index">
+              Correct
+            </label>
+          </div>
+
+          <div class="auth-field">
+            <label for="q-order">Order</label>
+            <input id="q-order" v-model.number="questionForm.order_index" type="number" min="0">
+          </div>
+
+          <button class="auth-submit" type="submit" :disabled="questionBusy">
+            {{ questionBusy ? 'Saving...' : (isEditingQuestion ? 'Save changes' : 'Add question') }}
+          </button>
+
+          <button v-if="isEditingQuestion" class="admin-cancel" type="button" @click="cancelEditQuestion">
+            Cancel
+          </button>
+        </form>
+      </template>
     </section>
 
   </main>

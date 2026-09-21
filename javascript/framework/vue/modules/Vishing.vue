@@ -244,17 +244,15 @@
         </ul>
     </section>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=zE60tK9M1x8"
+        title="Global Cyber Alliance — &quot;What is Vishing? Understanding This High-Tech Phone Scam&quot;"
+    />
+
     <section id="vishing-curated-resources">
         <h2>Curated Resources & References</h2>
 
         <ul>
-            <li>
-                <strong>Video Source:</strong>
-                <a href="https://www.youtube.com/watch?v=zE60tK9M1x8" target="_blank" rel="noopener noreferrer">
-                    Global Cyber Alliance — "What is Vishing? Understanding This High-Tech Phone Scam"
-                </a>
-            </li>
-
             <li>
                 <strong>Reference Guide:</strong>
                 <a href="https://www.cisco.com/site/us/en/learn/topics/security/what-is-vishing.html" target="_blank" rel="noopener noreferrer">

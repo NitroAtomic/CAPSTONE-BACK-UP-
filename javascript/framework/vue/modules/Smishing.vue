@@ -239,17 +239,15 @@
         </ul>
     </section>
 
+    <ModuleVideo
+        url="https://www.youtube.com/watch?v=2n-1ZInI_vE"
+        title="Federal Communications Commission (FCC) — &quot;Avoid the Temptation of Smishing Scams&quot;"
+    />
+
     <section id="smishing-curated-resources">
         <h2>Curated Resources & References</h2>
 
         <ul>
-            <li>
-                <strong>Video Source:</strong>
-                <a href="https://www.youtube.com/watch?v=2n-1ZInI_vE" target="_blank" rel="noopener noreferrer">
-                    Federal Communications Commission (FCC) — "Avoid the Temptation of Smishing Scams"
-                </a>
-            </li>
-
             <li>
                 <strong>Reference Guide:</strong>
                 <a href="https://www.fcc.gov/avoid-temptation-smishing-scams" target="_blank" rel="noopener noreferrer">
