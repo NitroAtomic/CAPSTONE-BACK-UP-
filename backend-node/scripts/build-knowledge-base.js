@@ -67,17 +67,31 @@ const entries = [];
 
 // 1. Yung anim na Free module pages.
 //
+// Dati galing to sa /modules/*.html (yung pre-Vue static pages). Tinanggal na
+// yun sa cleanup (dead weight na, hindi na ginagamit ng live site), kaya dito
+// na sa totoong source of truth kinukuha: yung .vue component mismo ng bawat
+// module sa javascript/framework/vue/modules/. Ang <template> block ang
+// binabasa, parang HTML pa rin naman ang laman non.
+//
 // Hinati sa section headings, hindi isang page = isang block. Kung hindi
 // ganito, iisang vague na title lang share ng bawat chunk ng page, samantalang
 // descriptive naman yung title ng role-based modules gaya ng "Red flags" —
 // kaya na-bias yung retrieval papunta doon nang walang dahilan.
-const modulesDir = path.join(ROOT, 'modules');
+const modulesDir = path.join(ROOT, 'javascript', 'framework', 'vue', 'modules');
 if (fs.existsSync(modulesDir)) {
-  for (const file of fs.readdirSync(modulesDir).filter((f) => f.endsWith('.html'))) {
-    const html = fs.readFileSync(path.join(modulesDir, file), 'utf8');
+  // Yung mga tunay na module pages lang, hindi yung mga helper component
+  // gaya ng ModuleVideo.vue — tinutukoy sa pagkakaroon ng "module-page" class,
+  // na nasa <main> wrapper ng bawat totoong module page.
+  for (const file of fs.readdirSync(modulesDir).filter((f) => f.endsWith('.vue'))) {
+    const sfc = fs.readFileSync(path.join(modulesDir, file), 'utf8');
+    if (!sfc.includes('module-page')) continue;
 
-    const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
-    const moduleName = (titleMatch ? titleMatch[1] : file)
+    const templateMatch = sfc.match(/<template>([\s\S]*)<\/template>/i);
+    if (!templateMatch) continue;
+    const html = templateMatch[1];
+
+    const h1Match = html.match(/<h1[^>]*>([^<]*)<\/h1>/i);
+    const moduleName = (h1Match ? h1Match[1] : file.replace(/\.vue$/, ''))
       .replace(/\s*[|-].*$/, '')
       .replace(/^Module\s*\d+:\s*/i, '')
       .trim();
@@ -97,7 +111,7 @@ if (fs.existsSync(modulesDir)) {
         ? `${moduleName}: ${heading}`
         : moduleName;
 
-      entries.push(...chunk(bodyText, label, `modules/${file}`));
+      entries.push(...chunk(bodyText, label, `javascript/framework/vue/modules/${file}`));
       carriedHeading = heading || carriedHeading;
     }
   }
