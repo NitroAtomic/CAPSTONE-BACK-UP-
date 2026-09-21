@@ -267,7 +267,7 @@
 
         <p>
             Ready to check what you've learned? Take a randomized
-            10-question quiz based on this module.
+            20-question quiz based on this module.
         </p>
 
         <router-link to="/quiz/module-3/question" class="take-quiz-button">

@@ -4,13 +4,15 @@ import module2 from '../data/module-2.json'
 import module3 from '../data/module-3.json'
 import module4 from '../data/module-4.json'
 import module5 from '../data/module-5.json'
+import module6 from '../data/module-6.json'
 
 const MODULE_DATA = {
   'module-1': module1,
   'module-2': module2,
   'module-3': module3,
   'module-4': module4,
-  'module-5': module5
+  'module-5': module5,
+  'module-6': module6
 }
 
 const MODULE_PATHS = {
@@ -18,7 +20,8 @@ const MODULE_PATHS = {
   'module-2': '/modules/spear-phishing',
   'module-3': '/modules/smishing',
   'module-4': '/modules/vishing',
-  'module-5': '/modules/pretexting'
+  'module-5': '/modules/pretexting',
+  'module-6': '/modules/essential-safe-practices-remote-environments'
 }
 
 const NEXT_MODULE = {

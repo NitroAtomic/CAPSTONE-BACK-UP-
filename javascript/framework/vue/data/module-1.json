@@ -1,62 +1,12 @@
 {
   "moduleId": "module-1",
   "moduleName": "Quishing",
-  "totalQuestions": 10,
-  "standardCount": 5,
+  "totalQuestions": 20,
+  "standardCount": 15,
   "scenarioBasedCount": 5,
   "questions": [
     {
       "id": 1,
-      "category": "easy",
-      "questionType": "standard",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "The presence of \"HTTPS\" and a padlock icon in the browser address bar guarantees that a login website is legitimate and safe.",
-      "options": [
-        {
-          "value": "a",
-          "text": "True"
-        },
-        {
-          "value": "b",
-          "text": "False"
-        }
-      ],
-      "explanation": "False. Threat actors can easily acquire free SSL/TLS certificates for fraudulent domain names, displaying HTTPS padlock icons on malicious credential-harvesting websites."
-    },
-    {
-      "id": 2,
-      "category": "easy",
-      "questionType": "standard",
-      "answerType": "single",
-      "correctAnswer": "c",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "Which domain name represents an example of \"typosquatting\"?",
-      "options": [
-        {
-          "value": "a",
-          "text": "support.google.com"
-        },
-        {
-          "value": "b",
-          "text": "login.microsoft.com"
-        },
-        {
-          "value": "c",
-          "text": "security-update@micros0ft-verify.com"
-        },
-        {
-          "value": "d",
-          "text": "portal.slack.com"
-        }
-      ],
-      "explanation": "micros0ft-verify.com uses a zero ('0') in place of the letter 'o' to trick users into believing it is an official Microsoft communication channel."
-    },
-    {
-      "id": 3,
       "category": "easy",
       "questionType": "standard",
       "answerType": "single",
@@ -85,7 +35,169 @@
       "explanation": "Email phishing uses deceptive messages to trick victims into sharing private credentials, executing malware, or surrendering sensitive organizational data."
     },
     {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "The presence of \"HTTPS\" and a padlock icon in the browser address bar guarantees that a login website is legitimate and safe.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Threat actors can easily acquire free SSL/TLS certificates for fraudulent domain names, displaying HTTPS padlock icons on malicious credential-harvesting websites."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "c",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What does the term \"Quishing\" refer to in modern cybersecurity?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Sending phishing attempts via voice phone calls"
+        },
+        {
+          "value": "b",
+          "text": "Hacking smart television devices"
+        },
+        {
+          "value": "c",
+          "text": "Using malicious QR codes to conceal phishing URLs and bypass security filters"
+        },
+        {
+          "value": "d",
+          "text": "Encrypting databases using ransomware"
+        }
+      ],
+      "explanation": "Quishing stands for QR code phishing, where malicious links are embedded in image files to bypass textual email filters."
+    },
+    {
       "id": 4,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "c",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which domain name represents an example of \"typosquatting\"?",
+      "options": [
+        {
+          "value": "a",
+          "text": "support.google.com"
+        },
+        {
+          "value": "b",
+          "text": "login.microsoft.com"
+        },
+        {
+          "value": "c",
+          "text": "security-update@micros0ft-verify.com"
+        },
+        {
+          "value": "d",
+          "text": "portal.slack.com"
+        }
+      ],
+      "explanation": "micros0ft-verify.com uses a zero ('0') in place of the letter 'o' to trick users into believing it is an official Microsoft communication channel."
+    },
+    {
+      "id": 5,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Security Email Gateways (SEGs) detect embedded QR code links just as easily as standard plain-text web links.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Traditional SEGs primarily scan textual and HTML links. Image-based QR codes often bypass standard filters because the URL is hidden inside the graphic payload. #### **Medium Level (Questions 6–13)**"
+    },
+    {
+      "id": 6,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which of the following indicators strongly suggest that an email may be a phishing attempt? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": "Mismatch between the display sender name and the actual email domain address"
+        },
+        {
+          "value": "b",
+          "text": "Messages requesting urgent multi-factor authentication (MFA) re-verification"
+        },
+        {
+          "value": "c",
+          "text": "Digitally signed calendar invites sent from verified internal team accounts"
+        },
+        {
+          "value": "d",
+          "text": "Unsolicited attachments asking you to enable macros to view content"
+        }
+      ],
+      "explanation": "Mismatched headers, urgent MFA prompts, and macro-enabled attachments are classic phishing indicators. Digitally signed internal calendar invites are standard workflow items."
+    },
+    {
+      "id": 7,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "c",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You receive an email from IT-Support@company-desk.net stating: \"Your password expires in 10 minutes. Click here to retain your current password.\" What should you do first?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Click the link immediately to prevent losing account access"
+        },
+        {
+          "value": "b",
+          "text": "Forward the email to your personal account so you don't lose the link"
+        },
+        {
+          "value": "c",
+          "text": "Pause, do not click the link, and verify the sender address against official internal IT contacts"
+        },
+        {
+          "value": "d",
+          "text": "Reply to the email providing your current password so IT can fix it for you"
+        }
+      ],
+      "explanation": "You should pause and verify unrequested urgent security alerts independently through official internal channels."
+    },
+    {
+      "id": 8,
       "category": "medium",
       "questionType": "standard",
       "answerType": "single",
@@ -114,14 +226,89 @@
       "explanation": "Scanning QR codes on personal phones redirects traffic outside the desktop perimeter firewalls and email monitoring systems maintained by corporate networks."
     },
     {
-      "id": 5,
+      "id": 9,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Hovering your mouse over a hyperlinked button in an email allows you to preview the actual destination URL before clicking.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "True. Hovering over a hyperlink reveals the true underlying web destination address in the browser or mail client status bar."
+    },
+    {
+      "id": 10,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which of the following file extensions attached to an unsolicited email should be treated as high-risk? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": ".pdf.exe"
+        },
+        {
+          "value": "b",
+          "text": ".docm (Macro-enabled Word document)"
+        },
+        {
+          "value": "c",
+          "text": ".png"
+        },
+        {
+          "value": "d",
+          "text": ".vbs (Visual Basic Script)"
+        }
+      ],
+      "explanation": "Double extensions (.pdf.exe), macro-enabled documents (.docm), and script files (.vbs) can automatically execute malicious payloads on a host computer."
+    },
+    {
+      "id": 11,
       "category": "medium",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "You receive an email notification stating your company cloud portal requires urgent re-authentication, with a link included. What is the safest way to access the portal?",
+      "questionText": "A remote freelancer receives an email with an embedded QR code labeled \"Scan to View Signed Client NDA.\" Scans show the QR code opens http://192.168.1.1/login.html. Is this safe to open?",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Legitimate signed contracts are not hosted on raw local IP addresses or delivered via unencrypted QR codes without prior client agreement."
+    },
+    {
+      "id": 12,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the safest way to access a company cloud portal after receiving a suspicious email notification?",
       "options": [
         {
           "value": "a",
@@ -143,14 +330,14 @@
       "explanation": "Navigating independently via a trusted bookmark or manual URL entry completely bypasses any malicious redirects embedded in the email."
     },
     {
-      "id": 6,
+      "id": 13,
       "category": "medium",
-      "questionType": "scenario-based",
+      "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "a",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Before clicking a hyperlinked \"Verify Account\" button in an email, you hover your mouse over it without clicking. Does this let you preview the actual destination URL before you click?",
+      "questionText": "Combosquatting involves adding words like \"-security\" or \"-login\" to legitimate brand names within a domain registration.",
       "options": [
         {
           "value": "a",
@@ -161,38 +348,17 @@
           "text": "False"
         }
       ],
-      "explanation": "True. Hovering over a hyperlink reveals the true underlying web destination address in the browser or mail client status bar."
+      "explanation": "True. Combosquatting merges legitimate brand trademarks with keywords (e.g., paypal-update-center.com) to mislead recipients. #### **Hard / Advanced Level (Questions 14–20)**"
     },
     {
-      "id": 7,
+      "id": 14,
       "category": "hard",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "You scan a QR code from a vendor PDF. It opens a Google Sign-In page asking you to \"Grant Full OAuth Permissions to App XYZ.\" Granting access is safe because the URL starts with accounts.google.com.",
-      "options": [
-        {
-          "value": "a",
-          "text": "True"
-        },
-        {
-          "value": "b",
-          "text": "False"
-        }
-      ],
-      "explanation": "False. Malicious OAuth applications use real Google/Microsoft sign-in portals to request excessive account permissions. Once granted, the attacker gets persistent cloud access without needing your password."
-    },
-    {
-      "id": 8,
-      "category": "hard",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "A virtual assistant receives an email displaying the company CEO's exact name and profile photo. The sender address is ceo-office@exec-mail-corp.com (not the corporate @company.com domain). The message requests an urgent purchase of gift card vouchers for an ongoing client event. What social engineering tactic is being deployed?",
+      "questionText": "A virtual assistant receives an email displaying the company CEO’s exact name and profile photo. The sender address is ceo-office@exec-mail-corp.com (not the corporate @company.com domain). The message requests an urgent purchase of gift card vouchers for an ongoing client event. What social engineering tactic is being deployed?",
       "options": [
         {
           "value": "a",
@@ -214,7 +380,90 @@
       "explanation": "The attacker uses executive identity impersonation combined with a combosquatted external domain (exec-mail-corp.com) to trick the assistant into making unauthorized purchases."
     },
     {
-      "id": 9,
+      "id": 15,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "c"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What technical security mechanisms can organizations configure to help block spoofed email headers? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": "SPF (Sender Policy Framework)"
+        },
+        {
+          "value": "b",
+          "text": "DKIM (DomainKeys Identified Mail)"
+        },
+        {
+          "value": "c",
+          "text": "DMARC (Domain-based Message Authentication, Reporting, and Conformance)"
+        },
+        {
+          "value": "d",
+          "text": "Upgrading physical monitor screen resolutions"
+        }
+      ],
+      "explanation": "SPF, DKIM, and DMARC are DNS-based email authentication protocols configured to verify sender domain legitimacy and stop header spoofing."
+    },
+    {
+      "id": 16,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You scan a QR code from a vendor PDF. It opens a Google Sign-In page asking you to \"Grant Full OAuth Permissions to App XYZ.\" Granting access is safe because the URL starts with accounts.google.com.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Malicious OAuth applications use real Google/Microsoft sign-in portals to request excessive account permissions. Once granted, the attacker gets persistent cloud access without needing your password."
+    },
+    {
+      "id": 17,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the primary reason threat actors exploit human curiosity or urgency during a phishing attempt?",
+      "options": [
+        {
+          "value": "a",
+          "text": "To test the bandwidth limitations of home routers"
+        },
+        {
+          "value": "b",
+          "text": "To trigger fast, emotional decision-making that bypasses logical identity verification"
+        },
+        {
+          "value": "c",
+          "text": "To force web browsers to automatically clear local cache files"
+        },
+        {
+          "value": "d",
+          "text": "To shorten the length of domain URLs"
+        }
+      ],
+      "explanation": "High-pressure emotional triggers (fear, urgency, curiosity) induce cognitive overload, causing targets to act before inspecting sender details or verifying requests."
+    },
+    {
+      "id": 18,
       "category": "hard",
       "questionType": "scenario-based",
       "answerType": "single",
@@ -243,7 +492,7 @@
       "explanation": "Internal verification via official out-of-band communication channels is the only reliable way to confirm patch validity."
     },
     {
-      "id": 10,
+      "id": 19,
       "category": "hard",
       "questionType": "standard",
       "answerType": "multiple",
@@ -262,7 +511,7 @@
         },
         {
           "value": "b",
-          "text": "Revoke active user sessions and alert your organization's IT/Security team"
+          "text": "Revoke active user sessions and alert your organization’s IT/Security team"
         },
         {
           "value": "c",
@@ -274,6 +523,27 @@
         }
       ],
       "explanation": "Resetting credentials, revoking active sessions, alerting IT, and auditing registered MFA devices stops ongoing unauthorized account access. Deleting local browser history does not stop the remote attacker."
+    },
+    {
+      "id": 20,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Phishing attacks targeting remote employees exclusively occur through traditional business email, never through personal email or instant messaging platforms.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Attackers routinely target remote employees across personal email, LinkedIn DMs, WhatsApp, and Telegram to bypass enterprise email controls. MODULE 2: Spear Phishing"
     }
   ]
 }

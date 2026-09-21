@@ -1,21 +1,23 @@
-// Static import of all 5 built modules' question data.
+// Static import of all 6 built modules' question data.
 // Vite bundles .json imports automatically — no extra config needed.
 import module1 from '../data/module-1.json'
 import module2 from '../data/module-2.json'
 import module3 from '../data/module-3.json'
 import module4 from '../data/module-4.json'
 import module5 from '../data/module-5.json'
+import module6 from '../data/module-6.json'
 
 const MODULE_DATA = {
   'module-1': module1,
   'module-2': module2,
   'module-3': module3,
   'module-4': module4,
-  'module-5': module5
+  'module-5': module5,
+  'module-6': module6
 }
 
 // Fisher-Yates shuffle — randomizes ORDER only.
-// We never drop or add questions here; all 10 always appear,
+// We never drop or add questions here; all 20 always appear,
 // just in a different sequence each attempt (per Capstone paper requirement).
 function shuffleOrder(array) {
   const shuffled = [...array]

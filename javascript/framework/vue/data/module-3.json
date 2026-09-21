@@ -1,62 +1,12 @@
 {
   "moduleId": "module-3",
   "moduleName": "Smishing",
-  "totalQuestions": 10,
-  "standardCount": 5,
+  "totalQuestions": 20,
+  "standardCount": 15,
   "scenarioBasedCount": 5,
   "questions": [
     {
       "id": 1,
-      "category": "easy",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "You receive a text message from an unknown number containing a suspicious link and urging you to act immediately. What is the safest action to take?",
-      "options": [
-        {
-          "value": "a",
-          "text": "Tap the link to see where it leads."
-        },
-        {
-          "value": "b",
-          "text": "Delete the message, report it, and do not click any links."
-        },
-        {
-          "value": "c",
-          "text": "Forward the message to 10 friends."
-        },
-        {
-          "value": "d",
-          "text": "Call the unknown number and insult the caller."
-        }
-      ],
-      "explanation": "Refraining from interaction and deleting/reporting the message mitigates risk."
-    },
-    {
-      "id": 2,
-      "category": "easy",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "You get an unsolicited promotional text from an unknown sender and reply \"STOP,\" expecting to be removed from their list. Will this safely unsubscribe you from a smishing scammer's messages?",
-      "options": [
-        {
-          "value": "a",
-          "text": "True"
-        },
-        {
-          "value": "b",
-          "text": "False"
-        }
-      ],
-      "explanation": "Replying to a scam text confirms to the attacker that your phone number is active, leading to more targeted attacks."
-    },
-    {
-      "id": 3,
       "category": "easy",
       "questionType": "standard",
       "answerType": "single",
@@ -85,14 +35,35 @@
       "explanation": "Smishing combines \"SMS\" (text messaging) and \"phishing\"."
     },
     {
-      "id": 4,
-      "category": "medium",
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "If a text message appears in the same chat thread as previous legitimate bank messages, it is 100% guaranteed to be safe.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Attackers can use Sender ID spoofing to inject fake text messages into existing SMS conversation threads on mobile devices."
+    },
+    {
+      "id": 3,
+      "category": "easy",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "You receive a text message: \"USPS Alert: Your package cannot be delivered due to an incorrect house number. Update info here: bit.ly/3xY9zQ\". You are expecting a package. What is the correct action?",
+      "questionText": "You receive a text message: *\"USPS Alert: Your package cannot be delivered due to an incorrect house number. Update info here: bit.ly/3xY9zQ\"*. You are expecting a package. What is the correct action?",
       "options": [
         {
           "value": "a",
@@ -114,14 +85,75 @@
       "explanation": "Always verify parcel delivery alerts by accessing the official website or app independently, never through unsolicited SMS links."
     },
     {
+      "id": 4,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Why are mobile browsers particularly vulnerable to web link deceptive techniques?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Mobile screens automatically block HTTPS connections."
+        },
+        {
+          "value": "b",
+          "text": "Mobile screens have limited space, often truncating or hiding the full URL bar and security indicators."
+        },
+        {
+          "value": "c",
+          "text": "Smartphones cannot run web browsers."
+        },
+        {
+          "value": "d",
+          "text": "Mobile networks disable domain name resolution."
+        }
+      ],
+      "explanation": "Reduced screen size makes it difficult for users to inspect the full domain path of a link before interacting."
+    },
+    {
       "id": 5,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which of the following are primary indicators of a smishing attempt? *(Select TWO)*",
+      "options": [
+        {
+          "value": "a",
+          "text": "An SMS prompting you to click a link to claim an unexpected lottery prize."
+        },
+        {
+          "value": "b",
+          "text": "A text from your official IT desk asking you to reply with a 6-digit MFA login code."
+        },
+        {
+          "value": "c",
+          "text": "A calendar reminder created locally on your phone."
+        },
+        {
+          "value": "d",
+          "text": "An internal Slack message from a verified colleague."
+        }
+      ],
+      "explanation": "Unsolicited prize claims and requests to text back MFA tokens are key smishing indicators."
+    },
+    {
+      "id": 6,
       "category": "medium",
       "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "Legitimate banks routinely send text messages asking customers to directly text back their full PIN or password.",
+      "questionText": "Replying \"STOP\" to a smishing text message from an unknown scammer will safely unsubscribe you from their list.",
       "options": [
         {
           "value": "a",
@@ -132,10 +164,147 @@
           "text": "False"
         }
       ],
-      "explanation": "Financial institutions explicitly prohibit requesting sensitive passwords, PINs, or OTPs via text."
+      "explanation": "Replying to a scam text confirms to the attacker that your phone number is active, leading to more targeted attacks."
     },
     {
-      "id": 6,
+      "id": 7,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You attempt to log into your work portal. A minute later, you receive a text: *\"IT Helpdesk: We detected an abnormal login. Reply YES with the code you just received to block the login.\"* What is happening?",
+      "options": [
+        {
+          "value": "a",
+          "text": "IT is securely helping you protect your account."
+        },
+        {
+          "value": "b",
+          "text": "An attacker triggered your real login prompt and is trying to trick you into texting them your OTP."
+        },
+        {
+          "value": "c",
+          "text": "Your phone has a hardware virus that generates text messages."
+        },
+        {
+          "value": "d",
+          "text": "Your mobile service provider is upgrading its network towers."
+        }
+      ],
+      "explanation": "Attackers trigger a real login prompt to generate a genuine OTP, then smish the victim to forward that OTP to complete the breach."
+    },
+    {
+      "id": 8,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the risk of using shortened URLs (bit.ly, tinyurl) in SMS messages?",
+      "options": [
+        {
+          "value": "a",
+          "text": "They consume extra mobile data."
+        },
+        {
+          "value": "b",
+          "text": "They obscure the actual destination domain, making it impossible to evaluate safety at a glance."
+        },
+        {
+          "value": "c",
+          "text": "They automatically install viruses without user interaction."
+        },
+        {
+          "value": "d",
+          "text": "They disable mobile touchscreen responsiveness."
+        }
+      ],
+      "explanation": "URL shorteners hide the real destination address, concealing malicious domains."
+    },
+    {
+      "id": 9,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Personal smartphones used under BYOD (Bring Your Own Device) policies are always protected by corporate firewalls.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Personal BYOD devices operate on commercial cellular networks or home Wi-Fi, bypassing corporate perimeter firewalls."
+    },
+    {
+      "id": 10,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What technology allows scammers to change the phone number or name displayed on your mobile incoming text screen?",
+      "options": [
+        {
+          "value": "a",
+          "text": "OAuth 2.0"
+        },
+        {
+          "value": "b",
+          "text": "Caller ID / Alpha-Numeric Sender ID Spoofing"
+        },
+        {
+          "value": "c",
+          "text": "Transport Layer Security"
+        },
+        {
+          "value": "d",
+          "text": "Fiber Optic Splicing"
+        }
+      ],
+      "explanation": "Sender ID spoofing allows SMS gateways to modify the header sender text displayed on receiver phones."
+    },
+    {
+      "id": 11,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A remote worker receives a text message: *\"HR ALERT: Update your direct deposit bank details at* *https://payroll-portal-update.com* *before 5 PM to receive this week's paycheck.\"* What should the worker check first?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Tap the link and enter the old bank account number."
+        },
+        {
+          "value": "b",
+          "text": "Verify the URL against official company payroll bookmarks and contact HR via official email/call."
+        },
+        {
+          "value": "c",
+          "text": "Post a screenshot of the link on personal social media."
+        },
+        {
+          "value": "d",
+          "text": "Reply with credit card credentials."
+        }
+      ],
+      "explanation": "Urgent threats regarding payroll/direct deposit sent via text require out-of-band verification."
+    },
+    {
+      "id": 12,
       "category": "medium",
       "questionType": "standard",
       "answerType": "single",
@@ -164,14 +333,64 @@
       "explanation": "Forwarding spam texts to 7726 (SPAM) alerts carriers to investigate and block malicious sender numbers."
     },
     {
-      "id": 7,
+      "id": 13,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Legitimate banks routinely send text messages asking customers to directly text back their full PIN or password.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Financial institutions explicitly prohibit requesting sensitive passwords, PINs, or OTPs via text."
+    },
+    {
+      "id": 14,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which mobile security practice best protects against smishing attacks seeking to compromise work accounts?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Transitioning from SMS-based MFA to mobile authenticator apps (TOTP) or hardware keys."
+        },
+        {
+          "value": "b",
+          "text": "Disabling screen auto-lock."
+        },
+        {
+          "value": "c",
+          "text": "Saving all passwords in plain text notes on the phone."
+        },
+        {
+          "value": "d",
+          "text": "Connecting to open public Wi-Fi networks without encryption."
+        }
+      ],
+      "explanation": "Authenticator apps generate time-based codes locally, rendering SMS interception attacks useless."
+    },
+    {
+      "id": 15,
       "category": "hard",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "You receive a WhatsApp text from an unknown international number displaying your company logo: \"Hi, I am John from Corporate IT. We are updating mobile profiles. Click this link to install our security certificate.\" How should you respond?",
+      "questionText": "You receive a WhatsApp text from an unknown international number displaying your company logo: *\"Hi, I am John from Corporate IT. We are updating mobile profiles. Click this link to install our security certificate.\"* How should you respond?",
       "options": [
         {
           "value": "a",
@@ -193,7 +412,7 @@
       "explanation": "Corporate IT security profiles are deployed through formal Mobile Device Management (MDM) tools, never random instant messages."
     },
     {
-      "id": 8,
+      "id": 16,
       "category": "hard",
       "questionType": "standard",
       "answerType": "single",
@@ -214,62 +433,115 @@
       "explanation": "Malicious mobile applications (e.g., infected APKs) can request SMS permissions to intercept and exfiltrate OTPs."
     },
     {
-      "id": 9,
-      "category": "hard",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "You attempt to log into your work portal. A minute later, you receive a text: \"IT Helpdesk: We detected an abnormal login. Reply YES with the code you just received to block the login.\" What is happening?",
-      "options": [
-        {
-          "value": "a",
-          "text": "IT is securely helping you protect your account."
-        },
-        {
-          "value": "b",
-          "text": "An attacker triggered your real login prompt and is trying to trick you into texting them your OTP."
-        },
-        {
-          "value": "c",
-          "text": "Your phone has a hardware virus that generates text messages."
-        },
-        {
-          "value": "d",
-          "text": "Your mobile service provider is upgrading its network towers."
-        }
-      ],
-      "explanation": "Attackers trigger a real login prompt to generate a genuine OTP, then smish the victim to forward that OTP to complete the breach."
-    },
-    {
-      "id": 10,
+      "id": 17,
       "category": "hard",
       "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "What technology allows scammers to change the phone number or name displayed on your mobile incoming text screen?",
+      "questionText": "What is the safest action to take when receiving a suspicious text message?",
       "options": [
         {
           "value": "a",
-          "text": "OAuth 2.0"
+          "text": "Tap the link to see where it leads."
         },
         {
           "value": "b",
-          "text": "Caller ID / Alpha-Numeric Sender ID Spoofing"
+          "text": "Delete the message, report it, and do not click any links."
         },
         {
           "value": "c",
-          "text": "Transport Layer Security"
+          "text": "Forward the message to 10 friends."
         },
         {
           "value": "d",
-          "text": "Fiber Optic Splicing"
+          "text": "Call the unknown number and insult the caller."
         }
       ],
-      "explanation": "Sender ID spoofing allows SMS gateways to modify the header sender text displayed on receiver phones."
+      "explanation": "Refraining from interaction and deleting/reporting the message mitigates risk."
+    },
+    {
+      "id": 18,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A text message reads: *\"Bank Alert: Fraud detected. Call 1-800-555-0199 immediately to cancel the transaction.\"* What is the safest way to call your bank?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Call the 1-800 number provided in the text message."
+        },
+        {
+          "value": "b",
+          "text": "Call the customer service number printed on the back of your official payment card or official site."
+        },
+        {
+          "value": "c",
+          "text": "Wait 3 weeks and check your mailbox."
+        },
+        {
+          "value": "d",
+          "text": "Text the number back asking for the caller's name."
+        }
+      ],
+      "explanation": "Phone numbers in smishing texts often lead directly to vishing agents; always use official contact numbers."
+    },
+    {
+      "id": 19,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "c"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Why do attackers target mobile devices rather than desktop computers in smishing campaigns? *(Select TWO)*",
+      "options": [
+        {
+          "value": "a",
+          "text": "Mobile devices generally lack enterprise web filters and EDR protection."
+        },
+        {
+          "value": "b",
+          "text": "Smartphones cannot connect to the internet."
+        },
+        {
+          "value": "c",
+          "text": "Users tend to respond faster to SMS notifications due to habitual mobile phone checking."
+        },
+        {
+          "value": "d",
+          "text": "SMS messages are encrypted with zero-trust protocols by default."
+        }
+      ],
+      "explanation": "Mobile devices combine rapid user response habits with weaker endpoint monitoring compared to managed corporate desktops."
+    },
+    {
+      "id": 20,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Legitimate logistics companies will always require you to pay a re-delivery fee via a third-party link sent by SMS.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Demanding credit card details via SMS links for \"unclaimed parcels\" is a standard smishing lure. MODULE 4: Vishing"
     }
   ]
 }

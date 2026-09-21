@@ -1,8 +1,8 @@
 {
   "moduleId": "module-2",
   "moduleName": "Spear Phishing",
-  "totalQuestions": 10,
-  "standardCount": 6,
+  "totalQuestions": 20,
+  "standardCount": 16,
   "scenarioBasedCount": 4,
   "questions": [
     {
@@ -39,6 +39,35 @@
       "category": "easy",
       "questionType": "standard",
       "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What does the acronym \"OSINT\" stand for in cybersecurity reconnaissance?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Operational System Internal Network Tracking"
+        },
+        {
+          "value": "b",
+          "text": "Open Source Intelligence"
+        },
+        {
+          "value": "c",
+          "text": "Optical Security Inspection for Network Traffic"
+        },
+        {
+          "value": "d",
+          "text": "Offline Storage Integration and Networking Tool"
+        }
+      ],
+      "explanation": "OSINT stands for Open Source Intelligence, referring to publicly available data mined from social platforms, repositories, and directories."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
       "correctAnswer": "a",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
@@ -56,14 +85,14 @@
       "explanation": "True. Attackers mine job titles, reporting structures, vendor software, and current projects from LinkedIn profiles to build convincing pretexts."
     },
     {
-      "id": 3,
+      "id": 4,
       "category": "easy",
-      "questionType": "scenario-based",
+      "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "A vendor you've never worked with emails you a password-protected .zip file labeled \"Invoice_Overdue.zip\" and asks you to enter the password from a separate message to open it. Why might an attacker package a malicious attachment this way?",
+      "questionText": "Why do attackers often send password-protected .zip files containing malicious attachments?",
       "options": [
         {
           "value": "a",
@@ -85,7 +114,28 @@
       "explanation": "Email gateway scanners cannot inspect encrypted archive contents without the password, allowing malicious payloads past boundary defenses."
     },
     {
-      "id": 4,
+      "id": 5,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Enabling macros on an unverified Microsoft Word or Excel attachment is safe as long as the document has a .docm extension.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. The .docm extension explicitly denotes a macro-enabled document. Enabling macros runs underlying VBA code that can install malware. #### **Medium Level (Questions 6–13)**"
+    },
+    {
+      "id": 6,
       "category": "medium",
       "questionType": "standard",
       "answerType": "multiple",
@@ -118,7 +168,161 @@
       "explanation": "LinkedIn, GitHub, and social media posts provide open public data. Private encrypted database servers are not public OSINT sources."
     },
     {
-      "id": 5,
+      "id": 7,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "You are a remote graphic designer. You receive a direct message on Telegram from someone claiming to be a senior manager at your main client account, asking you to open Design_Brief.pdf.exe. How should you react?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Open the file immediately since it contains \"pdf\" in the filename"
+        },
+        {
+          "value": "b",
+          "text": "Do not open the file; the double extension (.pdf.exe) indicates an executable file"
+        },
+        {
+          "value": "c",
+          "text": "Rename the file to .doc and then double-click it"
+        },
+        {
+          "value": "d",
+          "text": "Forward the file to a friend on personal social media"
+        }
+      ],
+      "explanation": "Files ending in .exe are executable programs. The .pdf.exe naming convention tricks users into opening executable malware."
+    },
+    {
+      "id": 8,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Spear phishing attempts only target executive leadership (CEOs/CFOs), never entry-level remote contractors or virtual assistants.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "False. Attackers regularly target contractors, virtual assistants, and junior personnel as initial footholds to access corporate networks or facilitate payment fraud."
+    },
+    {
+      "id": 9,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b",
+        "d"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What operating system settings and user habits help defend against weaponized spear phishing attachments? (Select ALL that apply)",
+      "options": [
+        {
+          "value": "a",
+          "text": "Disabling \"Hide extensions for known file types\" in OS file settings"
+        },
+        {
+          "value": "b",
+          "text": "Keeping Microsoft Office \"Block macros from running in Office files from the Internet\" enabled"
+        },
+        {
+          "value": "c",
+          "text": "Always opening untrusted email attachments using Administrator rights"
+        },
+        {
+          "value": "d",
+          "text": "Verifying unexpected file transfers with the sender via an independent communication channel"
+        }
+      ],
+      "explanation": "Revealing full file extensions, blocking Office macros, and out-of-band verification mitigate attachment risks. Running untrusted files as Administrator increases security risks."
+    },
+    {
+      "id": 10,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A spear phisher notices on Twitter that your company’s Lead Developer is on a 14-hour flight. The attacker emails you posing as the Lead Developer, requesting emergency production database credentials. Should you comply?",
+      "options": [
+        {
+          "value": "a",
+          "text": "True (Comply immediately)"
+        },
+        {
+          "value": "b",
+          "text": "False (Do not comply)"
+        }
+      ],
+      "explanation": "False. Attackers exploit travel schedules to create situations where the spoofed identity cannot be reached easily. Always follow established verification protocols."
+    },
+    {
+      "id": 11,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What technical feature makes MITRE ATT&CK Technique T1566.001 particularly dangerous to enterprise endpoint security?",
+      "options": [
+        {
+          "value": "a",
+          "text": "It uses physical USB drives dropped in parking lots"
+        },
+        {
+          "value": "b",
+          "text": "It relies on user execution of attached files to run malware inside the local user environment"
+        },
+        {
+          "value": "c",
+          "text": "It automatically changes home router DNS addresses without user interaction"
+        },
+        {
+          "value": "d",
+          "text": "It turns off laptop Wi-Fi adapters permanently"
+        }
+      ],
+      "explanation": "Technique T1566.001 relies on social engineering to trick the user into executing malicious attachments locally."
+    },
+    {
+      "id": 12,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Reducing the amount of detailed operational information shared on public social media accounts helps reduce your exposure to OSINT reconnaissance.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "True. Practicing digital footprint hygiene limits the intelligence attackers can use to build spear phishing lures. #### **Question 13** * **Type:** True / False * **Difficulty:** Hard * **Question:** Spear phishers only target executives; entry-level remote contractors are never targeted because they lack system permissions. + A) True + B) False * **Answer:** B * **Explanation:** Entry-level contractors are frequently targeted as initial access points to pivot deeper into enterprise networks or harvest credentials. #### **Question 14** * **Type:** Multi-Select * **Difficulty:** Advanced * **Question:** Which of the following indicate that a project brief attachment might be a spear-phishing payload? *(Select TWO)* + A) The attachment is a .pdf file under 500 KB. + B) The attachment is an .xlsm file requiring macro activation to view text. + C) The file name ends in .docx.iso. + D) The file was downloaded directly from the company's official Google Drive. * **Answer:** B, C * **Explanation:** Macro-enabled files (.xlsm) and disk image archives (.iso) disguised as documents are common malicious delivery formats. #### **Question 15** * **Type:** Multiple Choice * **Difficulty:** Moderate * **Question:** What information can an attacker gather from your public GitHub profile to make a spear-phishing email believable? + A) Your private home Wi-Fi password + B) Programming languages used, active repositories, and collaborator usernames + C) Your hardware MFA seed keys + D) Your credit card PIN * **Answer:** B * **Explanation:** Public GitHub repositories display technical environments, active projects, and peer collaborators. #### **Question 16** * **Type:** Scenario-Based * **Difficulty:** Advanced * **Question:** A freelancer receives a high-paying offer on Upwork. The client insists on sending an .iso file containing \"project assets\" before contract signing. Why is this suspicious? + A) .iso files are standard image files that cannot contain text. + B) An .iso file is a disk image that can bypass basic scanner checks and mount an executable drive on Windows/Mac. + C) Freelancers are legally prohibited from receiving .iso files. + D) .iso files automatically delete the operating system upon opening. * **Answer:** B * **Explanation:** ISO files are container formats used by attackers to deliver malware while evading basic security filters. #### **Question 17** * **Type:** True / False * **Difficulty:** Easy * **Question:** Spear phishing relies solely on technical software exploits and does not use psychological manipulation. + A) True + B) False * **Answer:** B * **Explanation:** Spear phishing is a socio-technical attack combining technical delivery vectors with psychological manipulation (trust, urgency, authority). #### **Question 18** * **Type:** Multiple Choice * **Difficulty:** Hard * **Question:** What step should you take before opening a password-protected .zip file from an external party? + A) Open it on a personal device to protect work systems. + B) Verify the source out-of-band and inspect unzipped contents in an isolated environment or sandbox. + C) Forward the password to your bank. + D) Disable your endpoint firewall. * **Answer:** B * **Explanation:** Verifying the source through another channel and inspecting files securely prevents payload execution. #### **Question 19** * **Type:** Multiple Choice * **Difficulty:** Moderate * **Question:** What term describes altering sender details so an email appears to come from a legitimate internal colleague? + A) Port forwarding + B) Email Header Spoofing + C) Hard drive partitioning + D) Disk defragmentation * **Answer:** B * **Explanation:** Email spoofing manipulates header fields (From:) to impersonate legitimate contacts. #### **Question 20** * **Type:** Scenario-Based * **Difficulty:** Hard * **Question:** An email claiming to be from your company's HR department contains a link to \"Updated W-2 Tax Forms.\" The link URL points to http://hr-portal.tax-verify-auth.com. What is the safest course of action? + A) Click the link and enter your Social Security Number. + B) Hover over the link, identify the external domain, do not click, and report it to security/HR. + C) Email your password to HR to check for you. + D) Ignore all future HR emails forever. * **Answer:** B * **Explanation:** Identifying external, non-company domain names by hovering over links helps detect phishing portals before entering credentials. MODULE 3: Smishing"
+    },
+    {
+      "id": 13,
       "category": "medium",
       "questionType": "standard",
       "answerType": "single",
@@ -139,57 +343,97 @@
       "explanation": "Entry-level contractors are frequently targeted as initial access points to pivot deeper into enterprise networks or harvest credentials."
     },
     {
-      "id": 6,
-      "category": "medium",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "a",
+      "id": 14,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "b",
+        "c"
+      ],
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "You've been posting detailed updates about your work travel, conference attendance, and current projects on your public social media accounts. Does reducing this kind of detailed operational information lower your exposure to OSINT reconnaissance used in spear phishing?",
+      "questionText": "Which of the following indicate that a project brief attachment might be a spear-phishing payload? *(Select TWO)*",
       "options": [
         {
           "value": "a",
-          "text": "True"
+          "text": "The attachment is a .pdf file under 500 KB."
         },
         {
           "value": "b",
-          "text": "False"
+          "text": "The attachment is an .xlsm file requiring macro activation to view text."
+        },
+        {
+          "value": "c",
+          "text": "The file name ends in .docx.iso."
+        },
+        {
+          "value": "d",
+          "text": "The file was downloaded directly from the company's official Google Drive."
         }
       ],
-      "explanation": "True. Practicing digital footprint hygiene limits the intelligence attackers can use to build spear phishing lures."
+      "explanation": "Macro-enabled files (.xlsm) and disk image archives (.iso) disguised as documents are common malicious delivery formats."
     },
     {
-      "id": 7,
+      "id": 15,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What information can an attacker gather from your public GitHub profile to make a spear-phishing email believable?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Your private home Wi-Fi password"
+        },
+        {
+          "value": "b",
+          "text": "Programming languages used, active repositories, and collaborator usernames"
+        },
+        {
+          "value": "c",
+          "text": "Your hardware MFA seed keys"
+        },
+        {
+          "value": "d",
+          "text": "Your credit card PIN"
+        }
+      ],
+      "explanation": "Public GitHub repositories display technical environments, active projects, and peer collaborators."
+    },
+    {
+      "id": 16,
       "category": "hard",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "An email claiming to be from your company's HR department contains a link to “Updated W-2 Tax Forms.” The link URL points to an external domain unrelated to your company. What is the safest course of action?",
+      "questionText": "A freelancer receives a high-paying offer on Upwork. The client insists on sending an .iso file containing \"project assets\" before contract signing. Why is this suspicious?",
       "options": [
         {
           "value": "a",
-          "text": "Click the link and enter your Social Security Number."
+          "text": ".iso files are standard image files that cannot contain text."
         },
         {
           "value": "b",
-          "text": "Hover over the link, identify the external domain, do not click, and report it to security/HR."
+          "text": "An .iso file is a disk image that can bypass basic scanner checks and mount an executable drive on Windows/Mac."
         },
         {
           "value": "c",
-          "text": "Email your password to HR to check for you."
+          "text": "Freelancers are legally prohibited from receiving .iso files."
         },
         {
           "value": "d",
-          "text": "Ignore all future HR emails forever."
+          "text": ".iso files automatically delete the operating system upon opening."
         }
       ],
-      "explanation": "Identifying external, non-company domain names by hovering over links helps detect phishing portals before entering credentials."
+      "explanation": "ISO files are container formats used by attackers to deliver malware while evading basic security filters."
     },
     {
-      "id": 8,
+      "id": 17,
       "category": "hard",
       "questionType": "standard",
       "answerType": "single",
@@ -210,7 +454,7 @@
       "explanation": "Spear phishing is a socio-technical attack combining technical delivery vectors with psychological manipulation (trust, urgency, authority)."
     },
     {
-      "id": 9,
+      "id": 18,
       "category": "hard",
       "questionType": "standard",
       "answerType": "single",
@@ -239,33 +483,62 @@
       "explanation": "Verifying the source through another channel and inspecting files securely prevents payload execution."
     },
     {
-      "id": 10,
+      "id": 19,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What term describes altering sender details so an email appears to come from a legitimate internal colleague?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Port forwarding"
+        },
+        {
+          "value": "b",
+          "text": "Email Header Spoofing"
+        },
+        {
+          "value": "c",
+          "text": "Hard drive partitioning"
+        },
+        {
+          "value": "d",
+          "text": "Disk defragmentation"
+        }
+      ],
+      "explanation": "Email spoofing manipulates header fields (From:) to impersonate legitimate contacts."
+    },
+    {
+      "id": 20,
       "category": "hard",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "An attacker researching you before sending a spear-phishing email finds your public GitHub profile. What information could they gather there to make their message more believable?",
+      "questionText": "An email claiming to be from your company's HR department contains a link to \"Updated W-2 Tax Forms.\" The link URL points to http://hr-portal.tax-verify-auth.com. What is the safest course of action?",
       "options": [
         {
           "value": "a",
-          "text": "Your private home Wi-Fi password"
+          "text": "Click the link and enter your Social Security Number."
         },
         {
           "value": "b",
-          "text": "Programming languages used, active repositories, and collaborator usernames"
+          "text": "Hover over the link, identify the external domain, do not click, and report it to security/HR."
         },
         {
           "value": "c",
-          "text": "Your hardware MFA seed keys"
+          "text": "Email your password to HR to check for you."
         },
         {
           "value": "d",
-          "text": "Your credit card PIN"
+          "text": "Ignore all future HR emails forever."
         }
       ],
-      "explanation": "Public GitHub repositories display technical environments, active projects, and peer collaborators."
+      "explanation": "Identifying external, non-company domain names by hovering over links helps detect phishing portals before entering credentials. MODULE 3: Smishing"
     }
   ]
 }

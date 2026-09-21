@@ -261,12 +261,13 @@
 
 
     <section class="module-quiz-section">
-        <h2>Module complete</h2>
+        <h2>Test Your Knowledge</h2>
         <p>
-            This foundational module has no quiz. Return to the homepage to continue with the remaining free modules.
+            Ready to check what you've learned? Take a randomized
+            20-question quiz based on this module.
         </p>
-        <router-link to="/" class="take-quiz-button">
-            Back to Home
+        <router-link to="/quiz/module-6/question" class="take-quiz-button">
+            Take a Quiz
         </router-link>
     </section>
   </main>

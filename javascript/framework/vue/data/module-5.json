@@ -1,13 +1,153 @@
 {
   "moduleId": "module-5",
   "moduleName": "Pretexting",
-  "totalQuestions": 10,
-  "standardCount": 6,
+  "totalQuestions": 20,
+  "standardCount": 16,
   "scenarioBasedCount": 4,
   "questions": [
     {
       "id": 1,
       "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What is the primary characteristic of a pretexting attack?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Bombarding a website with fake internet traffic."
+        },
+        {
+          "value": "b",
+          "text": "Fabricating a scenario and identity to build trust and trick a victim into sharing data."
+        },
+        {
+          "value": "c",
+          "text": "Infecting USB drives left in public parking lots."
+        },
+        {
+          "value": "d",
+          "text": "Sending mass generic spam to millions of emails."
+        }
+      ],
+      "explanation": "Pretexting centers on creating a plausible false persona and narrative."
+    },
+    {
+      "id": 2,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Pretexting attacks always happen within a single 30-second interaction and never involve multi-day conversations.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Pretexting often uses a \"slow-burn\" approach, building rapport across multiple days or weeks."
+    },
+    {
+      "id": 3,
+      "category": "easy",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Someone claiming to be an \"External ISO Auditor\" contacts a remote worker asking for a complete list of internal server IP addresses. The caller says opening an IT ticket will take too long. What should the worker do?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Email the server IP list immediately."
+        },
+        {
+          "value": "b",
+          "text": "Insist on routing the request through official internal ticketing and manager approval channels."
+        },
+        {
+          "value": "c",
+          "text": "Post the server IP addresses on social media."
+        },
+        {
+          "value": "d",
+          "text": "Give the auditor their home Wi-Fi password."
+        }
+      ],
+      "explanation": "Never bypass formal verification and ticketing procedures for external inquiries."
+    },
+    {
+      "id": 4,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Why do pretexters often try to discourage victims from submitting official IT service tickets?",
+      "options": [
+        {
+          "value": "a",
+          "text": "IT tickets cost money to create."
+        },
+        {
+          "value": "b",
+          "text": "Official tickets trigger administrative logs and security reviews that would expose the fake identity."
+        },
+        {
+          "value": "c",
+          "text": "IT ticketing systems automatically block phone calls."
+        },
+        {
+          "value": "d",
+          "text": "Scammers prefer using postal mail."
+        }
+      ],
+      "explanation": "Formal ticketing creates an audit trail that alerts legitimate security personnel."
+    },
+    {
+      "id": 5,
+      "category": "easy",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which of the following personas are common disguises used in pretexting campaigns? *(Select TWO)*",
+      "options": [
+        {
+          "value": "a",
+          "text": "An external compliance auditor conducting an \"urgent audit.\""
+        },
+        {
+          "value": "b",
+          "text": "A distressed remote contractor needing file access due to an \"emergency.\""
+        },
+        {
+          "value": "c",
+          "text": "An automated operating system update wizard."
+        },
+        {
+          "value": "d",
+          "text": "A physical hardware firewall appliance."
+        }
+      ],
+      "explanation": "Pretexters assume roles that invoke authority (auditor) or empathy (distressed colleague)."
+    },
+    {
+      "id": 6,
+      "category": "medium",
       "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "a",
@@ -27,65 +167,36 @@
       "explanation": "Attackers exploit natural human social tendencies to manipulate targets."
     },
     {
-      "id": 2,
-      "category": "easy",
+      "id": 7,
+      "category": "medium",
       "questionType": "scenario-based",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "A caller you don't recognize asks you to send over sensitive corporate information, claiming it's urgently needed for a same-day audit. What is the gold standard rule for handling this kind of request?",
+      "questionText": "You receive a message from a \"new vendor\" asking for internal directory structures so they can \"prepare project integration.\" You have not received any notification from management about a new vendor. What is the correct protocol?",
       "options": [
         {
           "value": "a",
-          "text": "Share the data if the caller sounds friendly."
+          "text": "Send the directory file immediately."
         },
         {
           "value": "b",
-          "text": "Verify identity and authorization through official channels before releasing any data."
+          "text": "Do not share internal data; verify the vendor’s onboarding status with your internal manager or procurement team."
         },
         {
           "value": "c",
-          "text": "Always post data on public forums."
+          "text": "Ask the vendor to pay you $50."
         },
         {
           "value": "d",
-          "text": "Never talk to anyone at work."
+          "text": "Send them dummy data containing real employee passwords."
         }
       ],
-      "explanation": "Always verify identity and clearance before transmitting sensitive data."
+      "explanation": "Unverified third parties must be vetted through management before receiving internal assets."
     },
     {
-      "id": 3,
-      "category": "easy",
-      "questionType": "standard",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "What structural control prevents pretexting attempts from compromising internal resources?",
-      "options": [
-        {
-          "value": "a",
-          "text": "Allowing employees to share passwords freely."
-        },
-        {
-          "value": "b",
-          "text": "Enforcing strict adherence to official identity verification and ticketing channels."
-        },
-        {
-          "value": "c",
-          "text": "Removing password locks from work laptops."
-        },
-        {
-          "value": "d",
-          "text": "Disabling all antivirus software."
-        }
-      ],
-      "explanation": "Formal channels and strict verification neutralize pretexting narratives."
-    },
-    {
-      "id": 4,
+      "id": 8,
       "category": "medium",
       "questionType": "standard",
       "answerType": "single",
@@ -114,8 +225,248 @@
       "explanation": "Pretexting prioritizes narrative depth and trust over volume."
     },
     {
-      "id": 5,
+      "id": 9,
       "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A pretexter will never use public information from LinkedIn to build their fake story.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Pretexters extensively use OSINT from LinkedIn and company sites to make their scenarios believable."
+    },
+    {
+      "id": 10,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What term describes an attacker engaging a victim in casual conversation over several days to establish a sense of normal friendship before executing a scam?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Buffer Overflow"
+        },
+        {
+          "value": "b",
+          "text": "Trust-Building / Slow-Burn Pretexting"
+        },
+        {
+          "value": "c",
+          "text": "Man-in-the-Middle"
+        },
+        {
+          "value": "d",
+          "text": "Zero-Day Exploit"
+        }
+      ],
+      "explanation": "Slow-burn pretexting grooms the victim over time to lower security vigilance."
+    },
+    {
+      "id": 11,
+      "category": "medium",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A remote contractor receives an email from someone claiming to be \"Head of Global Security\": *\"We are running a silent security exercise. Do not inform your supervisor. Send your current VPN credentials directly to this email.\"* What should the contractor do?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Follow instructions and keep quiet."
+        },
+        {
+          "value": "b",
+          "text": "Ignore the secrecy request and immediately report the message to their official supervisor and security team."
+        },
+        {
+          "value": "c",
+          "text": "Reply asking for a cash reward."
+        },
+        {
+          "value": "d",
+          "text": "Post the VPN credentials on an online forum."
+        }
+      ],
+      "explanation": "Demands for secrecy and credential submission are major red flags; legitimate security exercises do not collect user passwords via email."
+    },
+    {
+      "id": 12,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What structural control prevents pretexting attempts from compromising internal resources?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Allowing employees to share passwords freely."
+        },
+        {
+          "value": "b",
+          "text": "Enforcing strict adherence to official identity verification and ticketing channels."
+        },
+        {
+          "value": "c",
+          "text": "Removing password locks from work laptops."
+        },
+        {
+          "value": "d",
+          "text": "Disabling all antivirus software."
+        }
+      ],
+      "explanation": "Formal channels and strict verification neutralize pretexting narratives."
+    },
+    {
+      "id": 13,
+      "category": "medium",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Pretexters never target remote workers who do not have executive titles.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Administrative assistants, support staff, and contractors are frequently targeted for their access to directory data and internal processes."
+    },
+    {
+      "id": 14,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "multiple",
+      "correctAnswer": [
+        "a",
+        "b"
+      ],
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Which conversational signs suggest an interaction may be a pretexting attempt? *(Select TWO)*",
+      "options": [
+        {
+          "value": "a",
+          "text": "The contact asks for confidential data while insisting you skip standard manager approval."
+        },
+        {
+          "value": "b",
+          "text": "The contact uses an elaborate, emotional story to justify an unusual information request."
+        },
+        {
+          "value": "c",
+          "text": "The contact directs you to submit a ticket through the official company portal."
+        },
+        {
+          "value": "d",
+          "text": "The contact's identity is verified by your department manager in person."
+        }
+      ],
+      "explanation": "Bypassing procedures and using high-emotion stories are common pretexting tactics."
+    },
+    {
+      "id": 15,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "What should you do if an external party claiming to be an auditor asks for employee home addresses?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Send the addresses in a plain text file."
+        },
+        {
+          "value": "b",
+          "text": "Refuse and escalate the inquiry to your company's official legal or HR department."
+        },
+        {
+          "value": "c",
+          "text": "Ask for $10 per address."
+        },
+        {
+          "value": "d",
+          "text": "Guess the addresses and send random data."
+        }
+      ],
+      "explanation": "Personally Identifiable Information (PII) disclosures must be handled exclusively by authorized departments."
+    },
+    {
+      "id": 16,
+      "category": "hard",
+      "questionType": "standard",
+      "answerType": "single",
+      "correctAnswer": "a",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "Pretexting can occur over email, phone calls, social media, or messaging apps.",
+      "options": [
+        {
+          "value": "a",
+          "text": "True"
+        },
+        {
+          "value": "b",
+          "text": "False"
+        }
+      ],
+      "explanation": "Pretexting is medium-agnostic and occurs across any communication channel."
+    },
+    {
+      "id": 17,
+      "category": "hard",
+      "questionType": "scenario-based",
+      "answerType": "single",
+      "correctAnswer": "b",
+      "pointsCorrect": 1,
+      "pointsIncorrect": -1,
+      "questionText": "A remote worker receives a call from an individual claiming to be a printer technician needing internal Wi-Fi passwords to fix an office printer 500 miles away. Why is this request suspicious?",
+      "options": [
+        {
+          "value": "a",
+          "text": "Printers do not use electricity."
+        },
+        {
+          "value": "b",
+          "text": "The scenario lacks logical plausibility, and Wi-Fi credentials should never be shared verbally with external technicians."
+        },
+        {
+          "value": "c",
+          "text": "Technicians only speak French."
+        },
+        {
+          "value": "d",
+          "text": "Wi-Fi passwords cannot be typed on laptops."
+        }
+      ],
+      "explanation": "Evaluating the logical plausibility of a request helps spot flawed pretexts."
+    },
+    {
+      "id": 18,
+      "category": "hard",
       "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "b",
@@ -143,86 +494,7 @@
       "explanation": "Flattery creates positive rapport, encouraging the target to comply with requests."
     },
     {
-      "id": 6,
-      "category": "medium",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "Someone posing as a vendor pressures you to resolve their \"urgent\" access request directly with them instead of submitting an official IT service ticket. Why might a pretexter want to avoid the formal ticketing process?",
-      "options": [
-        {
-          "value": "a",
-          "text": "IT tickets cost money to create."
-        },
-        {
-          "value": "b",
-          "text": "Official tickets trigger administrative logs and security reviews that would expose the fake identity."
-        },
-        {
-          "value": "c",
-          "text": "IT ticketing systems automatically block phone calls."
-        },
-        {
-          "value": "d",
-          "text": "Scammers prefer using postal mail."
-        }
-      ],
-      "explanation": "Formal ticketing creates an audit trail that alerts legitimate security personnel."
-    },
-    {
-      "id": 7,
-      "category": "hard",
-      "questionType": "standard",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "Pretexters never target remote workers who do not have executive titles.",
-      "options": [
-        {
-          "value": "a",
-          "text": "True"
-        },
-        {
-          "value": "b",
-          "text": "False"
-        }
-      ],
-      "explanation": "Administrative assistants, support staff, and contractors are frequently targeted for their access to directory data and internal processes."
-    },
-    {
-      "id": 8,
-      "category": "hard",
-      "questionType": "scenario-based",
-      "answerType": "single",
-      "correctAnswer": "b",
-      "pointsCorrect": 1,
-      "pointsIncorrect": -1,
-      "questionText": "You receive a message from a \"new vendor\" asking for internal directory structures so they can \"prepare project integration.\" You have not received any notification from management about a new vendor. What is the correct protocol?",
-      "options": [
-        {
-          "value": "a",
-          "text": "Send the directory file immediately."
-        },
-        {
-          "value": "b",
-          "text": "Do not share internal data; verify the vendor's onboarding status with your internal manager or procurement team."
-        },
-        {
-          "value": "c",
-          "text": "Ask the vendor to pay you $50."
-        },
-        {
-          "value": "d",
-          "text": "Send them dummy data containing real employee passwords."
-        }
-      ],
-      "explanation": "Unverified third parties must be vetted through management before receiving internal assets."
-    },
-    {
-      "id": 9,
+      "id": 19,
       "category": "hard",
       "questionType": "standard",
       "answerType": "single",
@@ -243,33 +515,33 @@
       "explanation": "Independent out-of-band verification effectively exposes pretexts by contacting the real organization or individual."
     },
     {
-      "id": 10,
+      "id": 20,
       "category": "hard",
-      "questionType": "scenario-based",
+      "questionType": "standard",
       "answerType": "single",
       "correctAnswer": "b",
       "pointsCorrect": 1,
       "pointsIncorrect": -1,
-      "questionText": "A remote worker receives a call from an individual claiming to be a printer technician needing internal Wi-Fi passwords to fix an office printer 500 miles away. Why is this request suspicious?",
+      "questionText": "What is the gold standard rule when handling requests for sensitive corporate information?",
       "options": [
         {
           "value": "a",
-          "text": "Printers do not use electricity."
+          "text": "Share the data if the caller sounds friendly."
         },
         {
           "value": "b",
-          "text": "The scenario lacks logical plausibility, and Wi-Fi credentials should never be shared verbally with external technicians."
+          "text": "Verify identity and authorization through official channels before releasing any data."
         },
         {
           "value": "c",
-          "text": "Technicians only speak French."
+          "text": "Always post data on public forums."
         },
         {
           "value": "d",
-          "text": "Wi-Fi passwords cannot be typed on laptops."
+          "text": "Never talk to anyone at work."
         }
       ],
-      "explanation": "Evaluating the logical plausibility of a request helps spot flawed pretexts."
+      "explanation": "Always verify identity and clearance before transmitting sensitive data. MODULE 6: Essential Safe Practices for Remote Env"
     }
   ]
 }
