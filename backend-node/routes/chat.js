@@ -1,18 +1,16 @@
 // routes/chat.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 //
-// The learning assistant.
+// Yung learning assistant.
 //
-// Two modes, and the fallback is the important one. With an AI provider
-// configured (n8n webhook or Gemini) the message is proxied to it. Without
-// one, the assistant answers from a curated set of topics drawn from the
-// platform's own modules.
+// Dalawang mode, tapos yung fallback yung mahalaga. May AI provider naka-
+// configure (n8n webhook o Gemini), diretso doon ang message. Kung wala,
+// sumasagot base sa curated na topics galing mismo sa modules ng platform.
 //
-// That fallback exists because a chat window that replies "not connected yet"
-// to every question is worse than no chat window at all, and because the
-// prompt engineering for the live provider is a separate piece of work. This
-// keeps the feature genuinely usable in the meantime without pretending to be
-// something it is not.
+// Meron nito para hindi "hindi pa connected" lang lagi yung sagot ng chat —
+// mas mabuti pa yun kesa walang chat, at hiwalay na trabaho yung prompt
+// engineering para sa live provider. Kaya gumagana pa rin talaga to habang
+// wala pang totoong provider, hindi lang nagkukunwari.
 
 const express = require('express');
 const config = require('./../config/env');
@@ -20,8 +18,8 @@ const retrieval = require('./../config/retrieval');
 
 const router = express.Router();
 
-// Curated answers covering what the six free modules teach. Matching is on
-// keywords rather than anything clever, which is honest about what this is.
+// Curated na sagot para sa itinuturo ng anim na Free modules. Keyword
+// matching lang to, walang kalokohan, honest naman kung ano to.
 const KNOWLEDGE = [
   {
     keywords: ['quishing', 'qr', 'qr code'],
@@ -88,8 +86,8 @@ const KNOWLEDGE = [
 function findAnswer(message) {
   const text = String(message).toLowerCase();
 
-  // Prefer the topic matching the most keywords, so a question mentioning
-  // several terms lands on the most relevant one.
+  // Piliin yung topic na pinaka-maraming keyword match, para kung ilang term
+  // nabanggit sa tanong, sa pinaka-relevant to na sagot mapunta.
   let best = null;
   let bestScore = 0;
 
@@ -104,18 +102,19 @@ function findAnswer(message) {
   return best ? best.answer : null;
 }
 
-// Redacts anything that looks like a shared password before it leaves this
-// server, whether that's to a third-party AI provider (n8n/Gemini) or into
-// a log line. This platform's own advice is "never share a password over
-// chat" (see the KNOWLEDGE entry above) — forwarding someone's actual
-// password to an external API because they typed it into this box would be
-// exactly the mistake it teaches against.
+// I-redact yung mukhang shared password bago ito umalis sa server na to, third
+// party AI provider man (n8n/Gemini) o log line. Yung sariling advice ng
+// platform natin "never share a password over chat" (tignan yung KNOWLEDGE
+// entry sa taas) — kaya kung ipapasa natin yung totoong password ng user sa
+// external API dahil na-type nila dito, mismong yung mistake na tinuturuan
+// nating iwasan yun.
 //
-// Two details matter here. The connector (":", "=" or "is") is required,
-// because without it ordinary questions got mangled: "is a password manager
-// safe" became "is a password [REDACTED] safe". And the value runs to the next
-// space, giving back only trailing sentence punctuation, because stopping at
-// the first "!" or "." leaked the end of passwords like "Qwerty!99".
+// Dalawang detalye dito. Required yung ":", "=" o "is" pagkatapos ng salitang
+// password — kung optional, nasisira yung normal na tanong: "is a password
+// manager safe" naging "is a password [REDACTED] safe". At hanggang sa susunod
+// na space yung value, binabalik lang yung punctuation sa dulo — kung hihinto
+// sa unang "!" o ".", lumalabas yung dulo ng password, "Qwerty!99" naging
+// "[REDACTED]!99".
 const PASSWORD_PATTERN = /\b(pass(?:word)?|pwd)\b(\s*[:=]|\s+is)\s*["']?(\S{3,}?)["']?(?=[.,!?]*(?:\s|$))/gi;
 
 function redactSecrets(text) {
@@ -135,23 +134,21 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'That message is too long.' });
   }
 
-  // From here on, use the redacted text — this is what gets sent to any
-  // third-party provider, matched against local keywords, and would end up
-  // in a log line if one were ever added.
+  // Mula dito, redacted text na yung gagamitin — to yung ipapadala sa kahit
+  // anong third-party provider, tutugma sa local keywords, at dito pupunta
+  // yung log line kung magkakaroon man.
   const message = redactSecrets(rawMessage);
 
-  // Reported back so the widget can tell the user, which is the more useful
-  // half of this: quietly stripping the password protects this one message,
-  // telling them teaches them not to do it anywhere else.
+  // Sinasabi natin sa widget kung may tinanggal, para ma-warning-an yung user.
+  // Yun yung mas importanteng parte: yung tahimik na pag-alis, pinoprotektahan
+  // lang yung isang message na to; yung pagsabi, tinuturuan siya na huwag
+  // gawin kahit saan.
   const redacted = message !== rawMessage;
-
-  // Every successful reply goes through here so the flag is never missed.
   const send = (body) => res.json({ ...body, redacted });
 
-  // Find the passages from our own modules that best match the question.
-  // These are what the model is asked to answer from, so the assistant
-  // teaches the platform's material rather than improvising from whatever
-  // it happens to know.
+  // Hanapin yung passages sa sariling modules natin na pinaka-tugma sa tanong.
+  // Sila yung sasagutan ng model, para itinuturo ng assistant yung material ng
+  // platform, hindi yung basta alam niya lang.
   const passages = retrieval.search(message, 4);
 
   const context = passages
@@ -177,8 +174,8 @@ router.post('/', async (req, res) => {
   const n8nUrl = process.env.N8N_WEBHOOK_URL;
   const geminiKey = process.env.GEMINI_API_KEY;
 
-  // n8n owns its own prompt and knowledge base, so the question goes across
-  // untouched rather than being wrapped in ours.
+  // Sariling prompt at knowledge base yung n8n, kaya diretso lang ipapasa
+  // yung tanong, hindi na babalutin ng sarili nating prompt.
   if (n8nUrl) {
     try {
       const upstream = await fetch(n8nUrl, {
@@ -196,9 +193,9 @@ router.post('/', async (req, res) => {
 
   if (geminiKey) {
     try {
-      // Google retires model names periodically, and the API returns a 404
-      // naming the replacement when that happens. Check the backend log if
-      // the assistant starts falling back to the knowledge base.
+      // Nagre-retire ng model names si Google paminsan-minsan, tapos 404 na
+      // may pangalan ng replacement yung ibabalik ng API. Tignan yung backend
+      // log kung nagsimulang bumagsak sa knowledge base yung assistant.
       const model = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
       const upstream = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`,
@@ -210,13 +207,13 @@ router.post('/', async (req, res) => {
             systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
             generationConfig: {
               temperature: 0.3,
-              // Gemini 3.x reasons before answering, and those thinking
-              // tokens count against this budget. At 400 the reasoning
-              // consumed it all and replies arrived cut off mid-sentence.
+              // Nag-iisip muna si Gemini 3.x bago sumagot, kasama sa budget na
+              // to yung thinking tokens. Sa 400, naubos lahat sa reasoning
+              // tapos putol yung reply pagdating.
               maxOutputTokens: 2048,
-              // No reasoning needed to summarise a passage we already
-              // retrieved, so it is switched off. Faster, and it keeps the
-              // whole budget available for the reply.
+              // Hindi na kailangan mag-isip para lang mag-summarize ng
+              // passage na nakuha na natin, kaya naka-off na lang. Mas mabilis,
+              // tapos buo yung budget na maiipon para sa reply.
               thinkingConfig: { thinkingBudget: 0 },
             },
           }),
@@ -226,8 +223,8 @@ router.post('/', async (req, res) => {
       const candidate = data?.candidates?.[0];
       const reply = candidate?.content?.parts?.[0]?.text;
 
-      // MAX_TOKENS means the answer was cut off. Better to fall back to the
-      // module text, which is at least complete, than show half a sentence.
+      // MAX_TOKENS ibig sabihin naputol yung sagot. Mas okay bumalik sa module
+      // text, kumpleto naman kahit paano, kesa ipakita kalahating sentence.
       if (candidate?.finishReason === 'MAX_TOKENS') {
         console.warn('[chat] Gemini hit the token limit; falling back to the knowledge base.');
       } else if (reply) {
@@ -243,14 +240,14 @@ router.post('/', async (req, res) => {
     }
   }
 
-  // No provider configured, or it failed. Answer from the retrieved passage
-  // directly. It is the module text rather than a generated reply, so it
-  // reads a little formally, but it is accurate and it is ours.
-  // A floor on the score, because this path hands the passage straight to the
-  // user with nothing in between to judge whether it fits. Real questions
-  // score well above this; a stray keyword match scores below it. With an AI
-  // provider configured the same weak match is harmless, since the model is
-  // told to say when the passages do not cover the question.
+  // Walang naka-configure na provider, o nag-fail. Sagutin galing sa
+  // nakuhang passage mismo. Module text talaga to, kaya medyo formal magbasa,
+  // pero tama naman at sarili natin.
+  // May floor sa score, kasi diretso na ipapasa yung passage sa user, walang
+  // nag-che-check kung bagay ba talaga. Yung totoong tanong, mataas naman
+  // ang score dyan; yung stray keyword lang, mababa. May AI provider naman,
+  // hindi na masama yung mahinang match, kasi sinasabihan naman yung model na
+  // aminin kung wala talagang tugma.
   const MIN_DIRECT_SCORE = 5.5;
 
   if (passages.length && passages[0].score >= MIN_DIRECT_SCORE) {
@@ -261,7 +258,7 @@ router.post('/', async (req, res) => {
     });
   }
 
-  // Nothing matched at all.
+  // Walang tumugma talaga.
   const curated = findAnswer(message);
   send({ reply: curated || FALLBACK, source: 'local' });
 });

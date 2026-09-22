@@ -1,20 +1,19 @@
 // scripts/build-knowledge-base.js
-// Backend and integration: IamAtomic
+// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
 //
-// Builds the assistant's knowledge base from the platform's own content, so
-// answers come from the modules rather than from the model's general
-// knowledge.
+// Ginagawa yung knowledge base ng assistant galing sa sariling content ng
+// platform, para galing dito yung sagot, hindi sa general knowledge ng model.
 //
-// Run it with:  npm run kb:build
+// Patakbuhin gamit:  npm run kb:build
 //
-// Sources: the six free module pages, the role-based module content, and the
-// explanations attached to quiz and assessment questions. Those explanations
-// are worth including because each one is already a short, self contained
-// answer to a specific question.
+// Sources: yung anim na Free module pages, yung role-based module content, at
+// yung mga explanation na nakalagay sa quiz at assessment questions. Isinama
+// yung mga explanation kasi bawat isa maikli at self-contained na sagot na
+// sa sariling tanong niya.
 //
-// Output is a plain JSON file committed alongside the code. No vector
-// database and no embedding step, which means nothing to keep running and
-// nothing that empties when a service restarts.
+// Plain JSON file lang yung output, committed kasama code. Walang vector
+// database, walang embedding step — walang patatakbuhin, walang nawawala pag
+// nag-restart.
 
 const fs = require('fs');
 const path = require('path');
@@ -22,22 +21,13 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..', '..');
 const OUT = path.join(__dirname, '..', 'data', 'knowledge-base.json');
 
-/** Strips tags, scripts and styles out of a page and returns readable text. */
+/** Tinatanggal yung tags, scripts, at styles sa page, ibinabalik yung
+ *  readable text. */
 function textFromHtml(html) {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ')
-    // Navigation, headers and footers are page furniture, not teaching
-    // material. Left in, they put breadcrumbs like "Home" at the start of
-    // answers and dilute the search index with words that appear on every
-    // single page.
-    .replace(/<nav[\s\S]*?<\/nav>/gi, ' ')
-    .replace(/<header[\s\S]*?<\/header>/gi, ' ')
-    .replace(/<footer[\s\S]*?<\/footer>/gi, ' ')
-    .replace(/<aside[\s\S]*?<\/aside>/gi, ' ')
-    // Emoji used as decoration in headings.
-    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ')
     .replace(/<\/(p|div|section|li|h[1-6])>/gi, '\n')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&nbsp;/g, ' ')
@@ -50,8 +40,8 @@ function textFromHtml(html) {
     .trim();
 }
 
-/** Splits text into chunks of roughly `size` words, keeping whole sentences
- *  together so a chunk never ends mid-thought. */
+/** Hinahati yung text sa chunks na mga `size` words, buo pa rin yung sentence
+ *  para hindi maputol yung thought sa gitna. */
 function chunk(text, title, source, size = 110) {
   const sentences = text.split(/(?<=[.!?])\s+/).filter((s) => s.trim());
   const chunks = [];
@@ -75,24 +65,38 @@ function chunk(text, title, source, size = 110) {
 
 const entries = [];
 
-// 1. The six free module pages.
+// 1. Yung anim na Free module pages.
 //
-// Split on the section headings rather than treating each page as one block.
-// Without this, every chunk from a page shares a single vague title while the
-// role-based modules carry descriptive ones like "Red flags", which skews
-// retrieval towards the latter for no good reason.
-const modulesDir = path.join(ROOT, 'modules');
+// Dati galing to sa /modules/*.html (yung pre-Vue static pages). Tinanggal na
+// yun sa cleanup (dead weight na, hindi na ginagamit ng live site), kaya dito
+// na sa totoong source of truth kinukuha: yung .vue component mismo ng bawat
+// module sa javascript/framework/vue/modules/. Ang <template> block ang
+// binabasa, parang HTML pa rin naman ang laman non.
+//
+// Hinati sa section headings, hindi isang page = isang block. Kung hindi
+// ganito, iisang vague na title lang share ng bawat chunk ng page, samantalang
+// descriptive naman yung title ng role-based modules gaya ng "Red flags" —
+// kaya na-bias yung retrieval papunta doon nang walang dahilan.
+const modulesDir = path.join(ROOT, 'javascript', 'framework', 'vue', 'modules');
 if (fs.existsSync(modulesDir)) {
-  for (const file of fs.readdirSync(modulesDir).filter((f) => f.endsWith('.html'))) {
-    const html = fs.readFileSync(path.join(modulesDir, file), 'utf8');
+  // Yung mga tunay na module pages lang, hindi yung mga helper component
+  // gaya ng ModuleVideo.vue — tinutukoy sa pagkakaroon ng "module-page" class,
+  // na nasa <main> wrapper ng bawat totoong module page.
+  for (const file of fs.readdirSync(modulesDir).filter((f) => f.endsWith('.vue'))) {
+    const sfc = fs.readFileSync(path.join(modulesDir, file), 'utf8');
+    if (!sfc.includes('module-page')) continue;
 
-    const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
-    const moduleName = (titleMatch ? titleMatch[1] : file)
+    const templateMatch = sfc.match(/<template>([\s\S]*)<\/template>/i);
+    if (!templateMatch) continue;
+    const html = templateMatch[1];
+
+    const h1Match = html.match(/<h1[^>]*>([^<]*)<\/h1>/i);
+    const moduleName = (h1Match ? h1Match[1] : file.replace(/\.vue$/, ''))
       .replace(/\s*[|-].*$/, '')
       .replace(/^Module\s*\d+:\s*/i, '')
       .trim();
 
-    // Split the body at each h2/h3 so a section's heading travels with it.
+    // Hatiin yung body sa bawat h2/h3, para sabay dala yung heading ng section.
     const parts = html.split(/<h[23][^>]*>/i);
     let carriedHeading = null;
 
@@ -103,19 +107,11 @@ if (fs.existsSync(modulesDir)) {
 
       if (!bodyText) { carriedHeading = heading || carriedHeading; continue; }
 
-      // Reference lists are citations, not explanations. Left in, they win
-      // searches they should not: a video titled "What is Vishing?" matches
-      // the question "what is vishing" almost perfectly while teaching the
-      // reader nothing.
-      const isReferenceSection = heading && /resource|reference|further reading|video|source|citation|watch/i.test(heading);
+      const label = heading && heading.length < 90
+        ? `${moduleName}: ${heading}`
+        : moduleName;
 
-      if (!isReferenceSection) {
-        const label = heading && heading.length < 90
-          ? `${moduleName}: ${heading}`
-          : moduleName;
-
-        entries.push(...chunk(bodyText, label, `modules/${file}`));
-      }
+      entries.push(...chunk(bodyText, label, `javascript/framework/vue/modules/${file}`));
       carriedHeading = heading || carriedHeading;
     }
   }
@@ -132,8 +128,8 @@ if (fs.existsSync(premiumPath)) {
   }
 }
 
-// 3. Quiz explanations. Each is already a direct answer to a real question,
-//    so the question is kept with it rather than being thrown away.
+// 3. Quiz explanations. Direktang sagot na to sa totoong tanong, kaya kasama
+//    na rin yung tanong, hindi tinapon.
 const dataDir = path.join(ROOT, 'javascript', 'framework', 'vue', 'data');
 if (fs.existsSync(dataDir)) {
   for (const file of fs.readdirSync(dataDir).filter((f) => f.startsWith('module-'))) {
@@ -148,7 +144,7 @@ if (fs.existsSync(dataDir)) {
     }
   }
 
-  // 4. Assessment explanations, same reasoning.
+  // 4. Assessment explanations, same lang na dahilan.
   const assessPath = path.join(dataDir, 'assessment.json');
   if (fs.existsSync(assessPath)) {
     const data = JSON.parse(fs.readFileSync(assessPath, 'utf8'));
