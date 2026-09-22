@@ -138,7 +138,7 @@ router.post('/verify-otp', async (req, res) => {
 
   try {
     const [otpRows] = await pool.query(
-      'SELECT * FROM otpcode WHERE user_id = ? AND purpose = "login" AND used = 0 ORDER BY otp_id DESC LIMIT 1',
+      "SELECT * FROM otpcode WHERE user_id = ? AND purpose = 'login' AND used = 0 ORDER BY otp_id DESC LIMIT 1",
       [payload.user_id]
     );
     if (otpRows.length === 0) {
@@ -289,7 +289,7 @@ router.post('/reset-password', async (req, res) => {
     const user = userRows[0];
 
     const [otpRows] = await pool.query(
-      'SELECT * FROM otpcode WHERE user_id = ? AND purpose = "password_reset" AND used = 0 ORDER BY otp_id DESC LIMIT 1',
+      "SELECT * FROM otpcode WHERE user_id = ? AND purpose = 'password_reset' AND used = 0 ORDER BY otp_id DESC LIMIT 1",
       [user.user_id]
     );
     if (otpRows.length === 0) {
