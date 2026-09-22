@@ -194,6 +194,10 @@ function search(question, limit = 4) {
   // weight to.
   const TITLE_WEIGHT = 2.5;
 
+  const vocabCoverage = Number(
+    (queryTerms.filter((t) => df.has(t)).length / queryTerms.length).toFixed(2)
+  );
+
   const scored = entries.map((entry) => {
     let score = 0;
     let titleHits = 0;
@@ -232,6 +236,13 @@ function search(question, limit = 4) {
       source: s.entry.source,
       text: s.entry.text,
       score: Number(s.score.toFixed(3)),
+      // Ilang bahagi ng tanong ang may salitang nasa materials natin kahit
+      // saan. Kapag mas marami ang wala talaga, labas sa topic yung tanong:
+      // "best pizza in manila" tumatama sa quiz question na nagsisimula sa
+      // "What is the best...", pero ang "pizza" at "manila" ay wala kahit
+      // saang module. Iba yun sa "how do I secure my home wifi", na lahat ng
+      // salita ay nasa materials kahit iisa lang tumama sa top passage.
+      vocabCoverage,
     }));
 }
 

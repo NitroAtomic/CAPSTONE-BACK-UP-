@@ -121,6 +121,90 @@ function redactSecrets(text) {
   return text.replace(PASSWORD_PATTERN, (match, label, connector) => `${label}${connector} [REDACTED]`);
 }
 
+// ---- Conversation history ----
+// Huling ilang palitan lang ng usapan ang pinapadala ng widget, para ma-
+// intindi yung follow-up gaya ng "how do I spot one?" o "tell me more". Kung
+// wala to, nag-iisa bawat message: "how do I spot one?" pagkatapos ng smishing
+// napupunta sa pretexting, at "tell me more" walang tugma kahit ano.
+//
+// Dumadaan din sa redaction yung mga dating sinabi ng user, kasi kasama sila
+// sa ipinapadala kay Gemini.
+const MAX_HISTORY = 6;
+
+function sanitizeHistory(raw) {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((m) => m && (m.role === 'user' || m.role === 'assistant')
+      && typeof m.text === 'string' && m.text.trim())
+    .slice(-MAX_HISTORY)
+    .map((m) => ({
+      role: m.role,
+      text: (m.role === 'user' ? redactSecrets(m.text) : m.text).slice(0, 1000),
+    }));
+}
+
+// Kailangan ni Gemini na salitan ang user at model, at user ang simula. Yung
+// pagbati ng widget ay galing sa assistant, kaya tinatanggal yung mga nauuna
+// na hindi user, at pinagsasama yung magkasunod na parehong role.
+function toGeminiContents(history, message) {
+  const turns = [
+    ...history.map((m) => ({ role: m.role === 'user' ? 'user' : 'model', text: m.text })),
+    { role: 'user', text: message },
+  ];
+  while (turns.length && turns[0].role !== 'user') turns.shift();
+
+  const merged = [];
+  for (const t of turns) {
+    const last = merged[merged.length - 1];
+    if (last && last.role === t.role) last.parts[0].text += `\n\n${t.text}`;
+    else merged.push({ role: t.role, parts: [{ text: t.text }] });
+  }
+  return merged;
+}
+
+// ---- "Learn more" link ----
+// Tinuturo ng bawat sagot kung saang module galing, para yung chat ay
+// daan papunta sa totoong lesson, hindi kapalit nito.
+const FREE_MODULES = [
+  { file: 'Quishing.vue', slug: 'quishing', title: 'Quishing' },
+  { file: 'SpearPhishing.vue', slug: 'spear-phishing', title: 'Spear Phishing' },
+  { file: 'Smishing.vue', slug: 'smishing', title: 'Smishing' },
+  { file: 'Vishing.vue', slug: 'vishing', title: 'Vishing' },
+  { file: 'Pretexting.vue', slug: 'pretexting', title: 'Pretexting' },
+  { file: 'EssentialSafePracticesRemoteEnv.vue', slug: 'essential-safe-practices-remote-environments', title: 'Essential Safe Practices' },
+];
+
+let premiumModules = [];
+try {
+  premiumModules = require('../../javascript/framework/vue/data/premium-modules.json').modules || [];
+} catch (err) {
+  console.warn('[chat] premium-modules.json not found; role-based answers will have no link.');
+}
+
+function learnMoreFor(passage) {
+  if (!passage) return null;
+  const { source = '', title = '' } = passage;
+
+  const free = FREE_MODULES.find((m) => source.endsWith(`/${m.file}`));
+  if (free) return { title: `${free.title} module`, path: `/modules/${free.slug}` };
+
+  // quiz/module-3.json -> pangatlong free module
+  const quiz = source.match(/module-(\d+)\.json$/);
+  if (quiz && FREE_MODULES[Number(quiz[1]) - 1]) {
+    const m = FREE_MODULES[Number(quiz[1]) - 1];
+    return { title: `${m.title} module`, path: `/modules/${m.slug}` };
+  }
+
+  if (source === 'role-based modules') {
+    const name = title.split(':')[0].trim();
+    const m = premiumModules.find((x) => x.title === name);
+    if (m) return { title: `${m.title} (Premium)`, path: `/premium-modules/${m.slug}` };
+  }
+
+  if (source === 'assessment') return { title: 'Awareness assessment (Premium)', path: '/assessment' };
+  return null;
+}
+
 const FALLBACK =
   "I do not have a prepared answer for that one. I can help with phishing, quishing, spear phishing, smishing, vishing, pretexting, passwords, multi-factor authentication, invoice and payment scams, recruitment scams, and securing a home network.\n\nThe six free modules cover all of these in more depth.";
 
@@ -144,12 +228,44 @@ router.post('/', async (req, res) => {
   // lang yung isang message na to; yung pagsabi, tinuturuan siya na huwag
   // gawin kahit saan.
   const redacted = message !== rawMessage;
-  const send = (body) => res.json({ ...body, redacted });
+
+  // Kapag may tinanggal, binabalik din yung malinis na bersyon para mapalitan
+  // ng widget yung bubble ng user. Kung hindi, nakatengga pa rin sa screen
+  // yung password, kita ng kahit sinong nasa likod mo.
+  const send = (body) => res.json({
+    ...body,
+    redacted,
+    ...(redacted ? { redactedMessage: message } : {}),
+  });
+
+  const history = sanitizeHistory(req.body.history);
+  const sessionId = typeof req.body.sessionId === 'string' ? req.body.sessionId.slice(0, 64) : undefined;
 
   // Hanapin yung passages sa sariling modules natin na pinaka-tugma sa tanong.
   // Sila yung sasagutan ng model, para itinuturo ng assistant yung material ng
   // platform, hindi yung basta alam niya lang.
-  const passages = retrieval.search(message, 4);
+  let passages = retrieval.search(message, 4);
+
+  // Mahina o walang tugma? Malamang follow-up yan ("how do I spot one?"), kaya
+  // subukan ulit kasama yung huling tanong ng user. Kapag malakas na yung
+  // tugma ng tanong mismo, hindi na ginagalaw, para hindi mahila pabalik sa
+  // lumang topic kapag nagpalit ng paksa ang user.
+  const FOLLOW_UP_SCORE = 6;
+  const lastUserTurn = [...history].reverse().find((m) => m.role === 'user');
+  if (lastUserTurn && (!passages.length || passages[0].score < FOLLOW_UP_SCORE)) {
+    const withContext = retrieval.search(`${lastUserTurn.text} ${message}`, 4);
+    if (withContext.length && (!passages.length || withContext[0].score > passages[0].score)) {
+      passages = withContext;
+    }
+  }
+
+  // May floor sa score, kasi diretso na ipapasa yung passage sa user kapag
+  // walang AI provider, walang nag-che-check kung bagay ba talaga. Ginagamit
+  // din to para malaman kung may saysay mag-lagay ng "learn more" link.
+  const MIN_DIRECT_SCORE = 5;
+  const top = passages[0];
+  const confident = Boolean(top) && top.score >= MIN_DIRECT_SCORE && top.vocabCoverage >= 0.5;
+  const learnMore = confident ? learnMoreFor(top) : null;
 
   const context = passages
     .map((p, i) => `[${i + 1}] ${p.title}\n${p.text}`)
@@ -162,9 +278,13 @@ router.post('/', async (req, res) => {
     '',
     'Rules:',
     '- Answer only from the passages when they cover the question.',
-    '- If they do not cover it, say so plainly and name which topics you can help with. Do not invent specifics.',
-    '- Keep answers short and practical, a few sentences at most.',
-    '- Write plainly, no bullet lists unless the answer is genuinely a list.',
+    '- Use the earlier conversation to understand follow-ups such as "how do I spot one?" or "tell me more".',
+    '- If the passages do not cover it, say so plainly and name which topics you can help with. Do not invent specifics.',
+    '- If someone says an attack is happening to them now (a suspicious call, a link they clicked, an account that looks compromised), give the first safe steps before anything else: stop engaging, do not click or pay, verify through a channel they already trust, change affected passwords, and contact their bank or IT.',
+    '- Keep answers short and practical: two to five sentences, or a short list when the answer is genuinely steps or warning signs.',
+    '- Formatting: plain sentences, **bold** for one or two key terms at most, and "- " at the start of list items. No headings, tables or links.',
+    '- Talk to the user as "you". Be warm but brief; only greet them if they greet you first.',
+    '- Never ask for passwords, one-time codes or personal details.',
     '- Refuse anything unrelated to security awareness.',
     '',
     'Reference passages:',
@@ -181,11 +301,13 @@ router.post('/', async (req, res) => {
       const upstream = await fetch(n8nUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message }),
+        // sessionId para sa sariling memory ng n8n workflow; history kung
+        // gusto niyang gamitin. Redacted na parehong laman.
+        body: JSON.stringify({ message, history, sessionId }),
       });
       const data = await upstream.json();
       const reply = data.reply || data.output;
-      if (reply) return send({ reply, source: 'n8n' });
+      if (reply) return send({ reply, source: 'n8n', learnMore });
     } catch (err) {
       console.warn('[chat] n8n unreachable, falling back:', err.message);
     }
@@ -203,7 +325,7 @@ router.post('/', async (req, res) => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: message }] }],
+            contents: toGeminiContents(history, message),
             systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
             generationConfig: {
               temperature: 0.3,
@@ -232,6 +354,7 @@ router.post('/', async (req, res) => {
           reply: reply.trim(),
           source: 'gemini',
           sources: passages.map((p) => p.title),
+          learnMore,
         });
       }
       console.warn('[chat] Gemini returned no text:', JSON.stringify(data).slice(0, 200));
@@ -243,18 +366,12 @@ router.post('/', async (req, res) => {
   // Walang naka-configure na provider, o nag-fail. Sagutin galing sa
   // nakuhang passage mismo. Module text talaga to, kaya medyo formal magbasa,
   // pero tama naman at sarili natin.
-  // May floor sa score, kasi diretso na ipapasa yung passage sa user, walang
-  // nag-che-check kung bagay ba talaga. Yung totoong tanong, mataas naman
-  // ang score dyan; yung stray keyword lang, mababa. May AI provider naman,
-  // hindi na masama yung mahinang match, kasi sinasabihan naman yung model na
-  // aminin kung wala talagang tugma.
-  const MIN_DIRECT_SCORE = 5.5;
-
-  if (passages.length && passages[0].score >= MIN_DIRECT_SCORE) {
+  if (confident) {
     return send({
       reply: passages[0].text,
       source: 'knowledge-base',
       sources: [passages[0].title],
+      learnMore,
     });
   }
 

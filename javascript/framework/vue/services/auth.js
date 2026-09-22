@@ -257,11 +257,21 @@ export default {
   },
 
   /* ----- learning assistant ----- */
-  // Returns the reply plus whether the server removed a password from the
-  // message, so the widget can warn the user.
-  async sendChatMessage(message) {
-    const data = await request('/api/chat', { method: 'POST', body: { message } })
-    return { reply: data.reply, redacted: !!data.redacted }
+  // Sends the message with the last few turns of the conversation, so the
+  // assistant understands follow-ups like "tell me more". Returns the reply,
+  // whether a password was removed (and the cleaned text, so the widget can
+  // stop showing it), and a link to the module the answer came from.
+  async sendChatMessage(message, history = [], sessionId) {
+    const data = await request('/api/chat', {
+      method: 'POST',
+      body: { message, history, sessionId }
+    })
+    return {
+      reply: data.reply,
+      redacted: !!data.redacted,
+      redactedMessage: data.redactedMessage || null,
+      learnMore: data.learnMore || null
+    }
   },
 
   /* ----- quiz results -----
