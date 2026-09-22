@@ -33,9 +33,12 @@
           v-for="(message, index) in messages"
           :key="index"
           class="chatbot-message"
-          :class="message.role === 'user'
-            ? 'chatbot-user-message'
-            : 'chatbot-assistant-message'"
+          :class="{
+            'chatbot-user-message': message.role === 'user',
+            'chatbot-assistant-message': message.role === 'assistant',
+            'chatbot-assistant-message chatbot-warning-message': message.role === 'warning'
+          }"
+          :role="message.role === 'warning' ? 'alert' : null"
         >
           <span v-for="(para, i) in message.text.split('\n\n')" :key="i" class="chatbot-para">{{ para }}</span>
         </div>

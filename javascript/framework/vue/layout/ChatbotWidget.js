@@ -29,7 +29,17 @@ export default {
       this.scrollToEnd()
 
       try {
-        const reply = await auth.sendChatMessage(text)
+        const { reply, redacted } = await auth.sendChatMessage(text)
+
+        // The password never left the server, but the user should know it
+        // was there, and that typing it anywhere else would not be safe.
+        if (redacted) {
+          this.messages.push({
+            role: 'warning',
+            text: 'That message looked like it contained a password, so it was removed before being processed. Never share a password in a chat, with support staff, or with an AI assistant. If that was a real one, consider changing it.'
+          })
+        }
+
         this.messages.push({ role: 'assistant', text: reply })
       } catch (err) {
         // Say what actually went wrong rather than leaving the question

@@ -1,8 +1,11 @@
 // server.js
-// IamAtomic — Group 4 Capstone 2, SE-AWARE backend
+// Backend and integration: IamAtomic
 //
-// Node + Express + MySQL. Isang server lang to, API tapos yung built Vue
-// frontend, wala nang two deploys kailangan.
+// Web-Based Social Engineering Awareness Platform for Remote Workers
+// Group 4 | Capstone 2
+//
+// Node.js + Express + MySQL. Serves the API and, in production, the built
+// Vue frontend from the same origin so there is only one thing to deploy.
 
 const path = require('path');
 const fs = require('fs');
@@ -25,23 +28,25 @@ const chatRoutes = require('./routes/chat');
 
 const app = express();
 
-// Sa likod ng Render/Railway, yung totoong IP nasa header na "forwarded".
-// Kailangan to para gumana ng tama yung rate limiter, kundi parang isang tao
-// lang lahat ng request.
+// Behind a host like Render or Railway the real client IP arrives in a
+// forwarded header. Rate limiting needs this or it sees every request as
+// coming from the proxy.
 if (config.isProduction) app.set('trust proxy', 1);
 
-// Standard security headers. CSP naka-off kasi may external fonts at chatbot
-// widget na iba pinagkukunan, pero yung iba sa helmet gumagana pa rin.
+// Standard protective headers: clickjacking, MIME sniffing, referrer leakage.
+// The default content security policy is disabled because the frontend loads
+// fonts and the chatbot widget from elsewhere; the rest of helmet still applies.
 app.use(helmet({ contentSecurityPolicy: false }));
 
-// Wag ipaalam sa lahat kung anong framework/version ginagamit natin.
+// No reason to advertise the framework and version to anyone scanning.
 app.disable('x-powered-by');
 
 app.use(compression());
 
-// Dati open sa lahat yung CORS, kahit sinong website pwede mag-call gamit
-// login ng user. Ngayon, yun lang mga nasa CORS_ORIGINS pwede, plus localhost
-// Vite server pag dev.
+// Previously this was app.use(cors()) with no options, which let any website
+// on the internet call this API with a logged in user's browser. Now only the
+// origins named in CORS_ORIGINS are allowed, and in development the local
+// Vite server is permitted so the two ports can talk to each other.
 const allowedOrigins = config.isProduction
   ? config.corsOrigins
   : [...config.corsOrigins, 'http://localhost:5173', 'http://127.0.0.1:5173',
@@ -49,7 +54,8 @@ const allowedOrigins = config.isProduction
 
 app.use(cors({
   origin(origin, callback) {
-    // Walang Origin header = curl o health check, hindi browser, so okay lang.
+    // Requests with no Origin header are things like curl or a health check,
+    // not a browser acting on behalf of a signed in user.
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
     return callback(new Error('Origin not allowed by CORS.'));
@@ -57,25 +63,28 @@ app.use(cors({
   credentials: true,
 }));
 
-// Limit sa request body size, para di ma-abuse ng isang malaking request.
+// A size cap so a single huge request body cannot exhaust memory.
 app.use(express.json({ limit: '100kb' }));
 
 app.use('/api', generalLimiter);
 
-// Health check na totoo — sinusuri talaga kung naa-access yung DB, hindi lang
-// kung buhay pa yung process.
+// Reports whether the database is actually reachable, not just whether the
+// process is alive. A host's health check should fail if MySQL is down.
 app.get('/api/health', async (req, res) => {
   try {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', database: 'connected' });
   } catch (err) {
-    // Nasa server log lang yung detalye, para hindi lumabas sa public response.
+    // Logged, because a health check that only says "unreachable" leaves you
+    // guessing between a wrong password, a firewall, and a TLS problem. The
+    // reason stays in the server log rather than the response, since the
+    // response is public.
     console.error('[health] database unreachable:', err.code || '', err.message);
     res.status(503).json({ status: 'degraded', database: 'unreachable' });
   }
 });
 
-// Mas mahigpit na limit sa mga endpoint na pwedeng i-guess (login, register, etc).
+// The stricter limits sit in front of the endpoints worth guessing at.
 app.use('/api/auth/login', authLimiter);
 app.use('/api/auth/register', authLimiter);
 app.use('/api/auth/forgot-password', authLimiter);
@@ -90,14 +99,14 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/assessment', assessmentRoutes);
 app.use('/api/chat', chatRoutes);
 
-// Sa production, naka-build na yung Vue app papunta sa ../dist, kaya dito na
-// rin sini-serve — same origin, walang CORS hop.
+// In production the Vue app is built to ../dist and served from here, so the
+// site and the API share an origin and there is no CORS hop at all.
 const distPath = path.join(__dirname, '..', 'dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
 
-  // Vue Router na bahala sa mga URL, kaya kung hindi API call o totoong file,
-  // sa index.html na lang babagsak tapos router na gagalaw.
+  // Vue Router owns the URLs, so anything that is not an API call or a real
+  // file falls through to index.html and the router decides what to render.
   app.get(/^\/(?!api\/).*/, (req, res) => {
     res.sendFile(path.join(distPath, 'index.html'));
   });
@@ -108,10 +117,21 @@ app.use((err, req, res, next) => {
     return res.status(403).json({ error: 'Origin not allowed.' });
   }
 
+  // An oversized body is the client's problem, not a server fault, so it gets
+  // 413 rather than being swallowed into a generic 500.
+  if (err && err.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'Request body is too large.' });
+  }
+
+  // Malformed JSON, same reasoning.
+  if (err && err.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'Request body is not valid JSON.' });
+  }
+
   console.error(err);
 
-  // Ayaw i-expose sa response yung details (table names, paths, etc) — sa log
-  // na lang.
+  // Error details can name tables, columns, or file paths, so they stay in
+  // the server log rather than going back to the browser.
   res.status(500).json({ error: 'Something went wrong.' });
 });
 

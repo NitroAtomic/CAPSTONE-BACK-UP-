@@ -257,9 +257,11 @@ export default {
   },
 
   /* ----- learning assistant ----- */
+  // Returns the reply plus whether the server removed a password from the
+  // message, so the widget can warn the user.
   async sendChatMessage(message) {
     const data = await request('/api/chat', { method: 'POST', body: { message } })
-    return data.reply
+    return { reply: data.reply, redacted: !!data.redacted }
   },
 
   /* ----- quiz results -----

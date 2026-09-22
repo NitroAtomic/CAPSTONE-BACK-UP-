@@ -188,3 +188,12 @@
     @apply cursor-not-allowed opacity-[0.55];
   }
 }
+
+/* Shown when the server removed a password from the user's message. Marked
+   out by weight and a heavier border rather than colour, since the visual
+   design pass has not happened yet. */
+.chatbot-warning-message {
+  border-width: 2px;
+  border-style: dashed;
+  font-weight: 600;
+}

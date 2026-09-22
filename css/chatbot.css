@@ -176,6 +176,37 @@
 
 
 /* =========================
+   Message Body (paragraphs, lists, bold)
+   ========================= */
+
+.chatbot-message-body .chatbot-para {
+    margin: 0 0 8px;
+}
+
+.chatbot-message-body .chatbot-list {
+    margin: 0 0 8px;
+    padding-left: 18px;
+}
+
+.chatbot-message-body .chatbot-para:last-child,
+.chatbot-message-body .chatbot-list:last-child {
+    margin-bottom: 0;
+}
+
+.chatbot-message-body li {
+    margin-bottom: 4px;
+}
+
+.chatbot-message-body li:last-child {
+    margin-bottom: 0;
+}
+
+.chatbot-message-body strong {
+    font-weight: 600;
+}
+
+
+/* =========================
    Loading Message
    ========================= */
 
