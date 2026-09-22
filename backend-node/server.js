@@ -32,7 +32,17 @@ if (config.isProduction) app.set('trust proxy', 1);
 
 // Standard security headers. CSP naka-off kasi may external fonts at chatbot
 // widget na iba pinagkukunan, pero yung iba sa helmet gumagana pa rin.
-app.use(helmet({ contentSecurityPolicy: false }));
+//
+// Referrer policy: "strict-origin-when-cross-origin", hindi yung default ng
+// helmet na "no-referrer". Kailangan ng YouTube ng referrer para makilala kung
+// sino nag-e-embed; kapag wala, Error 153 ("Video player configuration error")
+// yung lumalabas sa lahat ng embedded videos natin. Ito rin naman yung default
+// ng browsers at recommended ng YouTube, at domain lang natin ang pinapadala
+// sa ibang sites, hindi yung buong page path.
+app.use(helmet({
+  contentSecurityPolicy: false,
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+}));
 
 // Wag ipaalam sa lahat kung anong framework/version ginagamit natin.
 app.disable('x-powered-by');
