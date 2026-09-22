@@ -132,7 +132,7 @@
           "text": "False"
         }
       ],
-      "explanation": "False. Traditional SEGs primarily scan textual and HTML links. Image-based QR codes often bypass standard filters because the URL is hidden inside the graphic payload. #### **Medium Level (Questions 6–13)**"
+      "explanation": "False. Traditional SEGs primarily scan textual and HTML links. Image-based QR codes often bypass standard filters because the URL is hidden inside the graphic payload."
     },
     {
       "id": 6,
@@ -348,7 +348,7 @@
           "text": "False"
         }
       ],
-      "explanation": "True. Combosquatting merges legitimate brand trademarks with keywords (e.g., paypal-update-center.com) to mislead recipients. #### **Hard / Advanced Level (Questions 14–20)**"
+      "explanation": "True. Combosquatting merges legitimate brand trademarks with keywords (e.g., paypal-update-center.com) to mislead recipients."
     },
     {
       "id": 14,

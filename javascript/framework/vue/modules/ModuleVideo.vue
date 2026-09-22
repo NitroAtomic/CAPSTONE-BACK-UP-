@@ -7,13 +7,13 @@
   .video-player classes that already existed in modules.css but were unused.
 
   Kept deliberately simple: it only ever embeds a youtube.com/watch or
-  youtu.be link (the only kind used in this codebase), and falls back to a
-  plain "watch on YouTube" link for anything it can't parse rather than
-  guessing at an iframe src.
+  youtu.be link. Anything else (an article, a guide, a PDF) is shown as a
+  "Curated Resource" card that says what it opens, rather than guessing at
+  an iframe src.
 -->
 <template>
   <section class="module-video-section">
-    <h2>Curated Video</h2>
+    <h2>{{ embedUrl ? 'Curated Video' : 'Curated Resource' }}</h2>
 
     <div class="video-player" v-if="embedUrl">
       <iframe
@@ -26,13 +26,17 @@
       ></iframe>
     </div>
 
-    <p v-else class="video-player">
-      <a :href="url" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-    </p>
+    <!-- Not a YouTube video (an article, guide or PDF): say what it is and
+         where it opens, rather than a "Watch on YouTube" button that opens
+         a PDF. -->
+    <a v-else class="module-resource-card" :href="url" target="_blank" rel="noopener noreferrer">
+      <span class="module-resource-kind">{{ resourceKind }}</span>
+      <span class="module-resource-action">Open {{ resourceKind.toLowerCase() }} ↗</span>
+      <span class="module-resource-host">{{ host }}</span>
+    </a>
 
     <p>
-      <strong>Source:</strong>
-      <a :href="url" target="_blank" rel="noopener noreferrer">{{ title }}</a>
+      <strong>Source:</strong>{{ ' ' }}<a :href="url" target="_blank" rel="noopener noreferrer">{{ title }}</a>
     </p>
   </section>
 </template>
@@ -45,6 +49,16 @@ export default {
     title: { type: String, required: true }
   },
   computed: {
+    // "PDF guide" for .pdf links, "Article" for anything else that isn't a
+    // YouTube video.
+    resourceKind() {
+      return /\.pdf($|[?#])/i.test(this.url) ? 'PDF guide' : 'Article'
+    },
+
+    host() {
+      try { return new URL(this.url).hostname.replace(/^www\./, '') } catch { return '' }
+    },
+
     embedUrl() {
       const match = this.url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/)
       return match ? `https://www.youtube.com/embed/${match[1]}` : null

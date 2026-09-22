@@ -22,6 +22,7 @@ export default {
       password: '',
       confirmPassword: '',
       showPassword: false,
+      showConfirmPassword: false,
 
       message: '',
       messageType: 'error',

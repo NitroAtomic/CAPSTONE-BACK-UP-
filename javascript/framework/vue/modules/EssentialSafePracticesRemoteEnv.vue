@@ -236,8 +236,8 @@
     </section>
 
     <ModuleVideo
-        url="https://www.youtube.com/watch?v=2eEwUe_uI6k"
-        title="Cybersecurity and Infrastructure Security Agency (CISA) — &quot;Cybersecurity for Remote Work: Best Practices to Stay Safe Online&quot;"
+        url="https://www.cisa.gov/sites/default/files/2024-08/Federal-Mobile-Workplace-Security_508_2024-08-14.pdf"
+        title="Cybersecurity and Infrastructure Security Agency (CISA) — &quot;Federal Mobile Workplace Security&quot; (2024)"
     />
 
     <section id="essential-safe-practices-curated-resources">

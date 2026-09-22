@@ -240,7 +240,7 @@
     </section>
 
     <ModuleVideo
-        url="https://www.youtube.com/watch?v=2n-1ZInI_vE"
+        url="https://www.fcc.gov/avoid-temptation-smishing-scams"
         title="Federal Communications Commission (FCC) — &quot;Avoid the Temptation of Smishing Scams&quot;"
     />
 

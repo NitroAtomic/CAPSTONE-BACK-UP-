@@ -304,12 +304,24 @@ router.post('/', async (req, res) => {
         // sessionId para sa sariling memory ng n8n workflow; history kung
         // gusto niyang gamitin. Redacted na parehong laman.
         body: JSON.stringify({ message, history, sessionId }),
+        // May limit na 20 seconds. Kapag nag-hang yung n8n server, hindi
+        // maghihintay forever yung user; lilipat na lang kay Gemini.
+        signal: AbortSignal.timeout(20000),
       });
+      if (!upstream.ok) throw new Error(`HTTP ${upstream.status}`);
       const data = await upstream.json();
-      const reply = data.reply || data.output;
+
+      // Minsan naka-list yung sagot ng n8n: [{ "output": "..." }], hindi
+      // { "output": "..." } lang. Kapag hindi binuksan yung list, walang
+      // makikitang "output", tahimik na lilipat kay Gemini, at mukhang gumagana
+      // yung chat kahit hindi pala nagamit yung AI ni Shane kahit kailan.
+      const payload = Array.isArray(data) ? data[0] : data;
+      const reply = payload && (payload.reply || payload.output);
       if (reply) return send({ reply, source: 'n8n', learnMore });
+
+      console.warn('[chat] n8n replied without "output" or "reply":', JSON.stringify(data).slice(0, 200));
     } catch (err) {
-      console.warn('[chat] n8n unreachable, falling back:', err.message);
+      console.warn('[chat] n8n unreachable, falling back:', err.name === 'TimeoutError' ? 'timed out after 20s' : err.message);
     }
   }
 

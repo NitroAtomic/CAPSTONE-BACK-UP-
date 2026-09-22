@@ -19,6 +19,33 @@ const MODULE_DATA = {
 // Fisher-Yates shuffle — randomizes ORDER only.
 // We never drop or add questions here; all 20 always appear,
 // just in a different sequence each attempt (per Capstone paper requirement).
+// Each quiz shows 10 questions drawn from a pool of 20, so a retake is not
+// the same test twice. Kim's question banks are grouped by difficulty
+// (1 to 5 easy, 6 to 13 medium, 14 to 20 hard), so the draw takes some from
+// each group: a purely random 10 could hand someone an all-easy retake.
+// A pool that doesn't follow that layout just gets a plain random draw.
+const QUESTIONS_PER_ATTEMPT = 10
+const DIFFICULTY_BANDS = [
+  { from: 1, to: 5, take: 3 },
+  { from: 6, to: 13, take: 4 },
+  { from: 14, to: 20, take: 3 }
+]
+
+function drawQuestions(pool) {
+  if (pool.length <= QUESTIONS_PER_ATTEMPT) return shuffleOrder(pool)
+
+  const banded = DIFFICULTY_BANDS.map((band) =>
+    pool.filter((q) => q.id >= band.from && q.id <= band.to))
+  const followsLayout = pool.length === 20 &&
+    banded.every((group, i) => group.length >= DIFFICULTY_BANDS[i].take)
+
+  const picked = followsLayout
+    ? banded.flatMap((group, i) => shuffleOrder(group).slice(0, DIFFICULTY_BANDS[i].take))
+    : shuffleOrder(pool).slice(0, QUESTIONS_PER_ATTEMPT)
+
+  return shuffleOrder(picked)
+}
+
 function shuffleOrder(array) {
   const shuffled = [...array]
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -136,7 +163,7 @@ export default {
         return
       }
       this.moduleData = data
-      this.shuffledQuestions = shuffleOrder(data.questions)
+      this.shuffledQuestions = drawQuestions(data.questions)
       this.currentIndex = 0
       this.answers = {}
       this.checkedIds = {}

@@ -92,6 +92,21 @@
     @apply font-semibold text-green-700;
   }
 
+  /* Red once the user has started typing, so what's still missing stands
+     out. The marker changes too (✓ / ✗), because colour alone doesn't work
+     for people who can't tell red from green. */
+  .auth-rule-unmet {
+    @apply text-red-700;
+  }
+
+  .auth-rules li.auth-rule-met::before {
+    content: '✓ ';
+  }
+
+  .auth-rules li.auth-rule-unmet::before {
+    content: '✗ ';
+  }
+
   /* ---- buttons and links ---- */
 
   .auth-submit {

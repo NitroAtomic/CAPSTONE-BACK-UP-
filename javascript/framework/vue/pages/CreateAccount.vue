@@ -48,7 +48,7 @@
 
           <ul class="auth-rules">
             <li v-for="rule in ruleStatus" :key="rule.label"
-                :class="{ 'auth-rule-met': rule.met }">
+                :class="{ 'auth-rule-met': rule.met, 'auth-rule-unmet': password.length > 0 && !rule.met }">
               {{ rule.label }}
             </li>
           </ul>
@@ -56,8 +56,16 @@
 
         <div class="auth-field">
           <label for="confirm-password">Confirm password</label>
-          <input id="confirm-password" v-model="confirmPassword" type="password"
-                 autocomplete="new-password" placeholder="Re-enter your password">
+          <div class="auth-password-wrap">
+            <input id="confirm-password" v-model="confirmPassword"
+                   :type="showConfirmPassword ? 'text' : 'password'"
+                   autocomplete="new-password" placeholder="Re-enter your password">
+            <button type="button" class="auth-password-toggle"
+                    :aria-label="showConfirmPassword ? 'Hide password' : 'Show password'"
+                    @click="showConfirmPassword = !showConfirmPassword">
+              {{ showConfirmPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
         </div>
 
         <button class="auth-submit" type="submit" :disabled="busy">

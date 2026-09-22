@@ -1,5 +1,6 @@
 // Backend and integration: IamAtomic
 import auth from '../services/auth.js'
+import examMode from '../services/examMode.js'
 
 const GREETING = "Hi, I'm CyberWise. Ask me about phishing, scam calls, passwords, or anything else about staying safe as a remote worker."
 
@@ -91,8 +92,22 @@ export default {
   },
 
   computed: {
+    // No help from CyberWise while a quiz or the assessment is being taken.
+    // Results pages still show it.
+    hidden() {
+      return /^\/quiz\/[^/]+\/question/.test(this.$route.path) || examMode.assessmentInProgress
+    },
+
     showStarters() {
       return !this.busy && this.messages.length === 1
+    }
+  },
+
+  watch: {
+    // Close the panel if a quiz starts while it's open, so it doesn't pop
+    // back open by itself afterwards.
+    hidden(value) {
+      if (value) this.isOpen = false
     }
   },
 

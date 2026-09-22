@@ -234,8 +234,8 @@
     </section>
 
     <ModuleVideo
-        url="https://www.youtube.com/watch?v=cbL_IBAi6tA"
-        title="SANS Institute — &quot;What Is a Pretexting Attack?&quot;"
+        url="https://www.sans.org/blog/tackling-modern-human-risks-in-cybersecurity-insights-from-the-verizon-dbir-2024"
+        title="SANS Institute — &quot;Tackling Modern Human Risks in Cybersecurity: Insights from the Verizon DBIR 2024&quot;"
     />
 
     <section id="pretexting-curated-resources">

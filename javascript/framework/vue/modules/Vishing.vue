@@ -245,8 +245,8 @@
     </section>
 
     <ModuleVideo
-        url="https://www.youtube.com/watch?v=zE60tK9M1x8"
-        title="Global Cyber Alliance — &quot;What is Vishing? Understanding This High-Tech Phone Scam&quot;"
+        url="https://www.cisco.com/site/us/en/learn/topics/security/what-is-vishing.html"
+        title="Cisco — &quot;What Is Vishing?&quot;"
     />
 
     <section id="vishing-curated-resources">

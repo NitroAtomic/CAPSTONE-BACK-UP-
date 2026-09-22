@@ -213,3 +213,20 @@
   }
 
 }
+/* Card for a curated resource that isn't a video (article, guide, PDF). */
+.module-resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 420px;
+  padding: 14px 16px;
+  border: 1px solid #111;
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+.module-resource-card:hover { background: #f5f5f5; }
+.module-resource-card:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+.module-resource-kind { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: #666; }
+.module-resource-action { font-weight: 600; }
+.module-resource-host { font-size: 13px; color: #666; }

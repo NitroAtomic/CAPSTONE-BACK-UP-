@@ -132,7 +132,7 @@
           "text": "False"
         }
       ],
-      "explanation": "False. The .docm extension explicitly denotes a macro-enabled document. Enabling macros runs underlying VBA code that can install malware. #### **Medium Level (Questions 6–13)**"
+      "explanation": "False. The .docm extension explicitly denotes a macro-enabled document. Enabling macros runs underlying VBA code that can install malware."
     },
     {
       "id": 6,

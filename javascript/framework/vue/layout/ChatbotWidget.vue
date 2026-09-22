@@ -1,5 +1,5 @@
 <template>
-  <div class="chatbot-widget">
+  <div v-show="!hidden" class="chatbot-widget">
     <section
       class="chatbot-panel"
       :class="{ 'chatbot-panel-open': isOpen }"

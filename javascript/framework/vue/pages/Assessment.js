@@ -1,6 +1,7 @@
 // Backend and integration: IamAtomic
 import auth from '../services/auth.js'
 import assessmentData from '../data/assessment.json'
+import examMode from '../services/examMode.js'
 
 export default {
   name: 'Assessment',
@@ -67,6 +68,20 @@ export default {
       return
     }
     this.questions = assessmentData.questions
+  },
+
+  watch: {
+    // CyberWise is hidden while questions are on screen, so nobody can ask it
+    // for the answers mid-assessment. It comes back on the results screen,
+    // where asking why an answer was wrong is exactly the point.
+    stage(value) {
+      examMode.assessmentInProgress = value === 'question'
+    }
+  },
+
+  // Leaving the page mid-assessment must not leave the chat hidden elsewhere.
+  beforeUnmount() {
+    examMode.assessmentInProgress = false
   },
 
   methods: {
