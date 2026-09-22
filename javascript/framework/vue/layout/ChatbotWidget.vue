@@ -7,7 +7,7 @@
     >
       <header class="chatbot-header">
         <div class="chatbot-assistant-information">
-          <div class="chatbot-assistant-icon">CW</div>
+          <div class="chatbot-assistant-icon"><img src="/images/icons/cyberwise-logo.png" alt=""></div>
           <div class="chatbot-assistant-details">
             <h2>CyberWise</h2>
             <p class="chatbot-status">Security awareness assistant</p>
@@ -121,7 +121,7 @@
       @click="isOpen = !isOpen"
     >
       <span class="chatbot-floating-button-icon">
-        <img src="/images/icons/chatbot-icon.png" alt="">
+        <img src="/images/icons/cyberwise-logo.png" alt="">
       </span>
     </button>
   </div>

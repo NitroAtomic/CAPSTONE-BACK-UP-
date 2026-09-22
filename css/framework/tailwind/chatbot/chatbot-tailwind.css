@@ -39,6 +39,10 @@
     @apply w-[34px] h-[34px] shrink-0 border border-black rounded-full bg-white text-black flex items-center justify-center text-[11px] font-bold;
   }
 
+  .chatbot-assistant-icon img {
+    @apply w-[28px] h-[28px] block object-contain;
+  }
+
   .chatbot-assistant-details h2 {
     @apply m-0 text-[14px] leading-[1.1];
   }
@@ -156,8 +160,10 @@
      Floating Chatbot Icon
      ========================= */
 
+  /* 40px, not 24px: the CyberWise logo has a shield and a face that
+     disappear at smaller sizes. */
   .chatbot-floating-button-icon {
-    @apply w-6 h-6 flex items-center justify-center;
+    @apply w-10 h-10 flex items-center justify-center;
   }
 
   /*
