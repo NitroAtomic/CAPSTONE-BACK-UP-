@@ -26,7 +26,15 @@ async function issueOtp(user, purpose) {
     'INSERT INTO otpcode (user_id, code_hash, purpose, expires_at) VALUES (?, ?, ?, ?)',
     [user.user_id, codeHash, purpose, expiresAt]
   );
-  await sendOtpEmail(user.email, code, purpose);
+  // Naka-save na yung code bago pa subukang ipadala, kaya kung pumalya yung
+  // email, hindi nasisira yung buong request. Sinasabi na lang kung naipadala
+  // ba talaga, para masabi sa user imbis na generic na error.
+  try {
+    return await sendOtpEmail(user.email, code, purpose);
+  } catch (err) {
+    console.error('[auth] hindi naipadala yung code:', err.message);
+    return { delivered: false, mode: 'failed' };
+  }
 }
 
 // FR-09: Registration
@@ -86,7 +94,17 @@ router.post('/login', async (req, res) => {
     }
 
     if (user.subscription_type === 'Premium') {
-      await issueOtp(user);
+      const sent = await issueOtp(user);
+
+      // Kapag may naka-set na SMTP pero pumalya, walang makukuhang code yung
+      // user, kaya sabihin na agad. Sa console mode, nasa server log yung
+      // code, kaya tuloy lang.
+      if (sent && sent.mode === 'failed') {
+        return res.status(503).json({
+          error: 'We could not send your verification code right now. Please try again in a moment.',
+        });
+      }
+
       const pendingToken = jwt.sign(
         { user_id: user.user_id, otp_pending: true },
         JWT_SECRET,

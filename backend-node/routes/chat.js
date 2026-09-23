@@ -250,9 +250,14 @@ router.post('/', async (req, res) => {
   // subukan ulit kasama yung huling tanong ng user. Kapag malakas na yung
   // tugma ng tanong mismo, hindi na ginagalaw, para hindi mahila pabalik sa
   // lumang topic kapag nagpalit ng paksa ang user.
+  //
+  // Pero hindi to ginagawa kapag may sariling paksa na yung tanong. Dati,
+  // "what is smishing" tapos "what is phishing?" hinila pabalik sa smishing
+  // yung sagot, kasi pinagsama silang dalawa sa paghahanap.
   const FOLLOW_UP_SCORE = 6;
   const lastUserTurn = [...history].reverse().find((m) => m.role === 'user');
-  if (lastUserTurn && (!passages.length || passages[0].score < FOLLOW_UP_SCORE)) {
+  const hasOwnTopic = retrieval.mentionsTopic(message);
+  if (lastUserTurn && !hasOwnTopic && (!passages.length || passages[0].score < FOLLOW_UP_SCORE)) {
     const withContext = retrieval.search(`${lastUserTurn.text} ${message}`, 4);
     if (withContext.length && (!passages.length || withContext[0].score > passages[0].score)) {
       passages = withContext;
@@ -379,11 +384,31 @@ router.post('/', async (req, res) => {
   // nakuhang passage mismo. Module text talaga to, kaya medyo formal magbasa,
   // pero tama naman at sarili natin.
   if (confident) {
+    // Mas pinipili yung module text kaysa sa quiz item. Ibinabalik kasi diretso
+    // yung passage dito, at nakakalito kapag tanong pala ang sagot: lumabas
+    // dati yung "Which conversational signs suggest... (Select TWO)" bilang
+    // sagot sa "how do we prevent those two?".
+    const isQuizItem = (p) => /^quiz\//.test(p.source) || p.source === 'assessment';
+    const best = passages.find((p) => !isQuizItem(p)) || passages[0];
+
+    // Kapag quiz item talaga ang meron, yung paliwanag lang ang ibabalik,
+    // hindi kasama yung tanong.
+    const stripQuestion = (text) => text
+      .slice(text.lastIndexOf('?') + 1)
+      // Natitira pa yung mga tira ng tanong: "*(Select TWO)*", "(Choose 2)".
+      .replace(/^\s*\*?\s*\((?:select|choose)[^)]*\)\s*\*?/i, '')
+      .replace(/^[\s*:-]+/, '')
+      .trim();
+
+    const reply = isQuizItem(best) && /\?/.test(best.text)
+      ? (stripQuestion(best.text) || best.text)
+      : best.text;
+
     return send({
-      reply: passages[0].text,
+      reply,
       source: 'knowledge-base',
-      sources: [passages[0].title],
-      learnMore,
+      sources: [best.title],
+      learnMore: learnMoreFor(best) || learnMore,
     });
   }
 

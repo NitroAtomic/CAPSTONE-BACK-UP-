@@ -87,14 +87,14 @@ function editDistance(a, b, max) {
  *  Maiiksing salita hindi na ginagalaw, kasi sa tatlo/apat na letra, kahit
  *  isang typo pwede na ibang salita talaga.
  */
-function nearestKnownTerm(term, topicTerms) {
+function nearestKnownTerm(term, topicTerms, maxDistance) {
   // Apat na letra minimum, kasi na-stem na bago dumating dito: "phishing"
   // nagiging "phish", tapos yung typo niyan "pish".
   if (term.length < 4 || topicTerms.has(term)) return term;
 
   // Mas mahabang salita, mas malaking allowance, dahil kung dalawang letra
   // lang mali sa apat-letrang salita, malamang ibang salita na talaga.
-  const allowed = term.length >= 6 ? 2 : 1;
+  const allowed = maxDistance ?? (term.length >= 6 ? 2 : 1);
   let best = null;
   let bestDistance = allowed + 1;
 
@@ -138,9 +138,13 @@ function loadIndex() {
   // Document frequency: sa ilang passages lumalabas yung bawat term. Yung
   // bihirang term mas mataas ang halaga, para hindi dominate yung common word.
   const df = new Map();
+  const rawVocab = new Set();
   let totalLength = 0;
 
   const prepared = entries.map((entry) => {
+    const rawWords = tokenise(entry.text + ' ' + entry.title);
+    for (const w of rawWords) rawVocab.add(w);
+
     const bodyTerms = tokenise(entry.text).map(stem);
     // Hiwalay na-index yung title. Kung sasabay sa body, matatabunan lang sa
     // ibang salita — kaya dati nagkakamali, natatamaan yung smishing passage
@@ -168,6 +172,7 @@ function loadIndex() {
   index = {
     entries: prepared,
     df,
+    rawVocab,
     topicTerms,
     avgLength: prepared.length ? totalLength / prepared.length : 0,
   };
@@ -176,14 +181,25 @@ function loadIndex() {
 
 /** Ibinabalik yung mga passage na pinaka-relevant sa tanong, best-first. */
 function search(question, limit = 4) {
-  const { entries, df, topicTerms, avgLength } = loadIndex();
+  const { entries, df, rawVocab, topicTerms, avgLength } = loadIndex();
   if (!entries.length) return [];
 
-  const queryTerms = [...new Set(
-    tokenise(question)
-      .map(stem)
-      .map((term) => nearestKnownTerm(term, topicTerms))
-  )];
+  // Sinusubukan muna yung salita mismo bago pinaikli. Kailangan to kasi
+  // minsan sobrang ikli na ng pinaikling salita para magkatugma: "phising"
+  // nagiging "phi" pagkatapos alisin yung "ing" tsaka "s", pero kumpara sa
+  // buong salita, isang palit lang ang layo niya sa "phishing".
+  const correct = (word) => {
+    const stemmed = stem(word);
+    if (df.has(stemmed)) return stemmed;
+    // Isang palit lang ang pinapayagan dito. Kapag dalawa, kung ano-ano na ang
+    // pinipilit magkatugma: "manila" naging "manual", tapos parang may
+    // kinalaman na sa modules natin yung tanong tungkol sa pizza.
+    const nearRaw = nearestKnownTerm(word, rawVocab, 1);
+    if (nearRaw !== word) return stem(nearRaw);
+    return nearestKnownTerm(stemmed, topicTerms);
+  };
+
+  const queryTerms = [...new Set(tokenise(question).map(correct))];
   if (!queryTerms.length) return [];
 
   const N = entries.length;
@@ -250,4 +266,34 @@ function isReady() {
   return loadIndex().entries.length > 0;
 }
 
-module.exports = { search, isReady };
+// Pangalan mismo ng mga paksa. Hindi puwedeng basta lahat ng salita sa mga
+// title, kasi pati "prevent" at "attack" kasama dun, tapos ang lahat ng tanong
+// magmumukhang may sariling paksa.
+const TOPIC_WORDS = [
+  'phishing', 'quishing', 'smishing', 'vishing', 'pretexting', 'spear',
+  'password', 'passwords', 'recruiter', 'recruiters', 'invoice', 'invoices',
+  'impersonation', 'deepfake', 'deepfakes', 'wifi', 'router', 'mfa', 'otp',
+  'ransomware', 'malware', 'scam', 'scams',
+];
+const TOPIC_NAMES = new Set(TOPIC_WORDS.map(stem));
+
+// Totoo kapag pangalan ng paksa mismo ang nasa tanong, kahit may typo
+// ("phising"). Isang palit lang ang pinapayagan; kapag dalawa, ibang salita na
+// yun: "prevent" at "pretext" dalawa ang layo, hindi dapat magkatugma.
+function mentionsTopic(text) {
+  // Pati yung buong salita sinusuri, hindi lang yung pinaikli. Kasi
+  // "phising" nagiging "phi" pagkatapos alisin yung "ing" tsaka "s", masyado
+  // nang malayo kay "phish" para magkatugma.
+  const near = (word, names) => {
+    if (names.has(word)) return true;
+    if (word.length < 4) return false;
+    for (const name of names) {
+      if (word[0] === name[0] && editDistance(word, name, 1) <= 1) return true;
+    }
+    return false;
+  };
+  const rawNames = new Set(TOPIC_WORDS);
+  return tokenise(text).some((word) => near(word, rawNames) || near(stem(word), TOPIC_NAMES));
+}
+
+module.exports = { search, isReady, mentionsTopic };

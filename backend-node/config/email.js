@@ -20,6 +20,12 @@ if (smtpConfigured()) {
     port: config.smtp.port,
     secure: false,
     auth: { user: config.smtp.user, pass: config.smtp.pass },
+    // Para hindi mag-hang yung login kapag ang bagal or hindi sumasagot yung
+    // mail server. Mas mabuting sabihin agad na hindi naipadala kaysa iwan
+    // na naghihintay yung user.
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
   });
 }
 
