@@ -15,6 +15,8 @@
 const express = require('express');
 const config = require('./../config/env');
 const retrieval = require('./../config/retrieval');
+const pool = require('../config/db');
+const { optionalAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -121,6 +123,23 @@ function redactSecrets(text) {
   return text.replace(PASSWORD_PATTERN, (match, label, connector) => `${label}${connector} [REDACTED]`);
 }
 
+// ---- Premium content ----
+// Yung role-based modules at yung awareness assessment, Premium lang. Bukas sa
+// lahat yung chat, kaya kung hindi sasalain, nasasagot niya galing sa mga yun
+// kahit sino, kahit hindi naka-login: libre nang nakukuha yung binabayaran ng
+// iba.
+const PREMIUM_SOURCES = new Set(['role-based modules', 'assessment']);
+const isPremiumPassage = (passage) => PREMIUM_SOURCES.has(passage.source);
+
+const PREMIUM_ONLY_REPLY = [
+  'That one is covered in the Role-based modules, which are part of Premium.',
+  'They walk through client impersonation, invoice scams, fake recruiters and',
+  'client data handling, written for freelance and contract work.',
+  '',
+  'I can still help with phishing, quishing, smishing, vishing, pretexting and',
+  'safe practices for remote work, which are free for everyone.',
+].join(' ').replace('  ', ' ');
+
 // ---- Conversation history ----
 // Huling ilang palitan lang ng usapan ang pinapadala ng widget, para ma-
 // intindi yung follow-up gaya ng "how do I spot one?" o "tell me more". Kung
@@ -208,7 +227,7 @@ function learnMoreFor(passage) {
 const FALLBACK =
   "I do not have a prepared answer for that one. I can help with phishing, quishing, spear phishing, smishing, vishing, pretexting, passwords, multi-factor authentication, invoice and payment scams, recruitment scams, and securing a home network.\n\nThe six free modules cover all of these in more depth.";
 
-router.post('/', async (req, res) => {
+router.post('/', optionalAuth, async (req, res) => {
   const { message: rawMessage } = req.body;
 
   if (!rawMessage || typeof rawMessage !== 'string' || !rawMessage.trim()) {
@@ -244,7 +263,27 @@ router.post('/', async (req, res) => {
   // Hanapin yung passages sa sariling modules natin na pinaka-tugma sa tanong.
   // Sila yung sasagutan ng model, para itinuturo ng assistant yung material ng
   // platform, hindi yung basta alam niya lang.
+  // Galing sa database yung plan, hindi sa sinasabi ng browser. Walang
+  // itatype yung user, at hindi niya rin masasabi na Premium siya kung hindi.
+  let plan = 'Free';
+  if (req.user) {
+    try {
+      const [rows] = await pool.query('SELECT subscription_type FROM user WHERE user_id = ?', [req.user.user_id]);
+      if (rows[0] && rows[0].subscription_type === 'Premium') plan = 'Premium';
+    } catch (err) {
+      console.warn('[chat] hindi nakuha yung plan, Free muna:', err.message);
+    }
+  }
+
   let passages = retrieval.search(message, 4);
+
+  // Tinatanggal yung Premium na passages bago pa makarating sa kahit anong AI,
+  // kaya wala talagang mapagkukunan yung model ng laman na bayad.
+  let bestBlocked = null;
+  if (plan !== 'Premium') {
+    bestBlocked = passages.find(isPremiumPassage) || null;
+    passages = passages.filter((passage) => !isPremiumPassage(passage));
+  }
 
   // Mahina o walang tugma? Malamang follow-up yan ("how do I spot one?"), kaya
   // subukan ulit kasama yung huling tanong ng user. Kapag malakas na yung
@@ -259,15 +298,28 @@ router.post('/', async (req, res) => {
   const hasOwnTopic = retrieval.mentionsTopic(message);
   if (lastUserTurn && !hasOwnTopic && (!passages.length || passages[0].score < FOLLOW_UP_SCORE)) {
     const withContext = retrieval.search(`${lastUserTurn.text} ${message}`, 4);
-    if (withContext.length && (!passages.length || withContext[0].score > passages[0].score)) {
-      passages = withContext;
+    const allowed = plan === 'Premium'
+      ? withContext
+      : withContext.filter((passage) => !isPremiumPassage(passage));
+    if (allowed.length && (!passages.length || allowed[0].score > passages[0].score)) {
+      passages = allowed;
     }
   }
 
   // May floor sa score, kasi diretso na ipapasa yung passage sa user kapag
   // walang AI provider, walang nag-che-check kung bagay ba talaga. Ginagamit
   // din to para malaman kung may saysay mag-lagay ng "learn more" link.
+  // Premium yung pinakamalapit na sagot, at wala namang malakas na libreng
+  // kapalit: sabihin na lang na nasa Premium yun, huwag sagutin.
   const MIN_DIRECT_SCORE = 5;
+  if (bestBlocked && (!passages.length || passages[0].score < bestBlocked.score)) {
+    return send({
+      reply: PREMIUM_ONLY_REPLY,
+      source: 'premium-only',
+      learnMore: { title: 'Premium plans', path: '/premium-subscription' },
+    });
+  }
+
   const top = passages[0];
   const confident = Boolean(top) && top.score >= MIN_DIRECT_SCORE && top.vocabCoverage >= 0.5;
   const learnMore = confident ? learnMoreFor(top) : null;
@@ -308,7 +360,10 @@ router.post('/', async (req, res) => {
         headers: { 'Content-Type': 'application/json' },
         // sessionId para sa sariling memory ng n8n workflow; history kung
         // gusto niyang gamitin. Redacted na parehong laman.
-        body: JSON.stringify({ message, history, sessionId }),
+        // Kasama yung plan, galing sa database. Ito yung hinahanap ni Shane:
+        // malalaman ng workflow kung Free o Premium yung user nang hindi
+        // humihingi ng kahit ano sa kanya.
+        body: JSON.stringify({ message, history, sessionId, plan }),
         // May limit na 20 seconds. Kapag nag-hang yung n8n server, hindi
         // maghihintay forever yung user; lilipat na lang kay Gemini.
         signal: AbortSignal.timeout(20000),
