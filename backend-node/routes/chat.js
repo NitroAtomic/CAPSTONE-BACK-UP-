@@ -292,7 +292,14 @@ router.post('/', optionalAuth, async (req, res) => {
     }
   }
 
-  let passages = retrieval.search(message, 4);
+  // Mas marami muna ang kinukuha kaysa sa kailangan, para may matitira pa
+  // pagkatapos alisin yung Premium. Sa "how do I spot a scam text", apat na
+  // Invoice Scams passages ang nauuna, kaya kung apat lang ang kukunin, wala
+  // nang matitira para sa Free na user kahit may libreng Smishing content.
+  const SEARCH_DEPTH = 12;
+  const KEEP = 4;
+
+  let passages = retrieval.search(message, SEARCH_DEPTH);
 
   // Tinatanggal yung Premium na passages bago pa makarating sa kahit anong AI,
   // kaya wala talagang mapagkukunan yung model ng laman na bayad.
@@ -301,6 +308,7 @@ router.post('/', optionalAuth, async (req, res) => {
     bestBlocked = passages.find(isPremiumPassage) || null;
     passages = passages.filter((passage) => !isPremiumPassage(passage));
   }
+  passages = passages.slice(0, KEEP);
 
   // Mahina o walang tugma? Malamang follow-up yan ("how do I spot one?"), kaya
   // subukan ulit kasama yung huling tanong ng user. Kapag malakas na yung
@@ -314,12 +322,12 @@ router.post('/', optionalAuth, async (req, res) => {
   const lastUserTurn = [...history].reverse().find((m) => m.role === 'user');
   const hasOwnTopic = retrieval.mentionsTopic(message);
   if (lastUserTurn && !hasOwnTopic && (!passages.length || passages[0].score < FOLLOW_UP_SCORE)) {
-    const withContext = retrieval.search(`${lastUserTurn.text} ${message}`, 4);
+    const withContext = retrieval.search(`${lastUserTurn.text} ${message}`, SEARCH_DEPTH);
     const allowed = plan === 'Premium'
       ? withContext
       : withContext.filter((passage) => !isPremiumPassage(passage));
     if (allowed.length && (!passages.length || allowed[0].score > passages[0].score)) {
-      passages = allowed;
+      passages = allowed.slice(0, KEEP);
     }
   }
 
@@ -340,7 +348,16 @@ router.post('/', optionalAuth, async (req, res) => {
 
   const top = passages[0];
   const confident = Boolean(top) && top.score >= MIN_DIRECT_SCORE && top.vocabCoverage >= 0.5;
-  const learnMore = confident ? learnMoreFor(top) : null;
+  // Mas mababa yung pasukan ng link kaysa sa pagsipi ng teksto. Para sumipi,
+  // kailangang tugmang-tugma. Para lang mag-link sa module, sapat nang tama
+  // yung paksa, kaya mas madalas may "learn more" kaysa dati.
+  // Mas mataas yung hinihinging coverage dito kaysa sa pagsagot, kasi kapag
+  // 0.5 lang, may link na papuntang Spear Phishing yung tanong tungkol sa
+  // pagbe-bake ng tinapay. Mas mabuting walang link kaysa maling link.
+  const MIN_LINK_SCORE = 3.5;
+  const MIN_LINK_COVERAGE = 0.67;
+  const linkWorthy = Boolean(top) && top.score >= MIN_LINK_SCORE && top.vocabCoverage >= MIN_LINK_COVERAGE;
+  const learnMore = linkWorthy ? learnMoreFor(top) : null;
 
   const context = passages
     .map((p, i) => `[${i + 1}] ${p.title}\n${p.text}`)
