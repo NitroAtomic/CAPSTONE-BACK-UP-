@@ -14,7 +14,7 @@ const compression = require('compression');
 
 const config = require('./config/env');
 const pool = require('./config/db');
-const { authLimiter, otpLimiter, generalLimiter } = require('./middleware/rateLimit');
+const { authLimiter, otpLimiter, chatLimiter, generalLimiter } = require('./middleware/rateLimit');
 
 const authRoutes = require('./routes/auth');
 const moduleRoutes = require('./routes/modules');
@@ -90,6 +90,7 @@ app.use('/api/auth/login', authLimiter);
 app.use('/api/auth/register', authLimiter);
 app.use('/api/auth/forgot-password', authLimiter);
 app.use('/api/auth/reset-password', authLimiter);
+app.use('/api/chat', chatLimiter);
 app.use('/api/auth/verify-otp', otpLimiter);
 app.use('/api/auth/resend-otp', otpLimiter);
 

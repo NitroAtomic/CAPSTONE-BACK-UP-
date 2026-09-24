@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-22T12:54:23.882Z",
+  "builtAt": "2026-09-23T14:03:43.669Z",
   "entries": [
     {
       "title": "Essential Safe Practices for Remote Environments: Explicit Learning Objectives:",
@@ -19,7 +19,7 @@
     {
       "title": "Essential Safe Practices for Remote Environments: 3. Securing Home Networks & BYOD Endpoints",
       "source": "javascript/framework/vue/modules/EssentialSafePracticesRemoteEnv.vue",
-      "text": "Home Wi-Fi networks are prime targets for threat actors\n seeking lateral entry into remote work systems:\n Change Router Default Credentials: \n Default administrative passwords (admin/admin) on\n home routers are publicly known and routinely scanned\n by automated botnets. Enable WPA3/WPA2 Enterprise Encryption: \n Ensure home wireless networks use strong encryption\n standards. Disable outdated WEP or plain WPA\n protocols. Isolate IoT Devices on a Guest Network: \n Smart TVs, connected appliances, and security cameras\n often have unpatched vulnerabilities. Connect work\n laptops to an isolated Guest Wi-Fi Network so\n compromised IoT devices cannot intercept work traffic. Automated OS Patching: Keep operating\n systems, browsers, and security software updated. Unpatched software vulnerabilities allow drive-by\n downloads when browsing."
+      "text": "Wi-Fi networks are prime targets for threat actors\n seeking lateral entry into remote work systems:\n Change Router Default Credentials: \n Default administrative passwords (admin/admin) on\n home routers are publicly known and routinely scanned\n by automated botnets. Enable WPA3/WPA2 Enterprise Encryption: \n Ensure home wireless networks use strong encryption\n standards. Disable outdated WEP or plain WPA\n protocols. Isolate IoT Devices on a Guest Network: \n Smart TVs, connected appliances, and security cameras\n often have unpatched vulnerabilities. Connect work\n laptops to an isolated Guest Wi-Fi Network so\n compromised IoT devices cannot intercept work traffic. Automated OS Patching: Keep operating\n systems, browsers, and security software updated. Unpatched software vulnerabilities allow drive-by\n downloads when browsing."
     },
     {
       "title": "Essential Safe Practices for Remote Environments: 4. Out-of-Band (OOB) Verification Protocols",
@@ -90,11 +90,6 @@
       "title": "Pretexting & Trust: Test Your Knowledge",
       "source": "javascript/framework/vue/modules/Pretexting.vue",
       "text": "Ready to check what you've learned? Take a randomized\n 20-question quiz based on this module. Take a Quiz"
-    },
-    {
-      "title": "Email Phishing, Fake Login Pages & QR Code Exploits (Quishing)",
-      "source": "javascript/framework/vue/modules/Quishing.vue",
-      "text": "🏠 Home\n Email Phishing, Fake Login Pages & QR Code Exploits (Quishing)\n Module 1 of 6\n Target Audience: All remote workers, freelancers,\n virtual assistants, and distributed contractors."
     },
     {
       "title": "Email Phishing, Fake Login Pages & QR Code Exploits (Quishing): Explicit Learning Objectives:",
@@ -194,7 +189,7 @@
     {
       "title": "Spear Phishing & Targeted Digital Surveillance",
       "source": "javascript/framework/vue/modules/SpearPhishing.vue",
-      "text": "🏠 Home\n Spear Phishing & Targeted Digital Surveillance\n Module 2 of 6\n Target Audience: Remote personnel with system\n access, administrative privileges, financial responsibilities,\n or public social media profiles."
+      "text": "Target Audience: Remote personnel with system\n access, administrative privileges, financial responsibilities,\n or public social media profiles."
     },
     {
       "title": "Spear Phishing & Targeted Digital Surveillance: Explicit Learning Objectives:",

@@ -131,6 +131,23 @@ function redactSecrets(text) {
 const PREMIUM_SOURCES = new Set(['role-based modules', 'assessment']);
 const isPremiumPassage = (passage) => PREMIUM_SOURCES.has(passage.source);
 
+// Mga salitang pang-Premium talaga: kliyente, invoice, recruiter, kontrata.
+// Kailangan to bago tumanggi, kasi hindi sapat na Premium yung pinakamalapit
+// na passage: "how do I spot a scam text" tungkol sa smishing yun, libre, pero
+// unang lumalabas yung Invoice and Payment Scams. Kapag walang ganitong salita
+// yung tanong, sinasagot na lang galing sa libreng content.
+const PREMIUM_TOPIC_WORDS = [
+  'recruiter', 'recruiters', 'recruitment', 'invoice', 'invoices', 'invoicing',
+  'billing', 'payroll', 'contract', 'contracts', 'freelance', 'freelancer',
+  'client', 'clients', 'vendor', 'vendors', 'executive', 'impersonation',
+  'impersonating', 'impersonate',
+];
+
+function mentionsPremiumTopic(text) {
+  const words = String(text).toLowerCase().match(/[a-z]+/g) || [];
+  return words.some((word) => PREMIUM_TOPIC_WORDS.includes(word));
+}
+
 const PREMIUM_ONLY_REPLY = [
   'That one is covered in the Role-based modules, which are part of Premium.',
   'They walk through client impersonation, invoice scams, fake recruiters and',
@@ -312,7 +329,8 @@ router.post('/', optionalAuth, async (req, res) => {
   // Premium yung pinakamalapit na sagot, at wala namang malakas na libreng
   // kapalit: sabihin na lang na nasa Premium yun, huwag sagutin.
   const MIN_DIRECT_SCORE = 5;
-  if (bestBlocked && (!passages.length || passages[0].score < bestBlocked.score)) {
+  if (bestBlocked && mentionsPremiumTopic(message)
+      && (!passages.length || passages[0].score < bestBlocked.score)) {
     return send({
       reply: PREMIUM_ONLY_REPLY,
       source: 'premium-only',

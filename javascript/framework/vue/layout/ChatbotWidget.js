@@ -153,7 +153,14 @@ export default {
 
         this.messages.push(assistantMessage(reply, learnMore))
       } catch (err) {
-        this.messages.push(assistantMessage("I couldn't reach CyberWise just now. Check your connection and try again in a moment."))
+        // The server explains some refusals itself, such as sending too many
+        // messages too quickly. Showing "I couldn't reach CyberWise" there
+        // would send the user looking for a connection problem that isn't
+        // there.
+        const serverSaidWhy = err.message && !/could not reach the server/i.test(err.message)
+        this.messages.push(assistantMessage(serverSaidWhy
+          ? err.message
+          : "I couldn't reach CyberWise just now. Check your connection and try again in a moment."))
       } finally {
         this.busy = false
         this.scrollToEnd()

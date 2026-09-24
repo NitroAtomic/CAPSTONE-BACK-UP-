@@ -28,6 +28,13 @@ function textFromHtml(html) {
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, ' ')
+    // Nav, header at footer: gamit sila sa pahina, pero hindi sila aral.
+    // Kapag naiwan, nauuna pang lumabas yung "Home" sa sagot ng assistant.
+    .replace(/<nav[\s\S]*?<\/nav>/gi, ' ')
+    .replace(/<header[\s\S]*?<\/header>/gi, ' ')
+    .replace(/<footer[\s\S]*?<\/footer>/gi, ' ')
+    // Emoji na pang-dekorasyon lang sa mga heading at breadcrumb.
+    .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ')
     .replace(/<\/(p|div|section|li|h[1-6])>/gi, '\n')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&nbsp;/g, ' ')
@@ -37,6 +44,8 @@ function textFromHtml(html) {
     .replace(/&mdash;/g, '-')
     .replace(/[ \t]+/g, ' ')
     .replace(/\n\s*\n+/g, '\n')
+    // Naiwang breadcrumb sa simula, gaya ng "Home" o "Home /".
+    .replace(/^\s*Home\s*[\/|>-]?\s*/i, '')
     .trim();
 }
 

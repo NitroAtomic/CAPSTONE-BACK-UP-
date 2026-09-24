@@ -29,6 +29,18 @@ const otpLimiter = rateLimit({
   message: { error: 'Too many verification attempts. Please request a new code.' },
 });
 
+// Chat. Bukas sya sa lahat kahit walang account, at bawat tanong ay tawag sa
+// AI na may sariling limit, kaya kailangan may sariling hadlang. Hindi
+// masyadong mahigpit kasi iisa lang yung IP address ng buong school wifi:
+// apat na tester na magkasabay, iisa lang sila sa paningin nito.
+const chatLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'You have sent a lot of messages in a short time. Please wait a few minutes before asking CyberWise again.' },
+});
+
 // Yung iba pang endpoints, para walang isang client na mag-flood sa API.
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -38,4 +50,4 @@ const generalLimiter = rateLimit({
   message: { error: 'Too many requests. Please slow down.' },
 });
 
-module.exports = { authLimiter, otpLimiter, generalLimiter };
+module.exports = { authLimiter, otpLimiter, chatLimiter, generalLimiter };
