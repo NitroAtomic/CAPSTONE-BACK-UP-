@@ -264,7 +264,7 @@
 .chatbot-starter:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
 
 /* Back to top. Nasa kaliwa ng chat button, mas maliit, para malinaw kung alin
-   ang pangunahin. Itim at puti muna, gaya ng iba, wala pang kulay. */
+   ang pangunahin. */
 .back-to-top {
   position: fixed;
   right: 92px;
