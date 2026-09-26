@@ -272,12 +272,15 @@
 
         <p>
             Ready to check what you've learned? Take a randomized
-            20-question quiz based on this module.
+            10-question quiz drawn from a pool of 20, so a retake is never the same test twice.
         </p>
 
         <router-link to="/quiz/module-4/question" class="take-quiz-button">
             Take a Quiz
         </router-link>
+
+
+        <router-link to="/" class="module-home-link">Back to home</router-link>
 
     </section>
 

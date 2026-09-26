@@ -256,3 +256,31 @@
 }
 .chatbot-starter:hover { background: #f2f2f2; }
 .chatbot-starter:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+
+/* Back to top. Nasa kaliwa ng chat button, mas maliit, para malinaw kung alin
+   ang pangunahin. Itim at puti muna, gaya ng iba, wala pang kulay. */
+.back-to-top {
+  position: fixed;
+  right: 92px;
+  bottom: 24px;
+  z-index: 40;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #111;
+  border-radius: 9999px;
+  background: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+.back-to-top:hover { background: #f2f2f2; }
+.back-to-top:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+
+/* Link pabalik sa homepage sa dulo ng module. */
+.module-home-link {
+  display: inline-block;
+  margin-left: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}

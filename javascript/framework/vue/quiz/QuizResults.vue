@@ -83,6 +83,12 @@
         >
           Back to module
         </router-link>
+
+        <!-- Hiniling ni Jyan: may daan pabalik sa homepage dito, para hindi
+             kailangang mag-scroll pataas o gamitin yung back ng browser. -->
+        <router-link to="/" class="quiz-results-button">
+          Back to home
+        </router-link>
       </div>
     </section>
 
