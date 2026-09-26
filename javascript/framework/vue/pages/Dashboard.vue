@@ -23,15 +23,25 @@
           <strong class="dash-stat-value">{{ averageScore }}</strong>
         </div>
 
+        <!-- Guhit muna kapag walang assessment pa. Ibang-iba kasi ang ibig
+             sabihin ng "0 weak areas" sa "hindi pa sumasagot ng assessment",
+             pero pareho silang lumalabas na 0. -->
         <div class="dash-stat">
           <span class="dash-stat-label">Weak areas found</span>
-          <strong class="dash-stat-value">{{ weakAreas.length }}</strong>
+          <strong class="dash-stat-value">{{ assessment ? weakAreas.length : '—' }}</strong>
         </div>
       </section>
 
       <section v-if="recommendations.length" class="dash-section">
         <h2>Recommended for you</h2>
-        <p class="dash-section-note">Based on your assessment results</p>
+        <!-- Kapag walang assessment pa, hindi galing dun yung listahan kundi
+             sa mga module na hindi pa nasisimulan. -->
+        <p v-if="assessment" class="dash-section-note">Based on your assessment results</p>
+        <p v-else class="dash-section-note">
+          Modules you have not started yet. Take the
+          <router-link to="/assessment">awareness assessment</router-link>
+          for a personalised list.
+        </p>
 
         <div class="dash-cards">
           <router-link v-for="item in recommendations" :key="item.module_id"
@@ -59,6 +69,18 @@
             <span class="dash-chart-value">{{ topic.correct }}/{{ topic.total }}</span>
           </li>
         </ul>
+      </section>
+
+      <!-- Dati nakatago tong section kapag walang laman, kaya walang paliwanag
+           kung bakit 0 kahit maraming quiz na ang sinagutan. Galing sa
+           assessment ang weak areas, hindi sa quizzes. -->
+      <section v-if="!assessment" class="dash-section">
+        <h2>Your weak areas</h2>
+        <p class="dash-section-note">
+          Weak areas come from the awareness assessment, not from module quizzes.
+          <router-link to="/assessment">Take the assessment</router-link>
+          to see which topics to focus on.
+        </p>
       </section>
 
       <section v-if="weakAreas.length" class="dash-section">
