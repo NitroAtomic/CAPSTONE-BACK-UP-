@@ -36,11 +36,11 @@
   }
 
   .chatbot-assistant-icon {
-    @apply w-[34px] h-[34px] shrink-0 border border-black rounded-full bg-white text-black flex items-center justify-center text-[11px] font-bold;
+    @apply w-[34px] h-[34px] shrink-0 rounded-full overflow-hidden flex items-center justify-center;
   }
 
   .chatbot-assistant-icon img {
-    @apply w-[28px] h-[28px] block object-contain;
+    @apply w-full h-full block object-contain;
   }
 
   .chatbot-assistant-details h2 {
@@ -148,7 +148,7 @@
      ========================= */
 
   .chatbot-floating-button {
-    @apply w-[54px] h-[54px] ml-auto p-0 border border-black rounded-full bg-white text-black flex items-center justify-center cursor-pointer transition-all duration-150 ease-in-out;
+    @apply w-[54px] h-[54px] ml-auto p-0 border-0 rounded-full bg-transparent text-black flex items-center justify-center cursor-pointer transition-all duration-150 ease-in-out;
   }
 
   .chatbot-floating-button:hover {
@@ -162,8 +162,14 @@
 
   /* 40px, not 24px: the CyberWise logo has a shield and a face that
      disappear at smaller sizes. */
+  /* Bilog na ang logo mismo, kaya hinahayaan nating punuin nito yung button.
+     Kung may puting bilog pa sa paligid, parang bilog sa loob ng bilog. */
   .chatbot-floating-button-icon {
-    @apply w-10 h-10 flex items-center justify-center;
+    @apply w-full h-full flex items-center justify-center;
+  }
+
+  .chatbot-floating-button-icon img {
+    @apply w-full h-full object-contain rounded-full;
   }
 
   /*
