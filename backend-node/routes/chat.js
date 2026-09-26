@@ -479,7 +479,15 @@ router.post('/', optionalAuth, async (req, res) => {
     // dati yung "Which conversational signs suggest... (Select TWO)" bilang
     // sagot sa "how do we prevent those two?".
     const isQuizItem = (p) => /^quiz\//.test(p.source) || p.source === 'assessment';
-    const best = passages.find((p) => !isQuizItem(p)) || passages[0];
+
+    // Mas gusto yung module text kaysa quiz item, pero kapag malapit lang yung
+    // score. Dati kahit gaano kalayo, sinusunod yung una na hindi quiz: sa
+    // "should I use a password manager", nilaktawan nito yung tamang passage
+    // at kinuha yung tungkol sa email headers, maling module pa yung na-link.
+    const nonQuiz = passages.find((p) => !isQuizItem(p));
+    const best = (nonQuiz && nonQuiz.score >= passages[0].score * 0.8)
+      ? nonQuiz
+      : passages[0];
 
     // Kapag quiz item talaga ang meron, yung paliwanag lang ang ibabalik,
     // hindi kasama yung tanong.
