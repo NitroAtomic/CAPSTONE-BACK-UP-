@@ -115,12 +115,39 @@ router.put('/:id', requireAdmin, async (req, res) => {
 
 // FR-17: Admin deletes ng module
 router.delete('/:id', requireAdmin, async (req, res) => {
+  // Kailangang burahin muna yung mga nakakabit bago yung module mismo. Walang
+  // ON DELETE CASCADE yung original na schema, kaya kapag diretso ang DELETE
+  // sa module, tumatanggi yung database dahil may quiz na naka-turo dito, at
+  // 500 lang yung nakikita ng admin.
+  //
+  // Naka-transaction lahat: kung may pumalya sa gitna, walang module na
+  // mawawalan ng kalahati ng laman.
+  const conn = await pool.getConnection();
   try {
-    await pool.query('DELETE FROM module WHERE module_id = ?', [req.params.id]);
+    await conn.beginTransaction();
+
+    const [quizzes] = await conn.query('SELECT quiz_id FROM quiz WHERE module_id = ?', [req.params.id]);
+    const quizIds = quizzes.map((q) => q.quiz_id);
+
+    if (quizIds.length) {
+      await conn.query('DELETE FROM quizquestion WHERE quiz_id IN (?)', [quizIds]);
+      await conn.query('DELETE FROM quizresult WHERE quiz_id IN (?)', [quizIds]);
+      await conn.query('DELETE FROM quiz WHERE module_id = ?', [req.params.id]);
+    }
+
+    await conn.query('DELETE FROM progress WHERE module_id = ?', [req.params.id]);
+    const [result] = await conn.query('DELETE FROM module WHERE module_id = ?', [req.params.id]);
+
+    await conn.commit();
+
+    if (!result.affectedRows) return res.status(404).json({ error: 'Module not found.' });
     res.json({ message: 'Module deleted.' });
   } catch (err) {
+    await conn.rollback();
     console.error(err);
     res.status(500).json({ error: 'Failed to delete module.' });
+  } finally {
+    conn.release();
   }
 });
 
